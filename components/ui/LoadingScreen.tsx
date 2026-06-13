@@ -100,11 +100,11 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
       "-=0.5"
     );
 
-    // 5. Final glow aura flash
+    // 5. Subtle logo scale pulse (avoids layout-shifting drop-shadows)
     tl.to(
       logoTextRef.current,
       {
-        filter: "drop-shadow(0 0 8px rgba(17,17,17,0.12))",
+        scale: 1.05,
         duration: 0.4,
         yoyo: true,
         repeat: 1,
@@ -136,34 +136,34 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
         <svg
           ref={svgRef}
           viewBox="0 0 200 120"
-          className="w-full h-full drop-shadow-2xl overflow-visible"
+          className="w-full h-full overflow-visible"
         >
-          {/* Piece 1 (Top Left) - Warm Cream */}
+          {/* Piece 1 (Top Left) - Prussian Blue */}
           <path
             ref={p1Ref}
             d="M 0,0 H 100 V 20 C 100,24 108,22 108,30 C 108,38 100,36 100,40 V 60 H 60 C 56,60 58,52 50,52 C 42,52 44,60 40,60 H 0 V 0 Z"
-            fill="#EADFC9"
+            fill="#2563EB"
             style={{ transformOrigin: "50px 30px" }}
           />
-          {/* Piece 2 (Top Right) - Gold Accent */}
+          {/* Piece 2 (Top Right) - Muted Gold */}
           <path
             ref={p2Ref}
             d="M 100,0 H 200 V 60 H 160 C 156,60 158,68 150,68 C 142,68 144,60 140,60 H 100 V 40 C 100,36 108,38 108,30 C 108,22 100,24 100,20 V 0 Z"
             fill="#C5A880"
             style={{ transformOrigin: "150px 30px" }}
           />
-          {/* Piece 3 (Bottom Left) - Muted Taupe */}
+          {/* Piece 3 (Bottom Left) - Deep Charcoal */}
           <path
             ref={p3Ref}
             d="M 0,60 H 40 C 44,60 42,52 50,52 C 58,52 56,60 60,60 H 100 V 80 C 100,84 92,82 92,90 C 92,98 100,96 100,100 V 120 H 0 V 60 Z"
-            fill="#D5CBB8"
+            fill="#111111"
             style={{ transformOrigin: "50px 90px" }}
           />
-          {/* Piece 4 (Bottom Right) - Soft Sand */}
+          {/* Piece 4 (Bottom Right) - Crimson Red */}
           <path
             ref={p4Ref}
             d="M 100,60 H 140 C 144,60 142,68 150,68 C 158,68 156,60 160,60 H 200 V 120 H 100 V 100 C 100,96 92,98 92,90 C 92,82 100,84 100,80 V 60 Z"
-            fill="#E2D7C3"
+            fill="#EF4444"
             style={{ transformOrigin: "150px 90px" }}
           />
         </svg>
@@ -177,7 +177,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
             <img 
               src="/mindovo.svg" 
               alt="Mindovo Logo" 
-              className="h-5 md:h-6 w-auto" 
+              className="h-5 md:h-6 w-auto brightness-0 invert" 
             />
           </div>
         </div>
