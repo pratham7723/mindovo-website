@@ -15,6 +15,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
   const p2Ref = useRef<SVGPathElement>(null);
   const p3Ref = useRef<SVGPathElement>(null);
   const p4Ref = useRef<SVGPathElement>(null);
+  const emblemRef = useRef<HTMLDivElement>(null);
   const [isDone, setIsDone] = useState(false);
 
   useEffect(() => {
@@ -48,6 +49,9 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
     gsap.set(p3Ref.current, { x: -80, y: 50, rotate: -30 });
     gsap.set(p4Ref.current, { x: 80, y: 50, rotate: 40 });
     gsap.set(logoTextRef.current, { opacity: 0, scale: 0.85, y: 10 });
+    if (emblemRef.current) {
+      gsap.set(emblemRef.current, { scale: 0, rotate: -30, opacity: 0 });
+    }
     gsap.set(svgRef.current, { rotate: 0 });
 
     // 1. Staggered fade-in of puzzle pieces
@@ -99,6 +103,21 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
       },
       "-=0.5"
     );
+
+    // 4.5. Bouncy animation for the game emblem
+    if (emblemRef.current) {
+      tl.to(
+        emblemRef.current,
+        {
+          scale: 1,
+          rotate: 0,
+          opacity: 1,
+          duration: 0.9,
+          ease: "back.out(2.2)",
+        },
+        "-=0.7"
+      );
+    }
 
     // 5. Subtle logo scale pulse (avoids layout-shifting drop-shadows)
     tl.to(
@@ -172,12 +191,43 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           <div
             ref={logoTextRef}
-            className="select-none flex items-center justify-center"
+            className="select-none flex flex-col items-center justify-center"
           >
+            {/* Game-centric Emblem (Meeple + Puzzle Piece) */}
+            <div
+              ref={emblemRef}
+              className="flex items-center justify-center gap-1.5 mb-2 md:mb-2.5 shrink-0"
+            >
+              {/* Gold Board Game Meeple */}
+              <svg
+                className="w-5 h-5 md:w-6 md:h-6 drop-shadow-sm filter brightness-95"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm4.2 6.25a1.5 1.5 0 0 0-1.5-1.25H9.3a1.5 1.5 0 0 0-1.5 1.25l-1.2 4.8a1.5 1.5 0 0 0 1.45 1.85h1.15l-.9 5.4A1.5 1.5 0 0 0 9.8 21h4.4a1.5 1.5 0 0 0 1.5-1.7l-.9-5.4h1.15a1.5 1.5 0 0 0 1.45-1.85l-1.2-4.8z"
+                  fill="#CA8A04"
+                />
+              </svg>
+              {/* Slate Interlocking Puzzle Piece */}
+              <svg
+                className="w-5 h-5 md:w-6 md:h-6 drop-shadow-sm"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M19 10.5V8a1 1 0 0 0-1-1h-2.5a1.5 1.5 0 0 1-1.5-1.5A1.5 1.5 0 0 1 15.5 4a1.5 1.5 0 0 1 1.5-1.5V1.5A1.5 1.5 0 0 0 15.5 0h-2.5a1 1 0 0 0-1 1v0.5a1.5 1.5 0 0 1-1.5 1.5A1.5 1.5 0 0 1 9 1.5V1A1 1 0 0 0 8 0H5.5A1.5 1.5 0 0 0 4 1.5v2.5a1.5 1.5 0 0 1-1.5 1.5A1.5 1.5 0 0 1 1 4a1 1 0 0 0-1 1v2.5a1 1 0 0 0 1 1h0.5a1.5 1.5 0 0 1 1.5 1.5A1.5 1.5 0 0 1 1.5 11.5H1a1 1 0 0 0-1 1V15a1.5 1.5 0 0 0 1.5 1.5h2.5a1.5 1.5 0 0 1 1.5 1.5A1.5 1.5 0 0 1 4 19.5V20a1 1 0 0 0 1 1h2.5a1 1 0 0 0 1-1v-0.5a1.5 1.5 0 0 1 1.5-1.5 1.5 1.5 0 0 1 1.5 1.5v0.5a1 1 0 0 0 1 1h2.5a1.5 1.5 0 0 0 1.5-1.5v-2.5a1.5 1.5 0 0 1 1.5-1.5 1.5 1.5 0 0 1 1.5 1.5h0.5a1 1 0 0 0 1-1v-2.5a1 1 0 0 0-1-1h-0.5a1.5 1.5 0 0 1-1.5-1.5 1.5 1.5 0 0 1 1.5-1.5h0.5a1 1 0 0 0 1-1z"
+                  fill="#111111"
+                />
+              </svg>
+            </div>
+
             <img 
               src="/mindovo.svg" 
               alt="Mindovo Logo" 
-              className="h-5 md:h-6 w-auto" 
+              className="h-4 md:h-4.5 w-auto" 
             />
           </div>
         </div>

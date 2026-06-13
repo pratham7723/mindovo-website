@@ -1,21 +1,238 @@
 "use client";
 
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useMemo } from "react";
 import * as THREE from "three";
 import { Float, Center, Sparkles } from "@react-three/drei";
 
+// 1. Custom 3D Rounded Die Component with 21 Pips (Dots)
+interface DieProps {
+  color: string;
+  position: [number, number, number];
+  rotation: [number, number, number];
+  scale?: number;
+}
+
+function Die({ color, position, rotation, scale = 1 }: DieProps) {
+  const groupRef = useRef<THREE.Group>(null);
+  
+  useFrame((state) => {
+    const t = state.clock.getElapsedTime();
+    if (groupRef.current) {
+      // Gentle constant tumble
+      groupRef.current.rotation.x = rotation[0] + t * 0.2;
+      groupRef.current.rotation.y = rotation[1] + t * 0.15;
+      groupRef.current.rotation.z = rotation[2] + t * 0.1;
+    }
+  });
+
+  const pipMaterial = useMemo(() => new THREE.MeshStandardMaterial({
+    color: "#FAF8F5",
+    roughness: 0.4,
+    metalness: 0.1
+  }), []);
+
+  // Position coordinates for die faces (assuming box size is 0.8 x 0.8 x 0.8)
+  const d = 0.402; // Offset from center for pips
+  const r = 0.05;  // Sphere radius for pips
+
+  return (
+    <group ref={groupRef} position={position} scale={scale}>
+      {/* Die body */}
+      <mesh castShadow receiveShadow>
+        <boxGeometry args={[0.8, 0.8, 0.8]} />
+        <meshStandardMaterial color={color} roughness={0.15} metalness={0.15} />
+      </mesh>
+      
+      {/* Face 1 (Front: z = +d) */}
+      <mesh position={[0, 0, d]} material={pipMaterial}>
+        <sphereGeometry args={[r, 16, 16]} />
+      </mesh>
+      
+      {/* Face 6 (Back: z = -d) */}
+      <group position={[0, 0, -d]}>
+        <mesh position={[-0.2, 0.2, 0]} material={pipMaterial}><sphereGeometry args={[r, 16, 16]} /></mesh>
+        <mesh position={[-0.2, 0, 0]} material={pipMaterial}><sphereGeometry args={[r, 16, 16]} /></mesh>
+        <mesh position={[-0.2, -0.2, 0]} material={pipMaterial}><sphereGeometry args={[r, 16, 16]} /></mesh>
+        <mesh position={[0.2, 0.2, 0]} material={pipMaterial}><sphereGeometry args={[r, 16, 16]} /></mesh>
+        <mesh position={[0.2, 0, 0]} material={pipMaterial}><sphereGeometry args={[r, 16, 16]} /></mesh>
+        <mesh position={[0.2, -0.2, 0]} material={pipMaterial}><sphereGeometry args={[r, 16, 16]} /></mesh>
+      </group>
+
+      {/* Face 3 (Top: y = +d) */}
+      <group position={[0, d, 0]}>
+        <mesh position={[-0.2, 0, -0.2]} material={pipMaterial}><sphereGeometry args={[r, 16, 16]} /></mesh>
+        <mesh position={[0, 0, 0]} material={pipMaterial}><sphereGeometry args={[r, 16, 16]} /></mesh>
+        <mesh position={[0.2, 0, 0.2]} material={pipMaterial}><sphereGeometry args={[r, 16, 16]} /></mesh>
+      </group>
+
+      {/* Face 4 (Bottom: y = -d) */}
+      <group position={[0, -d, 0]}>
+        <mesh position={[-0.2, 0, -0.2]} material={pipMaterial}><sphereGeometry args={[r, 16, 16]} /></mesh>
+        <mesh position={[-0.2, 0, 0.2]} material={pipMaterial}><sphereGeometry args={[r, 16, 16]} /></mesh>
+        <mesh position={[0.2, 0, -0.2]} material={pipMaterial}><sphereGeometry args={[r, 16, 16]} /></mesh>
+        <mesh position={[0.2, 0, 0.2]} material={pipMaterial}><sphereGeometry args={[r, 16, 16]} /></mesh>
+      </group>
+
+      {/* Face 2 (Left: x = -d) */}
+      <group position={[-d, 0, 0]}>
+        <mesh position={[0, -0.2, -0.2]} material={pipMaterial}><sphereGeometry args={[r, 16, 16]} /></mesh>
+        <mesh position={[0, 0.2, 0.2]} material={pipMaterial}><sphereGeometry args={[r, 16, 16]} /></mesh>
+      </group>
+
+      {/* Face 5 (Right: x = +d) */}
+      <group position={[d, 0, 0]}>
+        <mesh position={[0, -0.2, -0.2]} material={pipMaterial}><sphereGeometry args={[r, 16, 16]} /></mesh>
+        <mesh position={[0, 0.2, 0.2]} material={pipMaterial}><sphereGeometry args={[r, 16, 16]} /></mesh>
+        <mesh position={[0, -0.2, 0.2]} material={pipMaterial}><sphereGeometry args={[r, 16, 16]} /></mesh>
+        <mesh position={[0, 0.2, -0.2]} material={pipMaterial}><sphereGeometry args={[r, 16, 16]} /></mesh>
+        <mesh position={[0, 0, 0]} material={pipMaterial}><sphereGeometry args={[r, 16, 16]} /></mesh>
+      </group>
+    </group>
+  );
+}
+
+// 2. Custom Extruded 3D Meeple (Pawn) Component
+interface MeepleProps {
+  color: string;
+  position: [number, number, number];
+  rotation: [number, number, number];
+  scale?: number;
+}
+
+function Meeple({ color, position, rotation, scale = 1 }: MeepleProps) {
+  const shape = useMemo(() => {
+    const meepleShape = new THREE.Shape();
+    // Start at bottom left leg
+    meepleShape.moveTo(-0.3, -0.45);
+    meepleShape.lineTo(-0.15, -0.45);
+    // Inner crotch
+    meepleShape.lineTo(0, -0.15);
+    // Right leg
+    meepleShape.lineTo(0.15, -0.45);
+    meepleShape.lineTo(0.3, -0.45);
+    // Side torso
+    meepleShape.lineTo(0.25, -0.1);
+    // Right arm
+    meepleShape.lineTo(0.5, -0.1);
+    meepleShape.lineTo(0.5, 0.1);
+    meepleShape.lineTo(0.22, 0.12);
+    // Neck
+    meepleShape.lineTo(0.14, 0.2);
+    // Head (arc circle)
+    meepleShape.absarc(0, 0.38, 0.2, 0, Math.PI * 2, false);
+    // Left arm
+    meepleShape.lineTo(-0.14, 0.2);
+    meepleShape.lineTo(-0.22, 0.12);
+    meepleShape.lineTo(-0.5, 0.1);
+    meepleShape.lineTo(-0.5, -0.1);
+    // Left torso
+    meepleShape.lineTo(-0.25, -0.1);
+    meepleShape.lineTo(-0.3, -0.45);
+    return meepleShape;
+  }, []);
+
+  const extrudeSettings = useMemo(() => ({
+    depth: 0.15,
+    bevelEnabled: true,
+    bevelSegments: 4,
+    steps: 1,
+    bevelSize: 0.02,
+    bevelThickness: 0.02
+  }), []);
+
+  const groupRef = useRef<THREE.Group>(null);
+
+  useFrame((state) => {
+    const t = state.clock.getElapsedTime();
+    if (groupRef.current) {
+      groupRef.current.rotation.y = rotation[1] + Math.sin(t * 0.8) * 0.15;
+    }
+  });
+
+  return (
+    <group ref={groupRef} position={position} rotation={rotation} scale={scale}>
+      <mesh castShadow receiveShadow>
+        <extrudeGeometry args={[shape, extrudeSettings]} />
+        <meshStandardMaterial color={color} roughness={0.3} metalness={0.1} />
+      </mesh>
+    </group>
+  );
+}
+
+// 3. Custom Extruded 3D Puzzle Piece Component
+interface PuzzlePieceProps {
+  color: string;
+  position: [number, number, number];
+  rotation: [number, number, number];
+  scale?: number;
+}
+
+function PuzzlePiece({ color, position, rotation, scale = 1 }: PuzzlePieceProps) {
+  const shape = useMemo(() => {
+    const pShape = new THREE.Shape();
+    pShape.moveTo(-0.4, -0.4);
+    
+    // Bottom side: tab bulging out
+    pShape.lineTo(-0.12, -0.4);
+    pShape.bezierCurveTo(-0.12, -0.52, 0.12, -0.52, 0.12, -0.4);
+    pShape.lineTo(0.4, -0.4);
+    
+    // Right side: blank indented in
+    pShape.lineTo(0.4, -0.12);
+    pShape.bezierCurveTo(0.28, -0.12, 0.28, 0.12, 0.4, 0.12);
+    pShape.lineTo(0.4, 0.4);
+    
+    // Top side: tab bulging out
+    pShape.lineTo(0.12, 0.4);
+    pShape.bezierCurveTo(0.12, 0.52, -0.12, 0.52, -0.12, 0.4);
+    pShape.lineTo(-0.4, 0.4);
+    
+    // Left side: blank indented in
+    pShape.lineTo(-0.4, 0.12);
+    pShape.bezierCurveTo(-0.28, 0.12, -0.28, -0.12, -0.4, -0.12);
+    pShape.lineTo(-0.4, -0.4);
+    return pShape;
+  }, []);
+
+  const extrudeSettings = useMemo(() => ({
+    depth: 0.14,
+    bevelEnabled: true,
+    bevelSegments: 4,
+    steps: 1,
+    bevelSize: 0.02,
+    bevelThickness: 0.02
+  }), []);
+
+  const groupRef = useRef<THREE.Group>(null);
+
+  useFrame((state) => {
+    const t = state.clock.getElapsedTime();
+    if (groupRef.current) {
+      groupRef.current.rotation.z = rotation[2] + Math.cos(t * 0.5) * 0.1;
+    }
+  });
+
+  return (
+    <group ref={groupRef} position={position} rotation={rotation} scale={scale}>
+      <mesh castShadow receiveShadow>
+        <extrudeGeometry args={[shape, extrudeSettings]} />
+        <meshStandardMaterial color={color} roughness={0.18} metalness={0.8} />
+      </mesh>
+    </group>
+  );
+}
+
+// 4. Main Scene Manager
 function Scene() {
   const { viewport } = useThree();
-  const puzzleBoxRef = useRef<THREE.Mesh>(null);
-  const cardBoxRef = useRef<THREE.Group>(null);
+  const groupRef = useRef<THREE.Group>(null);
   const lightRef = useRef<THREE.PointLight>(null);
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
 
   // Mouse tracking listener
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      // Normalize mouse coordinates to [-1, 1]
       setMouse({
         x: (e.clientX / window.innerWidth) * 2 - 1,
         y: -(e.clientY / window.innerHeight) * 2 + 1,
@@ -28,29 +245,16 @@ function Scene() {
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
 
-    // Smooth tilt effect based on mouse movement
-    if (puzzleBoxRef.current) {
-      puzzleBoxRef.current.rotation.y = THREE.MathUtils.lerp(
-        puzzleBoxRef.current.rotation.y,
-        mouse.x * 0.4 + t * 0.15,
+    // Smooth tilt effect of the entire layout based on mouse movement
+    if (groupRef.current) {
+      groupRef.current.rotation.y = THREE.MathUtils.lerp(
+        groupRef.current.rotation.y,
+        mouse.x * 0.25,
         0.05
       );
-      puzzleBoxRef.current.rotation.x = THREE.MathUtils.lerp(
-        puzzleBoxRef.current.rotation.x,
-        -mouse.y * 0.3 + 0.2,
-        0.05
-      );
-    }
-
-    if (cardBoxRef.current) {
-      cardBoxRef.current.rotation.y = THREE.MathUtils.lerp(
-        cardBoxRef.current.rotation.y,
-        mouse.x * 0.4 - t * 0.12 - 0.5,
-        0.05
-      );
-      cardBoxRef.current.rotation.x = THREE.MathUtils.lerp(
-        cardBoxRef.current.rotation.x,
-        mouse.y * 0.3 - 0.1,
+      groupRef.current.rotation.x = THREE.MathUtils.lerp(
+        groupRef.current.rotation.x,
+        -mouse.y * 0.15 + 0.1,
         0.05
       );
     }
@@ -59,12 +263,12 @@ function Scene() {
     if (lightRef.current) {
       lightRef.current.position.x = THREE.MathUtils.lerp(
         lightRef.current.position.x,
-        mouse.x * 5,
+        mouse.x * 4,
         0.1
       );
       lightRef.current.position.y = THREE.MathUtils.lerp(
         lightRef.current.position.y,
-        mouse.y * 5,
+        mouse.y * 4,
         0.1
       );
     }
@@ -72,111 +276,102 @@ function Scene() {
 
   return (
     <>
-      {/* Cinematic Studio Lighting */}
-      <ambientLight intensity={0.7} />
-      <directionalLight position={[10, 10, 5]} intensity={1.5} castShadow />
-      <pointLight ref={lightRef} position={[0, 0, 5]} intensity={2} color="#F7F3EB" />
-      <pointLight position={[-10, -10, -5]} intensity={0.5} color="#1E40AF" />
-      <pointLight position={[10, -10, 5]} intensity={0.8} color="#991B1B" />
+      {/* Studio Quality Lighting */}
+      <ambientLight intensity={0.75} />
+      <directionalLight position={[8, 8, 4]} intensity={1.4} castShadow shadow-mapSize={[1024, 1024]} />
+      <pointLight ref={lightRef} position={[0, 0, 4]} intensity={1.8} color="#F7F3EB" />
+      <pointLight position={[-8, -8, -4]} intensity={0.4} color="#1E40AF" />
+      <pointLight position={[8, -8, 4]} intensity={0.7} color="#CA8A04" />
 
-      {/* Sparks/Dust particles for atmospheric depth */}
-      <Sparkles count={40} scale={6} size={2} speed={0.4} color="#C2410C" />
+      {/* Ambient sparkle particles for visual depth */}
+      <Sparkles count={35} scale={5.5} size={2.2} speed={0.4} color="#CA8A04" />
 
-      {/* Floating 3D Products */}
+      {/* Floating 3D Tabletop Game Objects */}
       <Center>
-        {/* Mindovo Jigsaw Puzzle Box (Landscape Flat Layout) */}
-        <Float speed={2} rotationIntensity={0.5} floatIntensity={0.6} position={[-1.2, 0.3, 0]}>
-          <mesh ref={puzzleBoxRef} castShadow receiveShadow>
-            <boxGeometry args={[2.5, 1.8, 0.32]} />
-            <meshStandardMaterial
-              color="#1E40AF"
-              roughness={0.2}
-              metalness={0.1}
+        <group ref={groupRef}>
+          
+          {/* Main Gold Puzzle Piece (Center-Left) */}
+          <Float speed={2} rotationIntensity={0.6} floatIntensity={0.7} position={[-1.3, 0.4, 0]}>
+            <PuzzlePiece
+              color="#CA8A04"
+              position={[0, 0, 0]}
+              rotation={[0.1, -0.4, 0.35]}
+              scale={1.8}
             />
-            {/* Inner Details / Label */}
-            <mesh position={[0, 0, 0.161]}>
-              <boxGeometry args={[2.1, 1.4, 0.01]} />
-              <meshStandardMaterial
-                color="#0C0A09"
-                roughness={0.4}
-                metalness={0.8}
-                emissive="#1E40AF"
-                emissiveIntensity={0.1}
+          </Float>
+
+          {/* Tumbling 3D Dice Pair (Center-Right) */}
+          <Float speed={2.5} rotationIntensity={0.7} floatIntensity={0.9} position={[1.4, -0.2, 0.4]}>
+            <group>
+              {/* Die 1: Green */}
+              <Die
+                color="#065F46"
+                position={[-0.4, 0.4, 0]}
+                rotation={[0.5, 0.2, -0.8]}
+                scale={1.2}
               />
-            </mesh>
-            {/* Gold foil outline trim */}
-            <mesh position={[0, 0, 0.162]}>
-              <boxGeometry args={[2.2, 1.5, 0.002]} />
-              <meshStandardMaterial color="#CA8A04" roughness={0.1} metalness={0.9} />
-            </mesh>
-          </mesh>
-        </Float>
+              {/* Die 2: Orange */}
+              <Die
+                color="#C2410C"
+                position={[0.4, -0.3, -0.2]}
+                rotation={[-0.3, 0.8, 0.5]}
+                scale={1.0}
+              />
+            </group>
+          </Float>
 
-        {/* Bollywood Battle Card Game - Fanned Cards representing card decks */}
-        <Float speed={2.5} rotationIntensity={0.6} floatIntensity={0.8} position={[1.4, -0.4, 0.5]}>
-          <group ref={cardBoxRef}>
-            {/* Card 1 (Back Left) */}
-            <mesh position={[-0.2, 0, -0.1]} rotation={[0, 0, -0.15]} castShadow>
-              <boxGeometry args={[1.2, 1.8, 0.02]} />
-              <meshStandardMaterial color="#991B1B" roughness={0.3} metalness={0.1} />
-              {/* Inner movie card borders */}
-              <mesh position={[0, 0, 0.011]}>
-                <boxGeometry args={[1.0, 1.6, 0.001]} />
-                <meshStandardMaterial color="#111111" roughness={0.5} />
-              </mesh>
-            </mesh>
+          {/* Extruded Meeples (Pawn Game Pieces) (Bottom-Center) */}
+          <Float speed={1.8} rotationIntensity={0.4} floatIntensity={0.6} position={[-0.1, -1.0, 0.5]}>
+            <group>
+              {/* Blue Meeple */}
+              <Meeple
+                color="#1E40AF"
+                position={[-0.5, 0, 0]}
+                rotation={[0.2, 0.4, 0]}
+                scale={1.4}
+              />
+              {/* Red Meeple */}
+              <Meeple
+                color="#991B1B"
+                position={[0.5, 0.1, 0.1]}
+                rotation={[0.1, -0.4, 0]}
+                scale={1.4}
+              />
+            </group>
+          </Float>
 
-            {/* Card 2 (Back Right) */}
-            <mesh position={[0.2, 0, -0.05]} rotation={[0, 0, 0.15]} castShadow>
-              <boxGeometry args={[1.2, 1.8, 0.02]} />
-              <meshStandardMaterial color="#991B1B" roughness={0.3} metalness={0.1} />
-              {/* Gold border */}
-              <mesh position={[0, 0, 0.011]}>
-                <boxGeometry args={[1.0, 1.6, 0.001]} />
-                <meshStandardMaterial color="#CA8A04" roughness={0.2} metalness={0.8} />
+          {/* Cinematic Playing Cards in Background (Back Center-Right) */}
+          <Float speed={1.2} rotationIntensity={0.3} floatIntensity={0.4} position={[0.6, 0.8, -0.8]}>
+            <group>
+              {/* Card 1 (Red Back) */}
+              <mesh position={[-0.2, 0, 0]} rotation={[0.05, 0.1, -0.15]} castShadow>
+                <boxGeometry args={[1.0, 1.5, 0.015]} />
+                <meshStandardMaterial color="#991B1B" roughness={0.35} />
+                <mesh position={[0, 0, 0.008]}>
+                  <boxGeometry args={[0.85, 1.35, 0.001]} />
+                  <meshStandardMaterial color="#0C0A09" roughness={0.5} />
+                </mesh>
               </mesh>
-            </mesh>
+              {/* Card 2 (Front Slate with Gold Star Node Detail) */}
+              <mesh position={[0.2, -0.1, 0.1]} rotation={[-0.05, -0.1, 0.12]} castShadow>
+                <boxGeometry args={[1.0, 1.5, 0.015]} />
+                <meshStandardMaterial color="#FAF8F5" roughness={0.4} />
+                {/* Gold border */}
+                <mesh position={[0, 0, 0.008]}>
+                  <boxGeometry args={[0.9, 1.4, 0.001]} />
+                  <meshStandardMaterial color="#CA8A04" roughness={0.2} metalness={0.8} />
+                </mesh>
+                {/* Custom Card pip graphic (mini meeple node outline) */}
+                <mesh position={[0, 0.1, 0.009]}>
+                  <sphereGeometry args={[0.1, 16, 16]} />
+                  <meshStandardMaterial color="#CA8A04" metalness={0.9} roughness={0.1} />
+                </mesh>
+              </mesh>
+            </group>
+          </Float>
 
-            {/* Card 3 (Featured Front Center) */}
-            <mesh position={[0, 0, 0.1]} rotation={[0, 0, -0.02]} castShadow>
-              <boxGeometry args={[1.2, 1.8, 0.02]} />
-              <meshStandardMaterial color="#FAF8F5" roughness={0.4} />
-              {/* Gold foil trim */}
-              <mesh position={[0, 0, 0.011]}>
-                <boxGeometry args={[1.1, 1.7, 0.002]} />
-                <meshStandardMaterial color="#CA8A04" roughness={0.1} metalness={0.9} />
-              </mesh>
-              {/* Slate printed front */}
-              <mesh position={[0, 0, 0.012]}>
-                <boxGeometry args={[1.0, 1.6, 0.001]} />
-                <meshStandardMaterial color="#0C0A09" roughness={0.5} />
-              </mesh>
-            </mesh>
-          </group>
-        </Float>
+        </group>
       </Center>
-
-      {/* Floating ambient puzzle elements in background */}
-      <Float speed={1.5} rotationIntensity={1.5} floatIntensity={1.5} position={[-3, 2, -2]}>
-        <mesh>
-          <torusGeometry args={[0.3, 0.1, 8, 24]} />
-          <meshStandardMaterial color="#065F46" opacity={0.6} transparent roughness={0.1} />
-        </mesh>
-      </Float>
-
-      <Float speed={1.8} rotationIntensity={2} floatIntensity={2} position={[3, 2.5, -3]}>
-        <mesh rotation={[Math.PI / 4, Math.PI / 4, 0]}>
-          <boxGeometry args={[0.3, 0.3, 0.3]} />
-          <meshStandardMaterial color="#C2410C" opacity={0.5} transparent roughness={0.2} />
-        </mesh>
-      </Float>
-
-      <Float speed={1.2} rotationIntensity={1} floatIntensity={1.2} position={[0, -2, -1]}>
-        <mesh>
-          <octahedronGeometry args={[0.4]} />
-          <meshStandardMaterial color="#1E40AF" opacity={0.4} transparent roughness={0.3} />
-        </mesh>
-      </Float>
     </>
   );
 }
@@ -187,7 +382,7 @@ export default function HeroCanvas() {
       <Canvas
         shadows
         gl={{ antialias: true, alpha: true }}
-        camera={{ position: [0, 0, 5.5], fov: 50 }}
+        camera={{ position: [0, 0, 5.2], fov: 50 }}
       >
         <Scene />
       </Canvas>
