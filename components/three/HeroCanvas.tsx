@@ -181,11 +181,11 @@ function RubiksCube({ position, rotation, scale = 1 }: RubiksCubeProps) {
   });
 
   const stickerColors = {
-    front: "#7692FF",  // Pastel Blue
-    back: "#99C1A2",   // Pastel Green
-    left: "#F4B988",   // Pastel Orange
-    right: "#E79E8C",  // Pastel Red
-    top: "#E9D8A6",    // Pastel Gold
+    front: "#1D4ED8",  // Cobalt Blue
+    back: "#0F766E",   // Teal Green
+    left: "#EA580C",   // Rust Orange
+    right: "#BE123C",  // Crimson Red
+    top: "#D97706",    // Amber Gold
     bottom: "#FAF8F5", // Warm White
   };
 
@@ -201,7 +201,7 @@ function RubiksCube({ position, rotation, scale = 1 }: RubiksCubeProps) {
       {/* Cube Warm Charcoal Core */}
       <mesh>
         <boxGeometry args={[0.8, 0.8, 0.8]} />
-        <meshStandardMaterial color="#3E3A35" roughness={0.4} metalness={0.2} />
+        <meshStandardMaterial color="#2D2A26" roughness={0.4} metalness={0.2} />
       </mesh>
 
       {/* Front Face (z = +d) - Blue stickers */}
@@ -326,9 +326,9 @@ function Hourglass({ position, rotation, scale = 1 }: ChessPieceProps) {
   });
 
   const brassMaterial = useMemo(() => new THREE.MeshStandardMaterial({
-    color: "#DFB15B", // Soft warm brass
+    color: "#B45309", // Antique brass/bronze
     roughness: 0.2,
-    metalness: 0.6,
+    metalness: 0.8,
   }), []);
 
   const glassMaterial = useMemo(() => new THREE.MeshStandardMaterial({
@@ -340,21 +340,21 @@ function Hourglass({ position, rotation, scale = 1 }: ChessPieceProps) {
   }), []);
 
   const sandMaterial = useMemo(() => new THREE.MeshStandardMaterial({
-    color: "#E5D9C4", // Soft beige sand
+    color: "#FAF8F5", // Fine white sand
     roughness: 0.8,
   }), []);
 
   return (
     <group ref={groupRef} position={position} rotation={rotation} scale={scale}>
-      {/* Top Plate (Muted Warm Wood) */}
+      {/* Top Plate (Muted Walnut Wood) */}
       <mesh position={[0, 0.46, 0]}>
         <cylinderGeometry args={[0.26, 0.26, 0.04, 32]} />
-        <meshStandardMaterial color="#8E6F5E" roughness={0.45} />
+        <meshStandardMaterial color="#6B4E3D" roughness={0.45} />
       </mesh>
-      {/* Bottom Plate (Muted Warm Wood) */}
+      {/* Bottom Plate (Muted Walnut Wood) */}
       <mesh position={[0, -0.46, 0]}>
         <cylinderGeometry args={[0.26, 0.26, 0.04, 32]} />
-        <meshStandardMaterial color="#8E6F5E" roughness={0.45} />
+        <meshStandardMaterial color="#6B4E3D" roughness={0.45} />
       </mesh>
 
       {/* Pillars (Brass) */}
@@ -455,83 +455,83 @@ function Scene() {
   return (
     <>
       {/* Studio Quality Lighting */}
-      <ambientLight intensity={0.8} />
-      <directionalLight position={[8, 8, 4]} intensity={1.5} />
-      <pointLight ref={lightRef} position={[0, 0, 4]} intensity={1.8} color="#F7F3EB" />
-      <pointLight position={[-8, -8, -4]} intensity={0.5} color="#BAC8FF" /> {/* Soft blue */}
-      <pointLight position={[8, -8, 4]} intensity={0.6} color="#FDE047" />  {/* Soft gold */}
+      <ambientLight intensity={0.7} />
+      <directionalLight position={[6, 8, 4]} intensity={1.6} />
+      <pointLight ref={lightRef} position={[0, 0, 4]} intensity={1.6} color="#FAF8F5" />
+      <pointLight position={[-6, 5, -2]} intensity={0.7} color="#DBEAFE" /> {/* Soft blue fill */}
+      <pointLight position={[6, -4, 2]} intensity={0.9} color="#FEF3C7" />  {/* Soft warm gold rim */}
 
       {/* Ambient sparkle particles for visual depth */}
-      <Sparkles count={35} scale={6.5} size={2.2} speed={0.4} color="#E9C46A" />
+      <Sparkles count={35} scale={6.5} size={2.2} speed={0.4} color="#D97706" />
 
       {/* Floating 3D Tabletop Game Objects */}
       <Center>
         <group ref={groupRef}>
           
           {/* Main Rubik's Mind Cube (Center-Left) */}
-          <Float speed={2} rotationIntensity={0.6} floatIntensity={0.7} position={[-1.3, 0.4, 0]}>
+          <Float speed={2} rotationIntensity={0.6} floatIntensity={0.7} position={[-0.85, 0.35, 0]}>
             <RubiksCube
               position={[0, 0, 0]}
               rotation={[0.1, -0.4, 0.35]}
-              scale={1.6}
+              scale={1.35}
             />
           </Float>
 
           {/* Tumbling 3D Dice Pair (Center-Right) */}
-          <Float speed={2.5} rotationIntensity={0.7} floatIntensity={0.9} position={[1.4, -0.2, 0.4]}>
+          <Float speed={2.5} rotationIntensity={0.7} floatIntensity={0.9} position={[0.9, -0.3, 0.4]}>
             <group>
-              {/* Die 1: Sage Green */}
+              {/* Die 1: Rich Teal Green */}
               <Die
-                color="#A2B9A6"
+                color="#115E59"
                 position={[-0.4, 0.4, 0]}
                 rotation={[0.5, 0.2, -0.8]}
-                scale={1.2}
+                scale={1.1}
               />
-              {/* Die 2: Soft Peach */}
+              {/* Die 2: Burnt Orange */}
               <Die
-                color="#F5CBA7"
+                color="#C2410C"
                 position={[0.4, -0.3, -0.2]}
                 rotation={[-0.3, 0.8, 0.5]}
-                scale={1.0}
+                scale={0.9}
               />
             </group>
           </Float>
 
           {/* Extruded Meeples (Pawn Game Pieces) (Bottom-Center) */}
-          <Float speed={1.8} rotationIntensity={0.4} floatIntensity={0.6} position={[-0.1, -1.0, 0.5]}>
+          <Float speed={1.8} rotationIntensity={0.4} floatIntensity={0.6} position={[-0.05, -0.75, 0.5]}>
             <group>
               {/* Gold Meeple */}
               <Meeple
-                color="#E9C46A"
+                color="#D97706"
                 position={[-0.5, 0, 0]}
                 rotation={[0.2, 0.4, 0]}
-                scale={1.4}
+                scale={1.25}
               />
               {/* Red Meeple */}
               <Meeple
-                color="#D48D7E"
+                color="#9F1239"
                 position={[0.5, 0.1, 0.1]}
                 rotation={[0.1, -0.4, 0]}
-                scale={1.4}
+                scale={1.25}
               />
             </group>
           </Float>
 
           {/* Luxury Chess Pawn (Back Center-Right) */}
-          <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.4} position={[0.4, 0.9, -0.6]}>
+          <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.4} position={[0.25, 0.75, -0.6]}>
             <ChessPawn
               position={[0, 0, 0]}
               rotation={[0.1, 0.2, -0.1]}
-              scale={1.3}
+              scale={1.15}
             />
           </Float>
 
           {/* Hourglass (Back Far-Right) */}
-          <Float speed={1.2} rotationIntensity={0.2} floatIntensity={0.3} position={[1.4, 0.8, -1.2]}>
+          <Float speed={1.2} rotationIntensity={0.2} floatIntensity={0.3} position={[0.95, 0.65, -1.1]}>
             <Hourglass
               position={[0, 0, 0]}
               rotation={[0.2, -0.3, 0.1]}
-              scale={1.2}
+              scale={1.1}
             />
           </Float>
 
@@ -546,7 +546,7 @@ export default function HeroCanvas() {
     <div className="w-full h-full min-h-[450px] md:min-h-[600px] select-none">
       <Canvas
         gl={{ antialias: true, alpha: true }}
-        camera={{ position: [0, 0, 5.2], fov: 50 }}
+        camera={{ position: [0, 0, 5.8], fov: 50 }}
       >
         <Scene />
       </Canvas>
