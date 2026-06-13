@@ -78,23 +78,34 @@ export default function Footer() {
                 Home
               </a>
               <a
-                href="/about"
+                href="/products"
                 className="text-xs text-white/60 hover:text-white transition-colors duration-200"
               >
-                About Us
+                Games & Puzzles
               </a>
-
               <a
-                href="/#testimonials"
+                href="/experience"
+                className="text-xs text-white/60 hover:text-white transition-colors duration-200"
+              >
+                Experience
+              </a>
+              <a
+                href="/reviews"
                 className="text-xs text-white/60 hover:text-white transition-colors duration-200"
               >
                 Reviews
               </a>
               <a
-                href="/#faq"
+                href="/faq"
                 className="text-xs text-white/60 hover:text-white transition-colors duration-200"
               >
                 FAQ
+              </a>
+              <a
+                href="/about"
+                className="text-xs text-white/60 hover:text-white transition-colors duration-200"
+              >
+                About Us
               </a>
             </div>
           </div>

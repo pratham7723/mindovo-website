@@ -60,14 +60,17 @@ export default function Navbar() {
             onMouseEnter={() => setDropdownOpen(true)}
             onMouseLeave={() => setDropdownOpen(false)}
           >
-            <button className="flex items-center gap-1 text-sm font-medium tracking-wide text-brand-text/70 hover:text-brand-text transition-colors duration-200 cursor-pointer py-1">
-              Products
+            <a
+              href="/products"
+              className="flex items-center gap-1 text-sm font-medium tracking-wide text-brand-text/70 hover:text-brand-text transition-colors duration-200 cursor-pointer py-1"
+            >
+              Games & Puzzles
               <ChevronDown
                 className={`w-4 h-4 transition-transform duration-300 ${
                   dropdownOpen ? "rotate-180" : "rotate-0"
                 }`}
               />
-            </button>
+            </a>
 
             {/* Dropdown Menu */}
             <AnimatePresence>
@@ -133,13 +136,19 @@ export default function Navbar() {
 
 
           <a
-            href="/#testimonials"
+            href="/experience"
+            className="text-sm font-medium tracking-wide text-brand-text/70 hover:text-brand-text transition-colors duration-200 cursor-pointer"
+          >
+            Experience
+          </a>
+          <a
+            href="/reviews"
             className="text-sm font-medium tracking-wide text-brand-text/70 hover:text-brand-text transition-colors duration-200 cursor-pointer"
           >
             Reviews
           </a>
           <a
-            href="/#faq"
+            href="/faq"
             className="text-sm font-medium tracking-wide text-brand-text/70 hover:text-brand-text transition-colors duration-200 cursor-pointer"
           >
             FAQ
@@ -194,34 +203,45 @@ export default function Navbar() {
               >
                 Home
               </a>
+              
               <div className="h-px bg-brand-text/10" />
-
-              <div className="flex flex-col gap-2">
-                <span className="text-xs font-bold text-brand-text/40 tracking-wider uppercase">
-                  Available Products
-                </span>
+              <a
+                href="/products"
+                onClick={toggleMenu}
+                className="text-lg font-semibold text-brand-text hover:text-brand-text/60 transition-colors duration-200"
+              >
+                Games & Puzzles
+              </a>
+              <div className="flex flex-col gap-2 pl-4">
                 {activeProducts.map((p) => (
                   <a
                     key={p.id}
                     href={p.websiteUrl}
                     onClick={toggleMenu}
-                    className="text-base font-medium text-brand-text pl-2 border-l-2 border-brand-text/20 hover:border-brand-text hover:text-brand-text/65"
+                    className="text-sm font-medium text-brand-text/70 hover:text-brand-text transition-colors duration-200"
                   >
                     {p.name}
                   </a>
                 ))}
               </div>
 
-
+              <div className="h-px bg-brand-text/10" />
               <a
-                href="/#testimonials"
+                href="/experience"
+                onClick={toggleMenu}
+                className="text-lg font-semibold text-brand-text hover:text-brand-text/60 transition-colors duration-200"
+              >
+                Experience
+              </a>
+              <a
+                href="/reviews"
                 onClick={toggleMenu}
                 className="text-lg font-semibold text-brand-text hover:text-brand-text/60 transition-colors duration-200"
               >
                 Reviews
               </a>
               <a
-                href="/#faq"
+                href="/faq"
                 onClick={toggleMenu}
                 className="text-lg font-semibold text-brand-text hover:text-brand-text/60 transition-colors duration-200"
               >

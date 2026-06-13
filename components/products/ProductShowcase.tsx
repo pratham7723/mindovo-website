@@ -200,7 +200,7 @@ export default function ProductShowcase() {
             </p>
           </div>
           <a
-            href="#why-mindovo"
+            href="/about"
             className="text-xs font-display font-black tracking-widest uppercase hover:underline flex items-center gap-1 text-brand-text cursor-pointer pb-2"
           >
             Why unplug? &rarr;
