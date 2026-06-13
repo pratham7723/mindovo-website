@@ -72,25 +72,31 @@ export default function Footer() {
             </h4>
             <div className="flex flex-col gap-2.5">
               <a
-                href="#"
+                href="/"
                 className="text-xs text-white/60 hover:text-white transition-colors duration-200"
               >
                 Home
               </a>
               <a
-                href="#why-mindovo"
+                href="/about"
+                className="text-xs text-white/60 hover:text-white transition-colors duration-200"
+              >
+                About Us
+              </a>
+              <a
+                href="/#why-mindovo"
                 className="text-xs text-white/60 hover:text-white transition-colors duration-200"
               >
                 Why Mindovo
               </a>
               <a
-                href="#testimonials"
+                href="/#testimonials"
                 className="text-xs text-white/60 hover:text-white transition-colors duration-200"
               >
                 Reviews
               </a>
               <a
-                href="#faq"
+                href="/#faq"
                 className="text-xs text-white/60 hover:text-white transition-colors duration-200"
               >
                 FAQ

@@ -39,7 +39,7 @@ export default function Navbar() {
       >
         {/* Brand Logo */}
         <a
-          href="#"
+          href="/"
           className="flex items-center select-none"
         >
           <img src="/mindovo.svg" alt="Mindovo Logo" className="h-6 w-auto" />
@@ -48,7 +48,7 @@ export default function Navbar() {
         {/* Center Links (Desktop) */}
         <nav className="hidden md:flex items-center gap-8">
           <a
-            href="#"
+            href="/"
             className="text-sm font-medium tracking-wide text-brand-text/70 hover:text-brand-text transition-colors duration-200 cursor-pointer"
           >
             Home
@@ -132,22 +132,28 @@ export default function Navbar() {
           </div>
 
           <a
-            href="#why-mindovo"
+            href="/#why-mindovo"
             className="text-sm font-medium tracking-wide text-brand-text/70 hover:text-brand-text transition-colors duration-200 cursor-pointer"
           >
             Why Mindovo
           </a>
           <a
-            href="#testimonials"
+            href="/#testimonials"
             className="text-sm font-medium tracking-wide text-brand-text/70 hover:text-brand-text transition-colors duration-200 cursor-pointer"
           >
             Reviews
           </a>
           <a
-            href="#faq"
+            href="/#faq"
             className="text-sm font-medium tracking-wide text-brand-text/70 hover:text-brand-text transition-colors duration-200 cursor-pointer"
           >
             FAQ
+          </a>
+          <a
+            href="/about"
+            className="text-sm font-medium tracking-wide text-brand-text/70 hover:text-brand-text transition-colors duration-200 cursor-pointer"
+          >
+            About Us
           </a>
         </nav>
 
@@ -187,7 +193,7 @@ export default function Navbar() {
           >
             <nav className="flex flex-col p-6 gap-4">
               <a
-                href="#"
+                href="/"
                 onClick={toggleMenu}
                 className="text-lg font-semibold text-brand-text hover:text-brand-text/60 transition-colors duration-200"
               >
@@ -213,25 +219,32 @@ export default function Navbar() {
 
               <div className="h-px bg-brand-text/10" />
               <a
-                href="#why-mindovo"
+                href="/#why-mindovo"
                 onClick={toggleMenu}
                 className="text-lg font-semibold text-brand-text hover:text-brand-text/60 transition-colors duration-200"
               >
                 Why Mindovo
               </a>
               <a
-                href="#testimonials"
+                href="/#testimonials"
                 onClick={toggleMenu}
                 className="text-lg font-semibold text-brand-text hover:text-brand-text/60 transition-colors duration-200"
               >
                 Reviews
               </a>
               <a
-                href="#faq"
+                href="/#faq"
                 onClick={toggleMenu}
                 className="text-lg font-semibold text-brand-text hover:text-brand-text/60 transition-colors duration-200"
               >
                 FAQ
+              </a>
+              <a
+                href="/about"
+                onClick={toggleMenu}
+                className="text-lg font-semibold text-brand-text hover:text-brand-text/60 transition-colors duration-200"
+              >
+                About Us
               </a>
 
               <a
