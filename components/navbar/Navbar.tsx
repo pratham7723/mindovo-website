@@ -49,7 +49,7 @@ export default function Navbar() {
         <nav className="hidden md:flex items-center gap-8">
           <a
             href="/"
-            className="text-sm font-medium tracking-wide text-brand-text/70 hover:text-brand-text transition-colors duration-200 cursor-pointer"
+            className="text-sm font-medium tracking-wide text-brand-text/85 hover:text-brand-text transition-colors duration-200 cursor-pointer"
           >
             Home
           </a>
@@ -62,7 +62,7 @@ export default function Navbar() {
           >
             <a
               href="/products"
-              className="flex items-center gap-1 text-sm font-medium tracking-wide text-brand-text/70 hover:text-brand-text transition-colors duration-200 cursor-pointer py-1"
+              className="flex items-center gap-1 text-sm font-medium tracking-wide text-brand-text/85 hover:text-brand-text transition-colors duration-200 cursor-pointer py-1"
             >
               Games & Puzzles
               <ChevronDown
@@ -82,7 +82,7 @@ export default function Navbar() {
                   transition={{ duration: 0.2, ease: "easeOut" }}
                   className="absolute left-1/2 -translate-x-1/2 top-full w-80 mt-2 glass-panel rounded-2xl shadow-xl overflow-hidden p-2 z-50 border border-white/20"
                 >
-                  <div className="py-2 px-4 text-[10px] font-display font-bold tracking-widest text-brand-text/40 uppercase">
+                  <div className="py-2 px-4 text-[10px] font-display font-bold tracking-widest text-brand-text/65 uppercase">
                     Available Now
                   </div>
                   {activeProducts.map((product) => (
@@ -96,7 +96,7 @@ export default function Navbar() {
                         <span className="text-sm font-bold text-brand-text">
                           {product.name}
                         </span>
-                        <span className="text-[11px] text-brand-text/60 mt-0.5 line-clamp-1">
+                        <span className="text-[11px] text-brand-text/80 mt-0.5 line-clamp-1">
                           {product.tagline}
                         </span>
                       </div>
@@ -106,7 +106,7 @@ export default function Navbar() {
                   {comingSoonProducts.length > 0 && (
                     <>
                       <div className="h-px bg-brand-text/10 my-2" />
-                      <div className="py-2 px-4 text-[10px] font-display font-bold tracking-widest text-brand-text/40 uppercase">
+                      <div className="py-2 px-4 text-[10px] font-display font-bold tracking-widest text-brand-text/65 uppercase">
                         Coming Soon
                       </div>
                       {comingSoonProducts.map((product) => (
@@ -117,11 +117,11 @@ export default function Navbar() {
                           <div className="flex flex-col">
                             <span className="text-sm font-bold text-brand-text flex items-center gap-1.5">
                               {product.name}
-                              <span className="text-[9px] font-display bg-brand-text/10 px-1.5 py-0.5 rounded text-brand-text/75 font-semibold uppercase">
+                              <span className="text-[9px] font-display bg-brand-text/10 px-1.5 py-0.5 rounded text-brand-text/85 font-semibold uppercase">
                                 Soon
                               </span>
                             </span>
-                            <span className="text-[11px] text-brand-text/60 mt-0.5">
+                            <span className="text-[11px] text-brand-text/80 mt-0.5">
                               {product.tagline}
                             </span>
                           </div>
@@ -137,25 +137,25 @@ export default function Navbar() {
 
           <a
             href="/experience"
-            className="text-sm font-medium tracking-wide text-brand-text/70 hover:text-brand-text transition-colors duration-200 cursor-pointer"
+            className="text-sm font-medium tracking-wide text-brand-text/85 hover:text-brand-text transition-colors duration-200 cursor-pointer"
           >
             Experience
           </a>
           <a
             href="/reviews"
-            className="text-sm font-medium tracking-wide text-brand-text/70 hover:text-brand-text transition-colors duration-200 cursor-pointer"
+            className="text-sm font-medium tracking-wide text-brand-text/85 hover:text-brand-text transition-colors duration-200 cursor-pointer"
           >
             Reviews
           </a>
           <a
             href="/faq"
-            className="text-sm font-medium tracking-wide text-brand-text/70 hover:text-brand-text transition-colors duration-200 cursor-pointer"
+            className="text-sm font-medium tracking-wide text-brand-text/85 hover:text-brand-text transition-colors duration-200 cursor-pointer"
           >
             FAQ
           </a>
           <a
             href="/about"
-            className="text-sm font-medium tracking-wide text-brand-text/70 hover:text-brand-text transition-colors duration-200 cursor-pointer"
+            className="text-sm font-medium tracking-wide text-brand-text/85 hover:text-brand-text transition-colors duration-200 cursor-pointer"
           >
             About Us
           </a>
@@ -208,7 +208,7 @@ export default function Navbar() {
               <a
                 href="/products"
                 onClick={toggleMenu}
-                className="text-lg font-semibold text-brand-text hover:text-brand-text/60 transition-colors duration-200"
+                className="text-lg font-semibold text-brand-text hover:text-brand-text/80 transition-colors duration-200"
               >
                 Games & Puzzles
               </a>
@@ -218,7 +218,7 @@ export default function Navbar() {
                     key={p.id}
                     href={p.websiteUrl}
                     onClick={toggleMenu}
-                    className="text-sm font-medium text-brand-text/70 hover:text-brand-text transition-colors duration-200"
+                    className="text-sm font-medium text-brand-text/85 hover:text-brand-text transition-colors duration-200"
                   >
                     {p.name}
                   </a>
@@ -229,28 +229,28 @@ export default function Navbar() {
               <a
                 href="/experience"
                 onClick={toggleMenu}
-                className="text-lg font-semibold text-brand-text hover:text-brand-text/60 transition-colors duration-200"
+                className="text-lg font-semibold text-brand-text hover:text-brand-text/80 transition-colors duration-200"
               >
                 Experience
               </a>
               <a
                 href="/reviews"
                 onClick={toggleMenu}
-                className="text-lg font-semibold text-brand-text hover:text-brand-text/60 transition-colors duration-200"
+                className="text-lg font-semibold text-brand-text hover:text-brand-text/80 transition-colors duration-200"
               >
                 Reviews
               </a>
               <a
                 href="/faq"
                 onClick={toggleMenu}
-                className="text-lg font-semibold text-brand-text hover:text-brand-text/60 transition-colors duration-200"
+                className="text-lg font-semibold text-brand-text hover:text-brand-text/80 transition-colors duration-200"
               >
                 FAQ
               </a>
               <a
                 href="/about"
                 onClick={toggleMenu}
-                className="text-lg font-semibold text-brand-text hover:text-brand-text/60 transition-colors duration-200"
+                className="text-lg font-semibold text-brand-text hover:text-brand-text/80 transition-colors duration-200"
               >
                 About Us
               </a>

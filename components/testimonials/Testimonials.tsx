@@ -54,7 +54,7 @@ export default function Testimonials() {
           <h2 className="text-4xl md:text-5xl font-display font-black text-brand-text mt-3 tracking-tight">
             Loved By Families.
           </h2>
-          <p className="text-base text-brand-text/60 mt-4 leading-relaxed">
+          <p className="text-base text-brand-text/85 mt-4 leading-relaxed">
             See how Mindovo products are helping families log off, connect, and enjoy meaningful offline time.
           </p>
         </div>
@@ -86,14 +86,14 @@ export default function Testimonials() {
 
               {/* Author Info */}
               <div className="flex items-center gap-3 mt-8 pt-4 border-t border-brand-text/5">
-                <div className="w-10 h-10 rounded-full bg-brand-bg flex items-center justify-center font-display font-black text-brand-text/40 text-xs border border-brand-text/5">
+                <div className="w-10 h-10 rounded-full bg-brand-bg flex items-center justify-center font-display font-black text-brand-text/75 text-xs border border-brand-text/5">
                   {t.author.charAt(0)}
                 </div>
                 <div className="flex flex-col">
                   <span className="text-xs font-bold text-brand-text">
                     {t.author}
                   </span>
-                  <span className="text-[10px] text-brand-text/50">
+                  <span className="text-[10px] text-brand-text/80">
                     {t.role}
                   </span>
                 </div>

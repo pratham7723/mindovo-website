@@ -30,7 +30,7 @@ export default function FinalCTA() {
         </h2>
 
         {/* Subhead */}
-        <p className="text-base md:text-lg text-brand-text/60 max-w-xl mx-auto mt-4 leading-relaxed">
+        <p className="text-base md:text-lg text-brand-text/85 max-w-xl mx-auto mt-4 leading-relaxed">
           Order a flagship box today and bring family and friends together for unforgettable offline challenges.
         </p>
 
@@ -47,7 +47,7 @@ export default function FinalCTA() {
                 <h3 className="text-2xl font-display font-black text-brand-text mt-4 tracking-tight">
                   Mindovo Jigsaw Puzzle
                 </h3>
-                <p className="text-xs text-brand-text/60 mt-2 leading-relaxed">
+                <p className="text-xs text-brand-text/85 mt-2 leading-relaxed">
                   300 pieces, glare-free velvet coating, thick blueboard, and a luxury rigid box layout.
                 </p>
               </div>
@@ -84,7 +84,7 @@ export default function FinalCTA() {
                 <h3 className="text-2xl font-display font-black text-brand-text mt-4 tracking-tight">
                   Bollywood Battle Game
                 </h3>
-                <p className="text-xs text-brand-text/60 mt-2 leading-relaxed">
+                <p className="text-xs text-brand-text/85 mt-2 leading-relaxed">
                   200+ cards with dialogue quizzes, singing mimics, action penalties, and a cinematically stamped layout.
                 </p>
               </div>
@@ -117,7 +117,7 @@ export default function FinalCTA() {
         <div className="mt-16 flex items-center justify-center">
           <a
             href="mailto:support@mindovo.in"
-            className="inline-flex items-center gap-2 text-xs font-display font-bold text-brand-text/50 hover:text-brand-text transition-colors duration-200 cursor-pointer"
+            className="inline-flex items-center gap-2 text-xs font-display font-bold text-brand-text/80 hover:text-brand-text transition-colors duration-200 cursor-pointer"
           >
             <Mail className="w-4 h-4" />
             <span>Have queries? Contact support@mindovo.in</span>

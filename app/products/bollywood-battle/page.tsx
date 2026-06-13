@@ -32,7 +32,7 @@ export default function BollywoodBattlePage() {
         <div className="max-w-7xl mx-auto px-6 md:px-8 pt-8">
           <a
             href="/products"
-            className="inline-flex items-center gap-1 text-xs font-display font-black tracking-widest uppercase text-brand-text/50 hover:text-brand-text transition-colors duration-200"
+            className="inline-flex items-center gap-1 text-xs font-display font-black tracking-widest uppercase text-brand-text/75 hover:text-brand-text transition-colors duration-200"
           >
             <ChevronLeft className="w-4 h-4" />
             <span>Back to Games & Puzzles</span>

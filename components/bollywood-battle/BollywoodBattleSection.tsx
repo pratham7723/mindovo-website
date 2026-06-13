@@ -87,7 +87,7 @@ export default function BollywoodBattleSection() {
           <h2 className="text-4xl md:text-5xl font-display font-black text-brand-text mt-3 tracking-tight">
             Bollywood Battle
           </h2>
-          <p className="text-base text-brand-text/60 mt-4 leading-relaxed">
+          <p className="text-base text-brand-text/85 mt-4 leading-relaxed">
             Test your cinematic knowledge, perform classic mimes, humming challenges, and settle who is the ultimate Filmi Buff in this premium family entertainment showdown.
           </p>
         </div>
@@ -97,14 +97,14 @@ export default function BollywoodBattleSection() {
           
           {/* Left Side: Product Details & Ticket layout */}
           <div className="lg:col-span-6 flex flex-col">
-            <span className="text-[10px] font-display font-black tracking-[0.35em] text-brand-text/40 uppercase mb-3">
+            <span className="text-[10px] font-display font-black tracking-[0.35em] text-brand-text/70 uppercase mb-3">
               Gameplay & Pitch
             </span>
             <h3 className="text-2xl md:text-3xl font-display font-black text-brand-text tracking-tight mb-6 leading-tight">
               Challenge Your Movie Knowledge. Compete with Friends.
             </h3>
             
-            <p className="text-sm text-brand-text/70 leading-relaxed mb-8">
+            <p className="text-sm text-brand-text/90 leading-relaxed mb-8">
               No boring templates. Bollywood Battle is structured like a ticketed movie show, with film-strip components and trivia categories covering 70+ years of cinematic history. Perfect for multi-generational families.
             </p>
 
@@ -157,7 +157,7 @@ export default function BollywoodBattleSection() {
             
             {/* Play Ticker Info */}
             <div className="mb-4 text-center">
-              <span className="text-[10px] font-display font-black tracking-widest text-brand-text/40 uppercase">
+              <span className="text-[10px] font-display font-black tracking-widest text-brand-text/70 uppercase">
                 Interactive Game Demo: Try Flipping
               </span>
             </div>
@@ -173,7 +173,7 @@ export default function BollywoodBattleSection() {
                 
                 {/* CARD FRONT SIDE */}
                 <div
-                  className="absolute inset-0 w-full h-full rounded-3xl bg-white border border-brand-text/10 shadow-2xl p-6 flex flex-col justify-between"
+                  className="absolute inset-0 w-full h-full rounded-3xl bg-white border border-brand-text/15 shadow-2xl p-6 flex flex-col justify-between"
                   style={{ backfaceVisibility: "hidden" }}
                 >
                   {/* Card Header */}
@@ -181,7 +181,7 @@ export default function BollywoodBattleSection() {
                     <span className="text-[9px] font-display font-black tracking-widest text-puzzle-red bg-puzzle-red/5 px-2.5 py-1 rounded">
                       {currentTrivia.category}
                     </span>
-                    <span className="text-[9px] font-display font-bold text-brand-text/50">
+                    <span className="text-[9px] font-display font-bold text-brand-text/75">
                       DIFF: {currentTrivia.difficulty}
                     </span>
                   </div>
@@ -202,7 +202,7 @@ export default function BollywoodBattleSection() {
                           className={`w-full text-left text-xs p-3.5 rounded-xl border font-sans font-medium transition-all duration-200 cursor-pointer ${
                             selectedOption === option
                               ? "border-puzzle-red bg-puzzle-red/5 text-puzzle-red font-bold"
-                              : "border-brand-text/10 hover:border-brand-text/30 text-brand-text/80 hover:text-brand-text hover:bg-brand-text/5"
+                              : "border-brand-text/15 hover:border-brand-text/35 text-brand-text hover:bg-brand-text/5"
                           }`}
                         >
                           {option}
@@ -212,7 +212,7 @@ export default function BollywoodBattleSection() {
                   </div>
 
                   {/* Card Footer */}
-                  <div className="flex items-center justify-between text-[8px] font-display font-black text-brand-text/30 tracking-widest uppercase mt-4">
+                  <div className="flex items-center justify-between text-[8px] font-display font-black text-brand-text/60 tracking-widest uppercase mt-4">
                     <span>Mindovo Games</span>
                     <span className="flex items-center gap-1">
                       <Sparkles className="w-3.5 h-3.5 text-puzzle-red" />
@@ -223,30 +223,30 @@ export default function BollywoodBattleSection() {
 
                 {/* CARD BACK SIDE */}
                 <div
-                  className="absolute inset-0 w-full h-full rounded-3xl bg-white border border-[#CA8A04]/40 shadow-2xl p-6 flex flex-col justify-between"
+                  className="absolute inset-0 w-full h-full rounded-3xl bg-white border border-[#854D0E]/60 shadow-2xl p-6 flex flex-col justify-between"
                   style={{
                     backfaceVisibility: "hidden",
                     transform: "rotateY(180deg)",
                   }}
                 >
                   <div className="flex items-center justify-between">
-                    <span className="text-[9px] font-display font-black tracking-widest text-[#CA8A04] bg-[#CA8A04]/5 px-2.5 py-1 rounded">
+                    <span className="text-[9px] font-display font-black tracking-widest text-[#854D0E] bg-[#854D0E]/10 px-2.5 py-1 rounded">
                       Correct Answer
                     </span>
-                    <span className="text-[9px] font-display font-bold text-brand-text/50">
+                    <span className="text-[9px] font-display font-bold text-brand-text/75">
                       CARD NO: 0{currentTrivia.id}
                     </span>
                   </div>
 
                   {/* Answer reveal section */}
                   <div className="text-center my-auto">
-                    <div className="w-14 h-14 bg-[#CA8A04]/5 border border-[#CA8A04]/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Play className="w-6 h-6 text-[#CA8A04] rotate-90" />
+                    <div className="w-14 h-14 bg-[#854D0E]/10 border border-[#854D0E]/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Play className="w-6 h-6 text-[#854D0E] rotate-90" />
                     </div>
                     <h4 className="text-2xl font-display font-black text-brand-text tracking-tight">
                       {currentTrivia.answer}
                     </h4>
-                    <p className="text-xs text-brand-text/60 mt-3 max-w-[220px] mx-auto leading-relaxed">
+                    <p className="text-xs text-brand-text/85 mt-3 max-w-[220px] mx-auto leading-relaxed">
                       {selectedOption === currentTrivia.answer
                         ? "Brilliant! You are a true movie guru. Settle the score in the real game."
                         : `Nice try! Settle the showdown with friends and family.`}

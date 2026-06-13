@@ -25,7 +25,7 @@ export default function GiftingSection() {
             <h2 className="text-4xl md:text-5xl font-display font-black text-brand-text tracking-tight mb-6 leading-tight">
               A Gift They'll Actually Remember.
             </h2>
-            <p className="text-sm md:text-base text-brand-text/70 leading-relaxed mb-8">
+            <p className="text-sm md:text-base text-brand-text/90 leading-relaxed mb-8">
               Forget disposable plastic toys and generic gift vouchers. Mindovo delivers beautifully crafted social hubs. A premium physical puzzle or cinema game represents hours of screen-free conversation, competition, and memory making.
             </p>
 
@@ -33,13 +33,13 @@ export default function GiftingSection() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
               <div className="p-5 bg-white border border-brand-text/5 rounded-2xl shadow-sm">
                 <span className="text-xs font-bold text-brand-text">Luxury Unboxing</span>
-                <p className="text-[11px] text-brand-text/60 mt-1.5 leading-relaxed">
+                <p className="text-[11px] text-brand-text/85 mt-1.5 leading-relaxed">
                   Rigid board lid-and-base boxes with premium gold-foil stamp detailing. Feels like unboxing high-end design.
                 </p>
               </div>
               <div className="p-5 bg-white border border-brand-text/5 rounded-2xl shadow-sm">
                 <span className="text-xs font-bold text-brand-text">Ages 8 to 99</span>
-                <p className="text-[11px] text-brand-text/60 mt-1.5 leading-relaxed">
+                <p className="text-[11px] text-brand-text/85 mt-1.5 leading-relaxed">
                   Perfect cross-generational difficulty loops. Engaging for both grandchildren and grandparents.
                 </p>
               </div>
@@ -78,7 +78,7 @@ export default function GiftingSection() {
             <div className="relative w-80 h-80 md:w-96 md:h-96 rounded-full border border-brand-text/5 bg-white flex items-center justify-center shadow-xl">
               
               {/* Outer gold glow ring */}
-              <div className="absolute inset-4 border border-dashed border-[#CA8A04]/40 rounded-full animate-spin-slow" />
+              <div className="absolute inset-4 border border-dashed border-[#854D0E]/60 rounded-full animate-spin-slow" />
               
               {/* Central gift representation */}
               <div className="relative z-10 flex flex-col items-center justify-center">
@@ -96,7 +96,7 @@ export default function GiftingSection() {
                 <span className="text-xs font-display font-black tracking-widest uppercase text-brand-text mt-6">
                   Ready-To-Play Gifting
                 </span>
-                <span className="text-[10px] text-brand-text/50 font-sans mt-1">
+                <span className="text-[10px] text-brand-text/80 font-sans mt-1">
                   Deliver smiles directly to their doorstep
                 </span>
               </div>

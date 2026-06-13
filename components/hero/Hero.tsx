@@ -12,7 +12,7 @@ const HeroCanvas = dynamic(() => import("../three/HeroCanvas"), {
     <div className="w-full h-full flex items-center justify-center min-h-[450px] md:min-h-[600px]">
       <div className="flex flex-col items-center gap-4">
         <div className="w-10 h-10 border-2 border-brand-text/10 border-t-brand-text rounded-full animate-spin" />
-        <span className="text-xs font-display tracking-widest text-brand-text/30 uppercase">
+        <span className="text-xs font-display tracking-widest text-brand-text/60 uppercase">
           Loading 3D Experience
         </span>
       </div>
@@ -72,7 +72,7 @@ export default function Hero() {
             className="inline-flex items-center gap-2 mb-6"
           >
             <span className="w-2 h-2 rounded-full bg-puzzle-green animate-ping" />
-            <span className="text-xs font-display font-black tracking-[0.3em] uppercase text-brand-text/50">
+            <span className="text-xs font-display font-black tracking-[0.3em] uppercase text-brand-text/75">
               Introducing Premium Entertainment
             </span>
           </motion.div>
@@ -96,7 +96,7 @@ export default function Hero() {
           {/* Subheading */}
           <motion.p
             variants={wordVariants}
-            className="text-lg md:text-xl text-brand-text/70 font-sans max-w-lg mb-10 leading-relaxed"
+            className="text-lg md:text-xl text-brand-text/90 font-sans max-w-lg mb-10 leading-relaxed"
           >
             Premium games and puzzles meticulously designed to unplug your mind, trigger discovery, and bring family and friends together through unforgettable, screen-free experiences.
           </motion.p>

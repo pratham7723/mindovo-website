@@ -47,7 +47,7 @@ function AccordionItem({ question, answer, isOpen, onClick }: FAQItem & { isOpen
       >
         <span>{question}</span>
         <ChevronDown
-          className={`w-5 h-5 text-brand-text/40 transition-transform duration-300 ${
+          className={`w-5 h-5 text-brand-text/70 transition-transform duration-300 ${
             isOpen ? "rotate-180 text-puzzle-blue" : "rotate-0"
           }`}
         />
@@ -62,7 +62,7 @@ function AccordionItem({ question, answer, isOpen, onClick }: FAQItem & { isOpen
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="overflow-hidden"
           >
-            <p className="text-xs md:text-sm text-brand-text/65 leading-relaxed pt-2 pb-4 pr-6">
+            <p className="text-xs md:text-sm text-brand-text/85 leading-relaxed pt-2 pb-4 pr-6">
               {answer}
             </p>
           </motion.div>

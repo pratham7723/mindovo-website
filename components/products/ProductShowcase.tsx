@@ -75,12 +75,12 @@ function ProductCard({ product }: { product: Product }) {
 
       {/* Top row: Category tag & explore arrow */}
       <div className="flex items-center justify-between z-10" style={{ transform: "translateZ(30px)" }}>
-        <span className="text-[10px] font-display font-black tracking-widest uppercase bg-brand-bg px-3.5 py-1.5 rounded-full text-brand-text/60">
+        <span className="text-[10px] font-display font-black tracking-widest uppercase bg-brand-bg px-3.5 py-1.5 rounded-full text-brand-text/85">
           {product.category}
         </span>
         <a
           href={product.websiteUrl}
-          className="w-10 h-10 rounded-full bg-brand-bg flex items-center justify-center text-brand-text/50 group-hover:text-brand-text group-hover:bg-brand-text/5 transition-all duration-300 border border-brand-text/5"
+          className="w-10 h-10 rounded-full bg-brand-bg flex items-center justify-center text-brand-text/75 group-hover:text-brand-text group-hover:bg-brand-text/5 transition-all duration-300 border border-brand-text/5"
         >
           <ArrowUpRight className="w-4 h-4" />
         </a>
@@ -103,14 +103,14 @@ function ProductCard({ product }: { product: Product }) {
           
           {/* Inner Content Graphic */}
           <div className="absolute inset-2 bg-white rounded-lg flex flex-col justify-between p-3 select-none border border-brand-text/5">
-            <span className="text-[8px] font-display tracking-[0.2em] font-black text-brand-text/40 uppercase">
+            <span className="text-[8px] font-display tracking-[0.2em] font-black text-brand-text/50 uppercase">
               Mindovo
             </span>
             <div className="flex flex-col">
               <span className="text-sm font-display font-black leading-tight text-brand-text tracking-tight">
                 {product.name.split(" ").slice(1).join(" ") || product.name}
               </span>
-              <span className="text-[7px] text-brand-text/60 mt-1 font-sans font-medium line-clamp-2">
+              <span className="text-[7px] text-brand-text/75 mt-1 font-sans font-medium line-clamp-2">
                 {product.tagline}
               </span>
             </div>
@@ -130,7 +130,7 @@ function ProductCard({ product }: { product: Product }) {
           <h3 className="text-xl md:text-2xl font-display font-black text-brand-text tracking-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-brand-text group-hover:to-brand-text/60 transition-all duration-300">
             {product.name}
           </h3>
-          <p className="text-xs text-brand-text/60 mt-1.5 line-clamp-2 leading-relaxed">
+          <p className="text-xs text-brand-text/85 mt-1.5 line-clamp-2 leading-relaxed">
             {product.description}
           </p>
         </div>
@@ -140,7 +140,7 @@ function ProductCard({ product }: { product: Product }) {
           {Object.entries(product.specs).slice(0, 2).map(([key, val]) => (
             <span
               key={key}
-              className="text-[10px] font-medium font-sans text-brand-text/50 px-2.5 py-1 bg-brand-bg rounded-md border border-brand-text/5"
+              className="text-[10px] font-medium font-sans text-brand-text/80 px-2.5 py-1 bg-brand-bg rounded-md border border-brand-text/5"
             >
               <strong>{key}</strong>: {val}
             </span>
@@ -195,7 +195,7 @@ export default function ProductShowcase() {
             <h2 className="text-4xl md:text-5xl font-display font-black text-brand-text mt-3 tracking-tight">
               Crafted To Bring Us Closer.
             </h2>
-            <p className="text-base text-brand-text/60 mt-4 leading-relaxed">
+            <p className="text-base text-brand-text/85 mt-4 leading-relaxed">
               Explore our current flagship experiences. Each product is engineered with meticulous care, premium physical textures, and elegant game loops.
             </p>
           </div>

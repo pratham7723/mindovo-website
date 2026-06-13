@@ -44,7 +44,7 @@ export default function WhyMindovo() {
             </h4>
 
             {/* Paragraph block */}
-            <div className="flex flex-col gap-6 text-sm md:text-base text-brand-text/75 leading-relaxed max-w-2xl">
+            <div className="flex flex-col gap-6 text-sm md:text-base text-brand-text/90 leading-relaxed max-w-2xl">
               <p>
                 <strong>Mindovo</strong> was born from a passion for meaningful play and thoughtful design. We create puzzles and games that bring together creativity, quality, and screen-free bonding, ensuring that every puzzle is precision-cut from premium thick board materials with a non-glare velvet-matte finish.
               </p>
@@ -88,7 +88,7 @@ export default function WhyMindovo() {
 
         {/* Footer philosophy statement */}
         <div className="mt-16 md:mt-20 pt-8 border-t border-brand-text/5 text-center">
-          <p className="text-base md:text-lg font-display font-black italic tracking-wide text-brand-text/80 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg font-display font-black italic tracking-wide text-brand-text/95 max-w-2xl mx-auto leading-relaxed">
             "At Mindovo, we believe a puzzle is more than just pieces. It's a journey of discovery, focus, creativity, and connection."
           </p>
         </div>

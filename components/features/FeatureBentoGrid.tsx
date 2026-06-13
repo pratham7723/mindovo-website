@@ -16,7 +16,7 @@ export default function FeatureBentoGrid() {
           <h2 className="text-4xl md:text-5xl font-display font-black text-brand-text mt-3 tracking-tight">
             Designed To Be Touched.
           </h2>
-          <p className="text-base text-brand-text/60 mt-4 leading-relaxed">
+          <p className="text-base text-brand-text/85 mt-4 leading-relaxed">
             Every material choice, surface finish, and box dimension is engineered to feel luxurious, durable, and satisfying in your hands.
           </p>
         </div>
@@ -37,7 +37,7 @@ export default function FeatureBentoGrid() {
               </div>
               <Puzzle className="w-6 h-6 text-puzzle-blue mt-1" />
             </div>
-            <p className="text-xs md:text-sm text-brand-text/60 max-w-md z-10 leading-relaxed">
+            <p className="text-xs md:text-sm text-brand-text/85 max-w-md z-10 leading-relaxed">
               We apply a premium velvet-touch matte finish that completely eliminates reflections under table lamps, ensuring comfortable gameplay for hours without optical strain.
             </p>
             {/* Background absolute decor */}
@@ -67,7 +67,7 @@ export default function FeatureBentoGrid() {
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
             </div>
 
-            <p className="text-xs text-white/60 z-10 leading-relaxed">
+            <p className="text-xs text-white/80 z-10 leading-relaxed">
               Ditch the gift wrapping. All products arrive in high-density rigid boxes stamped with premium metallic gold foil details.
             </p>
           </div>
@@ -85,7 +85,7 @@ export default function FeatureBentoGrid() {
               </div>
               <GraduationCap className="w-6 h-6 text-puzzle-green mt-1" />
             </div>
-            <p className="text-xs text-brand-text/60 z-10 leading-relaxed">
+            <p className="text-xs text-brand-text/85 z-10 leading-relaxed">
               Enhance pattern matching, spatial visualization, cognitive retention, and social skills in children and adults.
             </p>
           </div>
@@ -103,7 +103,7 @@ export default function FeatureBentoGrid() {
               </div>
               <RefreshCw className="w-5 h-5 text-puzzle-orange mt-1" />
             </div>
-            <p className="text-xs text-brand-text/60 z-10 leading-relaxed">
+            <p className="text-xs text-brand-text/85 z-10 leading-relaxed">
               Made with high-density recycled blueboard that does not bend, crack, or release fine pulp dust. Healthy for your family, healthy for the planet.
             </p>
           </div>
@@ -121,7 +121,7 @@ export default function FeatureBentoGrid() {
               </div>
               <ShieldCheck className="w-6 h-6 text-puzzle-red mt-1" />
             </div>
-            <p className="text-xs md:text-sm text-brand-text/60 max-w-md z-10 leading-relaxed">
+            <p className="text-xs md:text-sm text-brand-text/85 max-w-md z-10 leading-relaxed">
               Interlocking tolerances are calibrated to micrometer precision. The puzzles stay securely joined when lifted, and the cards maintain springy, linen flex without splitting.
             </p>
             {/* Background decoration */}

@@ -93,7 +93,7 @@ export default function AboutPage() {
                   & Curation.
                 </span>
               </h1>
-              <p className="text-base md:text-lg text-brand-text/60 mt-6 leading-relaxed">
+              <p className="text-base md:text-lg text-brand-text/85 mt-6 leading-relaxed">
                 Discover the story of <strong className="font-black text-brand-text">Mindovo</strong>—our flagship puzzles and games—and the heritage of trust, quality, and community established by our parent company, <strong className="font-black text-brand-text">Fashion Dux</strong>, and sister brand, <strong className="font-black text-brand-text">OTTAVO</strong>.
               </p>
             </div>
@@ -105,7 +105,7 @@ export default function AboutPage() {
                 <div className="flex flex-col gap-4">
                   <div className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-puzzle-blue" />
-                    <span className="text-[10px] font-display font-black tracking-widest uppercase text-brand-text/40">
+                    <span className="text-[10px] font-display font-black tracking-widest uppercase text-brand-text/70">
                       Creative Entertainment
                     </span>
                   </div>
@@ -114,7 +114,7 @@ export default function AboutPage() {
                     Mindovo: Premium Puzzles & Screen-Free Play.
                   </h2>
 
-                  <div className="flex flex-col gap-5 text-sm md:text-base text-brand-text/70 leading-relaxed font-sans">
+                  <div className="flex flex-col gap-5 text-sm md:text-base text-brand-text/90 leading-relaxed font-sans">
                     <p>
                       <strong>Mindovo</strong> was born from a passion for meaningful play and thoughtful design. We create puzzles and games that bring together creativity, quality, and screen-free bonding, ensuring that every puzzle is precision-cut from premium thick board materials with a non-glare velvet-matte finish.
                     </p>
@@ -159,7 +159,7 @@ export default function AboutPage() {
                           <span className="text-sm font-bold text-brand-text group-hover:text-puzzle-blue transition-colors duration-200">
                             {diff.title}
                           </span>
-                          <span className="text-xs text-brand-text/60 mt-0.5 leading-relaxed">
+                          <span className="text-xs text-brand-text/85 mt-0.5 leading-relaxed">
                             {diff.text}
                           </span>
                         </div>
@@ -191,7 +191,7 @@ export default function AboutPage() {
               <div className="lg:col-span-6 flex flex-col gap-6 text-left">
                 <div className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-puzzle-orange" />
-                  <span className="text-[10px] font-display font-black tracking-widest uppercase text-brand-text/40">
+                  <span className="text-[10px] font-display font-black tracking-widest uppercase text-brand-text/70">
                     The House of Fashion Dux
                   </span>
                 </div>
@@ -200,11 +200,11 @@ export default function AboutPage() {
                   Fashion Dux & OTTAVO: Built on Trust.
                 </h2>
 
-                <p className="text-sm md:text-base text-brand-text/70 leading-relaxed font-sans">
+                <p className="text-sm md:text-base text-brand-text/90 leading-relaxed font-sans">
                   Mindovo is backed by the standards, quality, and shipping infrastructure of <strong>Fashion Dux</strong>, founded in 2018. Over the years, Fashion Dux has rapidly established itself as a premier destination for stylish eyewear, trusted by more than 100,000 customers on Amazon for premium sunglasses, spectacles, lenses, and frames across India.
                 </p>
 
-                <p className="text-sm md:text-base text-brand-text/70 leading-relaxed font-sans">
+                <p className="text-sm md:text-base text-brand-text/90 leading-relaxed font-sans">
                   Alongside eyewear, the House of Fashion Dux also brings you <strong>OTTAVO</strong>—a market-leading seller of premium Guardian bells and keychains on Amazon, celebrated for its craftsmanship and durability. Together, we bring a legacy of trust and quality to every product we create.
                 </p>
 
@@ -212,15 +212,15 @@ export default function AboutPage() {
                 <div className="grid grid-cols-3 gap-4 border-t border-brand-text/5 pt-6 mt-2">
                   <div>
                     <span className="block text-2xl font-display font-black text-puzzle-orange">2018</span>
-                    <span className="text-[9px] font-display font-bold uppercase tracking-wider text-brand-text/40 block mt-0.5">Est. Year</span>
+                    <span className="text-[9px] font-display font-bold uppercase tracking-wider text-brand-text/70 block mt-0.5">Est. Year</span>
                   </div>
                   <div>
                     <span className="block text-2xl font-display font-black text-puzzle-blue">100k+</span>
-                    <span className="text-[9px] font-display font-bold uppercase tracking-wider text-brand-text/40 block mt-0.5">Eyewear Buyers</span>
+                    <span className="text-[9px] font-display font-bold uppercase tracking-wider text-brand-text/70 block mt-0.5">Eyewear Buyers</span>
                   </div>
                   <div>
                     <span className="block text-2xl font-display font-black text-puzzle-green">Top Seller</span>
-                    <span className="text-[9px] font-display font-bold uppercase tracking-wider text-brand-text/40 block mt-0.5">Amazon Ratings</span>
+                    <span className="text-[9px] font-display font-bold uppercase tracking-wider text-brand-text/70 block mt-0.5">Amazon Ratings</span>
                   </div>
                 </div>
               </div>
@@ -229,7 +229,7 @@ export default function AboutPage() {
             {/* Philosophy quote section (Why Mindovo quote) */}
             <div className="my-20 py-10 border-t border-b border-brand-text/5 text-center relative max-w-4xl mx-auto">
               <Quote className="w-10 h-10 text-[#CA8A04] opacity-20 mx-auto mb-4" />
-              <p className="text-lg md:text-2xl font-display font-black italic tracking-wide text-brand-text/80 leading-relaxed">
+              <p className="text-lg md:text-2xl font-display font-black italic tracking-wide text-brand-text/95 leading-relaxed">
                 "At Mindovo, we believe a puzzle is more than just pieces. It's a journey of discovery, focus, creativity, and connection."
               </p>
             </div>

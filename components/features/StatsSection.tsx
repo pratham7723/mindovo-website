@@ -36,7 +36,7 @@ const STATS: StatItem[] = [
     suffix: "/5",
     title: "Customer Rating",
     description: "Consistently rated five stars for thickness, matte surface, and packaging.",
-    colorClass: "text-[#CA8A04]",
+    colorClass: "text-[#854D0E]",
   },
   {
     id: 4,
@@ -123,7 +123,7 @@ export default function StatsSection() {
               </h3>
 
               {/* Description */}
-              <p className="text-[11px] md:text-xs text-brand-text/60 mt-2 leading-relaxed max-w-[200px]">
+              <p className="text-[11px] md:text-xs text-brand-text/85 mt-2 leading-relaxed max-w-[200px]">
                 {stat.description}
               </p>
             </div>

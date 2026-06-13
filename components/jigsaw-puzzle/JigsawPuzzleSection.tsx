@@ -63,7 +63,7 @@ export default function JigsawPuzzleSection() {
           <h2 className="text-4xl md:text-5xl font-display font-black text-brand-text mt-3 tracking-tight">
             Mindovo Jigsaw Puzzle
           </h2>
-          <p className="text-base text-brand-text/60 mt-4 leading-relaxed">
+          <p className="text-base text-brand-text/85 mt-4 leading-relaxed">
             Discover a meditative puzzle experience designed to stimulate cognitive focus, promote mindfulness, and create bonding spaces.
           </p>
         </div>
@@ -153,7 +153,7 @@ export default function JigsawPuzzleSection() {
                     {specIcons[key] || <HelpCircle className="w-5 h-5 text-puzzle-blue" />}
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-xs text-brand-text/40 font-display font-bold tracking-wider uppercase">
+                    <span className="text-xs text-brand-text/70 font-display font-bold tracking-wider uppercase">
                       {key}
                     </span>
                     <span className="text-sm font-semibold text-brand-text mt-0.5">
@@ -175,7 +175,7 @@ export default function JigsawPuzzleSection() {
                     <h4 className="text-sm font-bold text-brand-text">
                       {item.title}
                     </h4>
-                    <p className="text-xs text-brand-text/60 mt-1 leading-relaxed">
+                    <p className="text-xs text-brand-text/85 mt-1 leading-relaxed">
                       {item.description}
                     </p>
                   </div>

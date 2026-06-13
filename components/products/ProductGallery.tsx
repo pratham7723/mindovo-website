@@ -111,7 +111,7 @@ export default function ProductGallery() {
 
             {/* Slide Header */}
             <div className="flex items-start justify-between z-10">
-              <span className="text-[9px] font-display font-black tracking-widest text-brand-text/60 bg-brand-bg border border-brand-text/10 px-3 py-1.5 rounded-full uppercase">
+              <span className="text-[9px] font-display font-black tracking-widest text-brand-text/85 bg-brand-bg border border-brand-text/10 px-3 py-1.5 rounded-full uppercase">
                 {slide.badge}
               </span>
               <div className="p-3 bg-brand-bg rounded-2xl border border-brand-text/5">
@@ -121,7 +121,7 @@ export default function ProductGallery() {
 
             {/* Slide Image Placeholder Box with glossy border */}
             <div className="w-full h-36 md:h-48 my-6 bg-brand-bg/60 border border-brand-text/5 rounded-2xl flex items-center justify-center relative overflow-hidden">
-              <span className="text-[10px] font-display font-black tracking-[0.3em] text-brand-text/20 uppercase">
+              <span className="text-[10px] font-display font-black tracking-[0.3em] text-brand-text/30 uppercase">
                 Micro-Detailing Showcase
               </span>
               {/* Shimmer effect */}
@@ -130,13 +130,13 @@ export default function ProductGallery() {
 
             {/* Slide Body */}
             <div className="z-10 text-left">
-              <span className="text-[10px] font-display font-bold text-[#CA8A04] tracking-widest uppercase">
+              <span className="text-[10px] font-display font-bold text-[#854D0E] tracking-widest uppercase">
                 {slide.subtitle}
               </span>
               <h3 className="text-2xl md:text-3xl font-display font-black text-brand-text mt-1 leading-tight tracking-tight">
                 {slide.title}
               </h3>
-              <p className="text-xs md:text-sm text-brand-text/60 mt-4 leading-relaxed max-w-xl">
+              <p className="text-xs md:text-sm text-brand-text/85 mt-4 leading-relaxed max-w-xl">
                 {slide.description}
               </p>
             </div>
