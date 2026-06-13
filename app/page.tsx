@@ -6,6 +6,7 @@ import Navbar from "@/components/navbar/Navbar";
 import Hero from "@/components/hero/Hero";
 import SignatureScroll from "@/components/products/SignatureScroll";
 import ProductShowcase from "@/components/products/ProductShowcase";
+import InteractiveGameZone from "@/components/home/InteractiveGameZone";
 import Testimonials from "@/components/testimonials/Testimonials";
 import StatsSection from "@/components/features/StatsSection";
 import FinalCTA from "@/components/ui/FinalCTA";
@@ -30,6 +31,9 @@ export default function Home() {
 
           {/* Main Products catalog */}
           <ProductShowcase />
+
+          {/* Interactive Game Demo Zone */}
+          <InteractiveGameZone />
 
           {/* Testimonials Review Slider */}
           <Testimonials />

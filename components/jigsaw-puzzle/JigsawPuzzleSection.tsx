@@ -1,11 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import { products } from "@/data/products";
-import { Puzzle, Box, Image, Award, Heart, HelpCircle, ShoppingBag } from "lucide-react";
+import { Puzzle, Box, Image, Award, Heart, HelpCircle, ShoppingBag, RotateCw } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function JigsawPuzzleSection() {
   const puzzle = products.find((p) => p.slug === "jigsaw-puzzle");
+  const [isFlipped, setIsFlipped] = useState(false);
 
   if (!puzzle) return null;
 
@@ -73,62 +75,128 @@ export default function JigsawPuzzleSection() {
           
           {/* Left: Dynamic Snapping Illustration with Framer Motion */}
           <div className="lg:col-span-5 flex justify-center relative">
-            <div className="relative w-72 h-96 md:w-80 md:h-[420px] rounded-3xl bg-white p-6 border border-brand-text/5 shadow-2xl flex flex-col justify-between overflow-hidden">
-              {/* Product Label */}
-              <div className="flex flex-col">
-                <span className="text-[9px] font-display font-black tracking-widest text-puzzle-blue uppercase">
-                  Mindovo Collection
-                </span>
-                <span className="text-2xl font-display font-black text-brand-text mt-1">
-                  JIGSAW PUZZLE
-                </span>
-              </div>
-
-              {/* Dynamic Interactive Pieces Convergence Visualizer */}
-              <div className="relative w-full h-48 my-4 bg-brand-bg/50 border border-brand-text/5 rounded-2xl overflow-hidden flex items-center justify-center">
-                {/* Assembling puzzle piece animations */}
-                <motion.div
-                  initial={{ x: -100, y: -50, rotate: -45, opacity: 0 }}
-                  whileInView={{ x: -15, y: -10, rotate: 0, opacity: 1 }}
-                  transition={{ duration: 1.2, ease: "easeOut" }}
-                  viewport={{ once: true }}
-                  className="absolute w-20 h-20 bg-puzzle-blue rounded-lg shadow-lg flex items-center justify-center text-white text-[10px] font-bold font-display"
-                  style={{ clipPath: "url(#spec-piece-1)" }}
+            <div className="w-72 h-96 md:w-80 md:h-[420px] perspective-[1000px]">
+              <motion.div
+                animate={{ rotateY: isFlipped ? 180 : 0 }}
+                transition={{ duration: 0.6, ease: "easeInOut" }}
+                style={{ transformStyle: "preserve-3d" }}
+                className="w-full h-full relative cursor-pointer"
+                onClick={() => setIsFlipped((f) => !f)}
+              >
+                {/* FRONT SIDE */}
+                <div
+                  className="absolute inset-0 w-full h-full rounded-3xl bg-white p-6 border border-brand-text/5 shadow-2xl flex flex-col justify-between overflow-hidden"
+                  style={{ backfaceVisibility: "hidden" }}
                 >
-                  PLAY
-                </motion.div>
+                  {/* Product Label */}
+                  <div className="flex flex-col">
+                    <span className="text-[9px] font-display font-black tracking-widest text-puzzle-blue uppercase">
+                      Mindovo Collection
+                    </span>
+                    <span className="text-2xl font-display font-black text-brand-text mt-1">
+                      JIGSAW PUZZLE
+                    </span>
+                  </div>
 
-                <motion.div
-                  initial={{ x: 100, y: 80, rotate: 60, opacity: 0 }}
-                  whileInView={{ x: 15, y: 10, rotate: 0, opacity: 1 }}
-                  transition={{ duration: 1.2, delay: 0.2, ease: "easeOut" }}
-                  viewport={{ once: true }}
-                  className="absolute w-20 h-20 bg-puzzle-orange rounded-lg shadow-lg flex items-center justify-center text-white text-[10px] font-bold font-display"
-                  style={{ clipPath: "url(#spec-piece-2)" }}
+                  {/* Dynamic Interactive Pieces Convergence Visualizer */}
+                  <div className="relative w-full h-48 my-4 bg-brand-bg/50 border border-brand-text/5 rounded-2xl overflow-hidden flex items-center justify-center">
+                    {/* Assembling puzzle piece animations */}
+                    <motion.div
+                      initial={{ x: -100, y: -50, rotate: -45, opacity: 0 }}
+                      whileInView={{ x: -15, y: -10, rotate: 0, opacity: 1 }}
+                      transition={{ duration: 1.2, ease: "easeOut" }}
+                      viewport={{ once: true }}
+                      className="absolute w-20 h-20 bg-puzzle-blue rounded-lg shadow-lg flex items-center justify-center text-white text-[10px] font-bold font-display"
+                      style={{ clipPath: "url(#spec-piece-1)" }}
+                    >
+                      PLAY
+                    </motion.div>
+
+                    <motion.div
+                      initial={{ x: 100, y: 80, rotate: 60, opacity: 0 }}
+                      whileInView={{ x: 15, y: 10, rotate: 0, opacity: 1 }}
+                      transition={{ duration: 1.2, delay: 0.2, ease: "easeOut" }}
+                      viewport={{ once: true }}
+                      className="absolute w-20 h-20 bg-puzzle-orange rounded-lg shadow-lg flex items-center justify-center text-white text-[10px] font-bold font-display"
+                      style={{ clipPath: "url(#spec-piece-2)" }}
+                    >
+                      BOND
+                    </motion.div>
+
+                    <motion.div
+                      initial={{ scale: 0, opacity: 0 }}
+                      whileInView={{ scale: 1, opacity: 0.15 }}
+                      transition={{ duration: 1.5, delay: 0.6 }}
+                      viewport={{ once: true }}
+                      className="absolute inset-0 bg-puzzle-blue/10 flex items-center justify-center border border-dashed border-puzzle-blue/30 rounded-xl"
+                    >
+                      <Puzzle className="w-8 h-8 text-puzzle-blue animate-pulse-slow" />
+                    </motion.div>
+                  </div>
+
+                  {/* Specs badges and click prompt */}
+                  <div className="flex justify-between items-center">
+                    <div className="flex gap-2">
+                      <span className="text-[10px] font-bold text-brand-text bg-brand-bg px-3 py-1.5 rounded-lg border border-brand-text/5">
+                        300 Pcs
+                      </span>
+                      <span className="text-[10px] font-bold text-brand-text bg-brand-bg px-3 py-1.5 rounded-lg border border-brand-text/5">
+                        45 × 30 cm
+                      </span>
+                    </div>
+                    <span className="text-[8px] font-display font-black text-brand-text/60 tracking-widest uppercase flex items-center gap-1">
+                      <RotateCw className="w-3.5 h-3.5 animate-spin-slow" />
+                      <span>Flip Card</span>
+                    </span>
+                  </div>
+                </div>
+
+                {/* BACK SIDE */}
+                <div
+                  className="absolute inset-0 w-full h-full rounded-3xl bg-[#EAE5DA] border border-dashed border-brand-text/20 shadow-2xl p-6 flex flex-col justify-between items-center"
+                  style={{
+                    backfaceVisibility: "hidden",
+                    transform: "rotateY(180deg)",
+                  }}
                 >
-                  BOND
-                </motion.div>
+                  <div className="flex flex-col items-center">
+                    <span className="text-[9px] font-display font-black tracking-widest text-puzzle-blue uppercase bg-puzzle-blue/5 px-2.5 py-1 rounded">
+                      Sorting Helper Backing
+                    </span>
+                    <span className="text-xl font-display font-black text-brand-text mt-3">
+                      ZONE LETTERS
+                    </span>
+                  </div>
 
-                <motion.div
-                  initial={{ scale: 0, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 0.15 }}
-                  transition={{ duration: 1.5, delay: 0.6 }}
-                  viewport={{ once: true }}
-                  className="absolute inset-0 bg-puzzle-blue/10 flex items-center justify-center border border-dashed border-puzzle-blue/30 rounded-xl"
-                >
-                  <Puzzle className="w-8 h-8 text-puzzle-blue animate-pulse-slow" />
-                </motion.div>
-              </div>
+                  {/* Stamp visual representation */}
+                  <div className="flex gap-4 my-auto">
+                    <div className="w-16 h-16 rounded-full border-4 border-double border-puzzle-blue/50 flex items-center justify-center bg-white/40 shadow-inner">
+                      <span className="text-lg font-display font-black text-puzzle-blue/80 font-mono">
+                        A - 42
+                      </span>
+                    </div>
+                    <div className="w-16 h-16 rounded-full border-4 border-double border-puzzle-orange/50 flex items-center justify-center bg-white/40 shadow-inner">
+                      <span className="text-lg font-display font-black text-puzzle-orange/80 font-mono">
+                        B - 19
+                      </span>
+                    </div>
+                  </div>
 
-              {/* Specs badges */}
-              <div className="flex gap-2">
-                <span className="text-[10px] font-bold text-brand-text bg-brand-bg px-3 py-1.5 rounded-lg border border-brand-text/5">
-                  300 Pcs
-                </span>
-                <span className="text-[10px] font-bold text-brand-text bg-brand-bg px-3 py-1.5 rounded-lg border border-brand-text/5">
-                  45 × 30 cm
-                </span>
-              </div>
+                  <div className="text-center px-2">
+                    <h5 className="text-xs font-bold text-brand-text uppercase tracking-wide">
+                      Section helper stamps
+                    </h5>
+                    <p className="text-[10px] text-brand-text/85 mt-1 leading-relaxed">
+                      Every piece features a printed zone letter (A-F) on the organic blueboard back. Sort pieces to easily group and solve.
+                    </p>
+                  </div>
+
+                  <span className="text-[8px] font-display font-black text-brand-text/60 tracking-widest uppercase flex items-center gap-1">
+                    <RotateCw className="w-3.5 h-3.5" />
+                    <span>Flip Card</span>
+                  </span>
+                </div>
+              </motion.div>
             </div>
             
             {/* Background elements */}
