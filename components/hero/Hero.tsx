@@ -128,12 +128,12 @@ export default function Hero() {
         </motion.div>
 
         {/* Right Column: Dynamic 3D Canvas */}
-        <div className="lg:col-span-5 w-full h-[450px] md:h-[600px]">
+        <div className="lg:col-span-5 w-full h-[450px] md:h-[600px] relative pointer-events-none">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
-            className="w-full h-full"
+            className="absolute -inset-x-16 -inset-y-12 md:-inset-x-28 md:-inset-y-20 lg:-inset-x-36 lg:-inset-y-24"
           >
             <HeroCanvas />
           </motion.div>

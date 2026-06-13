@@ -181,12 +181,12 @@ function RubiksCube({ position, rotation, scale = 1 }: RubiksCubeProps) {
   });
 
   const stickerColors = {
-    front: "#1E40AF",  // Blue
-    back: "#065F46",   // Green
-    left: "#C2410C",   // Orange
-    right: "#991B1B",  // Red
-    top: "#854D0E",    // Compliant Amber Gold
-    bottom: "#FAF8F5", // White
+    front: "#7692FF",  // Pastel Blue
+    back: "#99C1A2",   // Pastel Green
+    left: "#F4B988",   // Pastel Orange
+    right: "#E79E8C",  // Pastel Red
+    top: "#E9D8A6",    // Pastel Gold
+    bottom: "#FAF8F5", // Warm White
   };
 
   const stickerSize = 0.23;
@@ -198,16 +198,16 @@ function RubiksCube({ position, rotation, scale = 1 }: RubiksCubeProps) {
 
   return (
     <group ref={groupRef} position={position} scale={scale}>
-      {/* Cube Black Core */}
-      <mesh castShadow receiveShadow>
+      {/* Cube Warm Charcoal Core */}
+      <mesh>
         <boxGeometry args={[0.8, 0.8, 0.8]} />
-        <meshStandardMaterial color="#1C1917" roughness={0.4} metalness={0.2} />
+        <meshStandardMaterial color="#3E3A35" roughness={0.4} metalness={0.2} />
       </mesh>
 
       {/* Front Face (z = +d) - Blue stickers */}
       {offsets.map((x, i) =>
         offsets.map((y, j) => (
-          <mesh key={`f-${i}-${j}`} position={[x, y, d]} castShadow>
+          <mesh key={`f-${i}-${j}`} position={[x, y, d]}>
             <boxGeometry args={[stickerSize, stickerSize, stickerThickness]} />
             <meshStandardMaterial color={stickerColors.front} roughness={0.25} metalness={0.1} />
           </mesh>
@@ -217,7 +217,7 @@ function RubiksCube({ position, rotation, scale = 1 }: RubiksCubeProps) {
       {/* Back Face (z = -d) - Green stickers */}
       {offsets.map((x, i) =>
         offsets.map((y, j) => (
-          <mesh key={`b-${i}-${j}`} position={[x, y, -d]} castShadow>
+          <mesh key={`b-${i}-${j}`} position={[x, y, -d]}>
             <boxGeometry args={[stickerSize, stickerSize, stickerThickness]} />
             <meshStandardMaterial color={stickerColors.back} roughness={0.25} metalness={0.1} />
           </mesh>
@@ -227,7 +227,7 @@ function RubiksCube({ position, rotation, scale = 1 }: RubiksCubeProps) {
       {/* Left Face (x = -d) - Orange stickers */}
       {offsets.map((y, i) =>
         offsets.map((z, j) => (
-          <mesh key={`l-${i}-${j}`} position={[-d, y, z]} rotation={[0, Math.PI / 2, 0]} castShadow>
+          <mesh key={`l-${i}-${j}`} position={[-d, y, z]} rotation={[0, Math.PI / 2, 0]}>
             <boxGeometry args={[stickerSize, stickerSize, stickerThickness]} />
             <meshStandardMaterial color={stickerColors.left} roughness={0.25} metalness={0.1} />
           </mesh>
@@ -237,7 +237,7 @@ function RubiksCube({ position, rotation, scale = 1 }: RubiksCubeProps) {
       {/* Right Face (x = +d) - Red stickers */}
       {offsets.map((y, i) =>
         offsets.map((z, j) => (
-          <mesh key={`r-${i}-${j}`} position={[d, y, z]} rotation={[0, Math.PI / 2, 0]} castShadow>
+          <mesh key={`r-${i}-${j}`} position={[d, y, z]} rotation={[0, Math.PI / 2, 0]}>
             <boxGeometry args={[stickerSize, stickerSize, stickerThickness]} />
             <meshStandardMaterial color={stickerColors.right} roughness={0.25} metalness={0.1} />
           </mesh>
@@ -247,7 +247,7 @@ function RubiksCube({ position, rotation, scale = 1 }: RubiksCubeProps) {
       {/* Top Face (y = +d) - Gold stickers */}
       {offsets.map((x, i) =>
         offsets.map((z, j) => (
-          <mesh key={`t-${i}-${j}`} position={[x, d, z]} rotation={[Math.PI / 2, 0, 0]} castShadow>
+          <mesh key={`t-${i}-${j}`} position={[x, d, z]} rotation={[Math.PI / 2, 0, 0]}>
             <boxGeometry args={[stickerSize, stickerSize, stickerThickness]} />
             <meshStandardMaterial color={stickerColors.top} roughness={0.2} metalness={0.5} />
           </mesh>
@@ -257,7 +257,7 @@ function RubiksCube({ position, rotation, scale = 1 }: RubiksCubeProps) {
       {/* Bottom Face (y = -d) - White stickers */}
       {offsets.map((x, i) =>
         offsets.map((z, j) => (
-          <mesh key={`bt-${i}-${j}`} position={[x, -d, z]} rotation={[Math.PI / 2, 0, 0]} castShadow>
+          <mesh key={`bt-${i}-${j}`} position={[x, -d, z]} rotation={[Math.PI / 2, 0, 0]}>
             <boxGeometry args={[stickerSize, stickerSize, stickerThickness]} />
             <meshStandardMaterial color={stickerColors.bottom} roughness={0.3} metalness={0.1} />
           </mesh>
@@ -289,24 +289,24 @@ function ChessPawn({ position, rotation, scale = 1 }: ChessPieceProps) {
   return (
     <group ref={groupRef} position={position} rotation={rotation} scale={scale}>
       {/* Base ring */}
-      <mesh position={[0, -0.3, 0]} castShadow receiveShadow>
+      <mesh position={[0, -0.3, 0]}>
         <cylinderGeometry args={[0.26, 0.28, 0.06, 32]} />
-        <meshStandardMaterial color="#FAF8F5" roughness={0.15} metalness={0.1} />
+        <meshStandardMaterial color="#FAF8F5" roughness={0.1} metalness={0.05} />
       </mesh>
       {/* Torso (tapered body) */}
-      <mesh position={[0, -0.06, 0]} castShadow receiveShadow>
+      <mesh position={[0, -0.06, 0]}>
         <cylinderGeometry args={[0.08, 0.22, 0.44, 32]} />
-        <meshStandardMaterial color="#FAF8F5" roughness={0.15} metalness={0.1} />
+        <meshStandardMaterial color="#FAF8F5" roughness={0.1} metalness={0.05} />
       </mesh>
       {/* Neck collar */}
-      <mesh position={[0, 0.18, 0]} castShadow receiveShadow>
+      <mesh position={[0, 0.18, 0]}>
         <cylinderGeometry args={[0.13, 0.13, 0.05, 32]} />
-        <meshStandardMaterial color="#FAF8F5" roughness={0.15} metalness={0.1} />
+        <meshStandardMaterial color="#FAF8F5" roughness={0.1} metalness={0.05} />
       </mesh>
       {/* Head ball */}
-      <mesh position={[0, 0.35, 0]} castShadow receiveShadow>
+      <mesh position={[0, 0.35, 0]}>
         <sphereGeometry args={[0.15, 32, 32]} />
-        <meshStandardMaterial color="#FAF8F5" roughness={0.15} metalness={0.1} />
+        <meshStandardMaterial color="#FAF8F5" roughness={0.1} metalness={0.05} />
       </mesh>
     </group>
   );
@@ -326,9 +326,9 @@ function Hourglass({ position, rotation, scale = 1 }: ChessPieceProps) {
   });
 
   const brassMaterial = useMemo(() => new THREE.MeshStandardMaterial({
-    color: "#854D0E", // High contrast dark amber/gold
+    color: "#DFB15B", // Soft warm brass
     roughness: 0.2,
-    metalness: 0.8,
+    metalness: 0.6,
   }), []);
 
   const glassMaterial = useMemo(() => new THREE.MeshStandardMaterial({
@@ -340,32 +340,32 @@ function Hourglass({ position, rotation, scale = 1 }: ChessPieceProps) {
   }), []);
 
   const sandMaterial = useMemo(() => new THREE.MeshStandardMaterial({
-    color: "#A16207",
+    color: "#E5D9C4", // Soft beige sand
     roughness: 0.8,
   }), []);
 
   return (
     <group ref={groupRef} position={position} rotation={rotation} scale={scale}>
-      {/* Top Plate (Mahogany Wood) */}
-      <mesh position={[0, 0.46, 0]} castShadow receiveShadow>
+      {/* Top Plate (Muted Warm Wood) */}
+      <mesh position={[0, 0.46, 0]}>
         <cylinderGeometry args={[0.26, 0.26, 0.04, 32]} />
-        <meshStandardMaterial color="#78350F" roughness={0.45} />
+        <meshStandardMaterial color="#8E6F5E" roughness={0.45} />
       </mesh>
-      {/* Bottom Plate (Mahogany Wood) */}
-      <mesh position={[0, -0.46, 0]} castShadow receiveShadow>
+      {/* Bottom Plate (Muted Warm Wood) */}
+      <mesh position={[0, -0.46, 0]}>
         <cylinderGeometry args={[0.26, 0.26, 0.04, 32]} />
-        <meshStandardMaterial color="#78350F" roughness={0.45} />
+        <meshStandardMaterial color="#8E6F5E" roughness={0.45} />
       </mesh>
 
       {/* Pillars (Brass) */}
       <group>
-        <mesh position={[0.21, 0, 0]} material={brassMaterial} castShadow>
+        <mesh position={[0.21, 0, 0]} material={brassMaterial}>
           <cylinderGeometry args={[0.015, 0.015, 0.9, 16]} />
         </mesh>
-        <mesh position={[-0.105, 0, 0.18]} material={brassMaterial} castShadow>
+        <mesh position={[-0.105, 0, 0.18]} material={brassMaterial}>
           <cylinderGeometry args={[0.015, 0.015, 0.9, 16]} />
         </mesh>
-        <mesh position={[-0.105, 0, -0.18]} material={brassMaterial} castShadow>
+        <mesh position={[-0.105, 0, -0.18]} material={brassMaterial}>
           <cylinderGeometry args={[0.015, 0.015, 0.9, 16]} />
         </mesh>
       </group>
@@ -373,11 +373,11 @@ function Hourglass({ position, rotation, scale = 1 }: ChessPieceProps) {
       {/* Glass Bulbs (Translucent) */}
       <group>
         {/* Top Bulb */}
-        <mesh position={[0, 0.2, 0]} rotation={[Math.PI, 0, 0]} material={glassMaterial} castShadow>
+        <mesh position={[0, 0.2, 0]} rotation={[Math.PI, 0, 0]} material={glassMaterial}>
           <coneGeometry args={[0.18, 0.4, 32, 1, true]} />
         </mesh>
         {/* Bottom Bulb */}
-        <mesh position={[0, -0.2, 0]} material={glassMaterial} castShadow>
+        <mesh position={[0, -0.2, 0]} material={glassMaterial}>
           <coneGeometry args={[0.18, 0.4, 32, 1, true]} />
         </mesh>
       </group>
@@ -385,15 +385,15 @@ function Hourglass({ position, rotation, scale = 1 }: ChessPieceProps) {
       {/* Sand */}
       <group>
         {/* Top Sand Heap */}
-        <mesh position={[0, 0.15, 0]} rotation={[Math.PI, 0, 0]} material={sandMaterial} castShadow>
+        <mesh position={[0, 0.15, 0]} rotation={[Math.PI, 0, 0]} material={sandMaterial}>
           <coneGeometry args={[0.14, 0.28, 16]} />
         </mesh>
         {/* Bottom Sand Heap */}
-        <mesh position={[0, -0.3, 0]} material={sandMaterial} castShadow>
+        <mesh position={[0, -0.3, 0]} material={sandMaterial}>
           <coneGeometry args={[0.16, 0.18, 16]} />
         </mesh>
         {/* Falling Sand Stream */}
-        <mesh position={[0, -0.06, 0]} material={sandMaterial} castShadow>
+        <mesh position={[0, -0.06, 0]} material={sandMaterial}>
           <cylinderGeometry args={[0.006, 0.006, 0.35, 8]} />
         </mesh>
       </group>
@@ -455,14 +455,14 @@ function Scene() {
   return (
     <>
       {/* Studio Quality Lighting */}
-      <ambientLight intensity={0.75} />
-      <directionalLight position={[8, 8, 4]} intensity={1.4} castShadow shadow-mapSize={[1024, 1024]} />
+      <ambientLight intensity={0.8} />
+      <directionalLight position={[8, 8, 4]} intensity={1.5} />
       <pointLight ref={lightRef} position={[0, 0, 4]} intensity={1.8} color="#F7F3EB" />
-      <pointLight position={[-8, -8, -4]} intensity={0.4} color="#1E40AF" />
-      <pointLight position={[8, -8, 4]} intensity={0.7} color="#CA8A04" />
+      <pointLight position={[-8, -8, -4]} intensity={0.5} color="#BAC8FF" /> {/* Soft blue */}
+      <pointLight position={[8, -8, 4]} intensity={0.6} color="#FDE047" />  {/* Soft gold */}
 
       {/* Ambient sparkle particles for visual depth */}
-      <Sparkles count={35} scale={5.5} size={2.2} speed={0.4} color="#854D0E" />
+      <Sparkles count={35} scale={6.5} size={2.2} speed={0.4} color="#E9C46A" />
 
       {/* Floating 3D Tabletop Game Objects */}
       <Center>
@@ -480,16 +480,16 @@ function Scene() {
           {/* Tumbling 3D Dice Pair (Center-Right) */}
           <Float speed={2.5} rotationIntensity={0.7} floatIntensity={0.9} position={[1.4, -0.2, 0.4]}>
             <group>
-              {/* Die 1: Green */}
+              {/* Die 1: Sage Green */}
               <Die
-                color="#065F46"
+                color="#A2B9A6"
                 position={[-0.4, 0.4, 0]}
                 rotation={[0.5, 0.2, -0.8]}
                 scale={1.2}
               />
-              {/* Die 2: Orange */}
+              {/* Die 2: Soft Peach */}
               <Die
-                color="#C2410C"
+                color="#F5CBA7"
                 position={[0.4, -0.3, -0.2]}
                 rotation={[-0.3, 0.8, 0.5]}
                 scale={1.0}
@@ -502,14 +502,14 @@ function Scene() {
             <group>
               {/* Gold Meeple */}
               <Meeple
-                color="#854D0E"
+                color="#E9C46A"
                 position={[-0.5, 0, 0]}
                 rotation={[0.2, 0.4, 0]}
                 scale={1.4}
               />
               {/* Red Meeple */}
               <Meeple
-                color="#991B1B"
+                color="#D48D7E"
                 position={[0.5, 0.1, 0.1]}
                 rotation={[0.1, -0.4, 0]}
                 scale={1.4}
@@ -545,7 +545,6 @@ export default function HeroCanvas() {
   return (
     <div className="w-full h-full min-h-[450px] md:min-h-[600px] select-none">
       <Canvas
-        shadows
         gl={{ antialias: true, alpha: true }}
         camera={{ position: [0, 0, 5.2], fov: 50 }}
       >
