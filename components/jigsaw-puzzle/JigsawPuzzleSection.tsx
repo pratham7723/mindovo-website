@@ -75,7 +75,7 @@ export default function JigsawPuzzleSection() {
           
           {/* Left: Dynamic Snapping Illustration with Framer Motion */}
           <div className="lg:col-span-5 flex justify-center relative">
-            <div className="w-72 h-96 md:w-80 md:h-[420px] perspective-[1000px]">
+            <div className="w-72 h-96 md:w-80 md:h-[420px]" style={{ perspective: "1000px" }}>
               <motion.div
                 animate={{ rotateY: isFlipped ? 180 : 0 }}
                 transition={{ duration: 0.6, ease: "easeInOut" }}
@@ -86,7 +86,7 @@ export default function JigsawPuzzleSection() {
                 {/* FRONT SIDE */}
                 <div
                   className="absolute inset-0 w-full h-full rounded-3xl bg-white p-6 border border-brand-text/5 shadow-2xl flex flex-col justify-between overflow-hidden"
-                  style={{ backfaceVisibility: "hidden" }}
+                  style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden", transform: "translateZ(1px)" }}
                 >
                   {/* Product Label */}
                   <div className="flex flex-col">
@@ -156,7 +156,8 @@ export default function JigsawPuzzleSection() {
                   className="absolute inset-0 w-full h-full rounded-3xl bg-[#EAE5DA] border border-dashed border-brand-text/20 shadow-2xl p-6 flex flex-col justify-between items-center"
                   style={{
                     backfaceVisibility: "hidden",
-                    transform: "rotateY(180deg)",
+                    WebkitBackfaceVisibility: "hidden",
+                    transform: "rotateY(180deg) translateZ(1px)",
                   }}
                 >
                   <div className="flex flex-col items-center">

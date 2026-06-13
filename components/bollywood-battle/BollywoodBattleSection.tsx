@@ -163,7 +163,7 @@ export default function BollywoodBattleSection() {
             </div>
 
             {/* 3D Card Flipper Container */}
-            <div className="w-full max-w-[340px] aspect-[2/3] perspective-[1000px] relative">
+            <div className="w-full max-w-[340px] aspect-[2/3] relative" style={{ perspective: "1000px" }}>
               <motion.div
                 animate={{ rotateY: isFlipped ? 180 : 0 }}
                 transition={{ duration: 0.6, ease: "easeInOut" }}
@@ -174,7 +174,7 @@ export default function BollywoodBattleSection() {
                 {/* CARD FRONT SIDE */}
                 <div
                   className="absolute inset-0 w-full h-full rounded-3xl bg-white border border-brand-text/15 shadow-2xl p-6 flex flex-col justify-between"
-                  style={{ backfaceVisibility: "hidden" }}
+                  style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden", transform: "translateZ(1px)" }}
                 >
                   {/* Card Header */}
                   <div className="flex items-center justify-between">
@@ -226,7 +226,8 @@ export default function BollywoodBattleSection() {
                   className="absolute inset-0 w-full h-full rounded-3xl bg-white border border-[#854D0E]/60 shadow-2xl p-6 flex flex-col justify-between"
                   style={{
                     backfaceVisibility: "hidden",
-                    transform: "rotateY(180deg)",
+                    WebkitBackfaceVisibility: "hidden",
+                    transform: "rotateY(180deg) translateZ(1px)",
                   }}
                 >
                   <div className="flex items-center justify-between">
