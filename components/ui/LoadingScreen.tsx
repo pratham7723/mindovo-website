@@ -104,7 +104,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
     tl.to(
       logoTextRef.current,
       {
-        filter: "drop-shadow(0 0 10px rgba(255,255,255,0.4))",
+        filter: "drop-shadow(0 0 8px rgba(17,17,17,0.12))",
         duration: 0.4,
         yoyo: true,
         repeat: 1,
@@ -131,39 +131,39 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
       ref={containerRef}
       className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-brand-bg"
     >
-      <div className="relative flex items-center justify-center w-[260px] h-[156px] md:w-[320px] md:h-[192px]">
+      <div className="relative flex items-center justify-center w-[180px] h-[108px] md:w-[220px] md:h-[132px]">
         {/* Jigsaw Puzzle Assembly (viewBox matches full 200x120 rectangle space) */}
         <svg
           ref={svgRef}
           viewBox="0 0 200 120"
           className="w-full h-full drop-shadow-2xl overflow-visible"
         >
-          {/* Piece 1 (Top Left) - Blue */}
+          {/* Piece 1 (Top Left) - Warm Cream */}
           <path
             ref={p1Ref}
             d="M 0,0 H 100 V 20 C 100,24 108,22 108,30 C 108,38 100,36 100,40 V 60 H 60 C 56,60 58,52 50,52 C 42,52 44,60 40,60 H 0 V 0 Z"
-            className="text-puzzle-blue fill-current"
+            fill="#EADFC9"
             style={{ transformOrigin: "50px 30px" }}
           />
-          {/* Piece 2 (Top Right) - Green */}
+          {/* Piece 2 (Top Right) - Gold Accent */}
           <path
             ref={p2Ref}
             d="M 100,0 H 200 V 60 H 160 C 156,60 158,68 150,68 C 142,68 144,60 140,60 H 100 V 40 C 100,36 108,38 108,30 C 108,22 100,24 100,20 V 0 Z"
-            className="text-puzzle-green fill-current"
+            fill="#C5A880"
             style={{ transformOrigin: "150px 30px" }}
           />
-          {/* Piece 3 (Bottom Left) - Orange */}
+          {/* Piece 3 (Bottom Left) - Muted Taupe */}
           <path
             ref={p3Ref}
             d="M 0,60 H 40 C 44,60 42,52 50,52 C 58,52 56,60 60,60 H 100 V 80 C 100,84 92,82 92,90 C 92,98 100,96 100,100 V 120 H 0 V 60 Z"
-            className="text-puzzle-orange fill-current"
+            fill="#D5CBB8"
             style={{ transformOrigin: "50px 90px" }}
           />
-          {/* Piece 4 (Bottom Right) - Red */}
+          {/* Piece 4 (Bottom Right) - Soft Sand */}
           <path
             ref={p4Ref}
             d="M 100,60 H 140 C 144,60 142,68 150,68 C 158,68 156,60 160,60 H 200 V 120 H 100 V 100 C 100,96 92,98 92,90 C 92,82 100,84 100,80 V 60 Z"
-            className="text-puzzle-red fill-current"
+            fill="#E2D7C3"
             style={{ transformOrigin: "150px 90px" }}
           />
         </svg>
@@ -177,7 +177,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
             <img 
               src="/mindovo.svg" 
               alt="Mindovo Logo" 
-              className="h-6 md:h-8 w-auto brightness-0 invert" 
+              className="h-5 md:h-6 w-auto" 
             />
           </div>
         </div>
