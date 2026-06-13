@@ -8,12 +8,13 @@ import { Float, Center, Sparkles } from "@react-three/drei";
 // 1. Custom 3D Rounded Die Component with 21 Pips (Dots)
 interface DieProps {
   color: string;
+  pipColor: string;
   position: [number, number, number];
   rotation: [number, number, number];
   scale?: number;
 }
 
-function Die({ color, position, rotation, scale = 1 }: DieProps) {
+function Die({ color, pipColor, position, rotation, scale = 1 }: DieProps) {
   const groupRef = useRef<THREE.Group>(null);
   
   useFrame((state) => {
@@ -27,10 +28,10 @@ function Die({ color, position, rotation, scale = 1 }: DieProps) {
   });
 
   const pipMaterial = useMemo(() => new THREE.MeshStandardMaterial({
-    color: "#FAF8F5",
-    roughness: 0.4,
+    color: pipColor,
+    roughness: 0.2,
     metalness: 0.1
-  }), []);
+  }), [pipColor]);
 
   // Position coordinates for die faces (assuming box size is 0.8 x 0.8 x 0.8)
   const d = 0.402; // Offset from center for pips
@@ -41,7 +42,7 @@ function Die({ color, position, rotation, scale = 1 }: DieProps) {
       {/* Die body */}
       <mesh castShadow receiveShadow>
         <boxGeometry args={[0.8, 0.8, 0.8]} />
-        <meshStandardMaterial color={color} roughness={0.15} metalness={0.15} />
+        <meshStandardMaterial color={color} roughness={0.1} metalness={0.1} />
       </mesh>
       
       {/* Face 1 (Front: z = +d) */}
@@ -181,12 +182,18 @@ function RubiksCube({ position, rotation, scale = 1 }: RubiksCubeProps) {
   });
 
   const stickerColors = {
-    front: "#1D4ED8",  // Cobalt Blue
-    back: "#0F766E",   // Teal Green
-    left: "#EA580C",   // Rust Orange
-    right: "#BE123C",  // Crimson Red
-    top: "#D97706",    // Amber Gold
-    bottom: "#FAF8F5", // Warm White
+    front1: "#93C5FD",  // Light sky blue
+    front2: "#3B82F6",  // Cobalt blue
+    back1: "#A7F3D0",   // Light mint green
+    back2: "#10B981",   // Forest/emerald green
+    left1: "#FED7AA",   // Light peach
+    left2: "#F97316",   // Burnt orange
+    right1: "#FECDD3",  // Light pink
+    right2: "#EF4444",  // Coral red
+    top1: "#FEF08A",    // Light gold
+    top2: "#F59E0B",    // Rich amber gold
+    bottom1: "#FAF8F5", // Soft cream
+    bottom2: "#E6DFD3", // Sand grey
   };
 
   const stickerSize = 0.23;
@@ -198,70 +205,88 @@ function RubiksCube({ position, rotation, scale = 1 }: RubiksCubeProps) {
 
   return (
     <group ref={groupRef} position={position} scale={scale}>
-      {/* Cube Warm Charcoal Core */}
+      {/* Cube Light Sand Core */}
       <mesh>
         <boxGeometry args={[0.8, 0.8, 0.8]} />
-        <meshStandardMaterial color="#2D2A26" roughness={0.4} metalness={0.2} />
+        <meshStandardMaterial color="#EAE5DA" roughness={0.3} metalness={0.1} />
       </mesh>
 
       {/* Front Face (z = +d) - Blue stickers */}
       {offsets.map((x, i) =>
-        offsets.map((y, j) => (
-          <mesh key={`f-${i}-${j}`} position={[x, y, d]}>
-            <boxGeometry args={[stickerSize, stickerSize, stickerThickness]} />
-            <meshStandardMaterial color={stickerColors.front} roughness={0.25} metalness={0.1} />
-          </mesh>
-        ))
+        offsets.map((y, j) => {
+          const color = (i + j) % 2 === 0 ? stickerColors.front1 : stickerColors.front2;
+          return (
+            <mesh key={`f-${i}-${j}`} position={[x, y, d]}>
+              <boxGeometry args={[stickerSize, stickerSize, stickerThickness]} />
+              <meshStandardMaterial color={color} roughness={0.15} metalness={0.1} />
+            </mesh>
+          );
+        })
       )}
 
       {/* Back Face (z = -d) - Green stickers */}
       {offsets.map((x, i) =>
-        offsets.map((y, j) => (
-          <mesh key={`b-${i}-${j}`} position={[x, y, -d]}>
-            <boxGeometry args={[stickerSize, stickerSize, stickerThickness]} />
-            <meshStandardMaterial color={stickerColors.back} roughness={0.25} metalness={0.1} />
-          </mesh>
-        ))
+        offsets.map((y, j) => {
+          const color = (i + j) % 2 === 0 ? stickerColors.back1 : stickerColors.back2;
+          return (
+            <mesh key={`b-${i}-${j}`} position={[x, y, -d]}>
+              <boxGeometry args={[stickerSize, stickerSize, stickerThickness]} />
+              <meshStandardMaterial color={color} roughness={0.15} metalness={0.1} />
+            </mesh>
+          );
+        })
       )}
 
       {/* Left Face (x = -d) - Orange stickers */}
       {offsets.map((y, i) =>
-        offsets.map((z, j) => (
-          <mesh key={`l-${i}-${j}`} position={[-d, y, z]} rotation={[0, Math.PI / 2, 0]}>
-            <boxGeometry args={[stickerSize, stickerSize, stickerThickness]} />
-            <meshStandardMaterial color={stickerColors.left} roughness={0.25} metalness={0.1} />
-          </mesh>
-        ))
+        offsets.map((z, j) => {
+          const color = (i + j) % 2 === 0 ? stickerColors.left1 : stickerColors.left2;
+          return (
+            <mesh key={`l-${i}-${j}`} position={[-d, y, z]} rotation={[0, Math.PI / 2, 0]}>
+              <boxGeometry args={[stickerSize, stickerSize, stickerThickness]} />
+              <meshStandardMaterial color={color} roughness={0.15} metalness={0.1} />
+            </mesh>
+          );
+        })
       )}
 
       {/* Right Face (x = +d) - Red stickers */}
       {offsets.map((y, i) =>
-        offsets.map((z, j) => (
-          <mesh key={`r-${i}-${j}`} position={[d, y, z]} rotation={[0, Math.PI / 2, 0]}>
-            <boxGeometry args={[stickerSize, stickerSize, stickerThickness]} />
-            <meshStandardMaterial color={stickerColors.right} roughness={0.25} metalness={0.1} />
-          </mesh>
-        ))
+        offsets.map((z, j) => {
+          const color = (i + j) % 2 === 0 ? stickerColors.right1 : stickerColors.right2;
+          return (
+            <mesh key={`r-${i}-${j}`} position={[d, y, z]} rotation={[0, Math.PI / 2, 0]}>
+              <boxGeometry args={[stickerSize, stickerSize, stickerThickness]} />
+              <meshStandardMaterial color={color} roughness={0.15} metalness={0.1} />
+            </mesh>
+          );
+        })
       )}
 
       {/* Top Face (y = +d) - Gold stickers */}
       {offsets.map((x, i) =>
-        offsets.map((z, j) => (
-          <mesh key={`t-${i}-${j}`} position={[x, d, z]} rotation={[Math.PI / 2, 0, 0]}>
-            <boxGeometry args={[stickerSize, stickerSize, stickerThickness]} />
-            <meshStandardMaterial color={stickerColors.top} roughness={0.2} metalness={0.5} />
-          </mesh>
-        ))
+        offsets.map((z, j) => {
+          const color = (i + j) % 2 === 0 ? stickerColors.top1 : stickerColors.top2;
+          return (
+            <mesh key={`t-${i}-${j}`} position={[x, d, z]} rotation={[Math.PI / 2, 0, 0]}>
+              <boxGeometry args={[stickerSize, stickerSize, stickerThickness]} />
+              <meshStandardMaterial color={color} roughness={0.15} metalness={0.2} />
+            </mesh>
+          );
+        })
       )}
 
       {/* Bottom Face (y = -d) - White stickers */}
       {offsets.map((x, i) =>
-        offsets.map((z, j) => (
-          <mesh key={`bt-${i}-${j}`} position={[x, -d, z]} rotation={[Math.PI / 2, 0, 0]}>
-            <boxGeometry args={[stickerSize, stickerSize, stickerThickness]} />
-            <meshStandardMaterial color={stickerColors.bottom} roughness={0.3} metalness={0.1} />
-          </mesh>
-        ))
+        offsets.map((z, j) => {
+          const color = (i + j) % 2 === 0 ? stickerColors.bottom1 : stickerColors.bottom2;
+          return (
+            <mesh key={`bt-${i}-${j}`} position={[x, -d, z]} rotation={[Math.PI / 2, 0, 0]}>
+              <boxGeometry args={[stickerSize, stickerSize, stickerThickness]} />
+              <meshStandardMaterial color={color} roughness={0.2} metalness={0.05} />
+            </mesh>
+          );
+        })
       )}
     </group>
   );
@@ -326,9 +351,9 @@ function Hourglass({ position, rotation, scale = 1 }: ChessPieceProps) {
   });
 
   const brassMaterial = useMemo(() => new THREE.MeshStandardMaterial({
-    color: "#B45309", // Antique brass/bronze
-    roughness: 0.2,
-    metalness: 0.8,
+    color: "#F5D0A9", // Soft polished gold/brass
+    roughness: 0.15,
+    metalness: 0.7,
   }), []);
 
   const glassMaterial = useMemo(() => new THREE.MeshStandardMaterial({
@@ -340,7 +365,7 @@ function Hourglass({ position, rotation, scale = 1 }: ChessPieceProps) {
   }), []);
 
   const sandMaterial = useMemo(() => new THREE.MeshStandardMaterial({
-    color: "#FAF8F5", // Fine white sand
+    color: "#FFFFFF", // Pure white sand
     roughness: 0.8,
   }), []);
 
@@ -455,14 +480,14 @@ function Scene() {
   return (
     <>
       {/* Studio Quality Lighting */}
-      <ambientLight intensity={0.7} />
-      <directionalLight position={[6, 8, 4]} intensity={1.6} />
-      <pointLight ref={lightRef} position={[0, 0, 4]} intensity={1.6} color="#FAF8F5" />
-      <pointLight position={[-6, 5, -2]} intensity={0.7} color="#DBEAFE" /> {/* Soft blue fill */}
-      <pointLight position={[6, -4, 2]} intensity={0.9} color="#FEF3C7" />  {/* Soft warm gold rim */}
+      <ambientLight intensity={0.9} />
+      <directionalLight position={[6, 8, 4]} intensity={1.8} />
+      <pointLight ref={lightRef} position={[0, 0, 4]} intensity={1.8} color="#FFFFFF" />
+      <pointLight position={[-6, 5, -2]} intensity={0.8} color="#EBF8FF" /> {/* Light blue fill */}
+      <pointLight position={[6, -4, 2]} intensity={1.0} color="#FFFBEB" />  {/* Soft warm gold rim */}
 
       {/* Ambient sparkle particles for visual depth */}
-      <Sparkles count={35} scale={6.5} size={2.2} speed={0.4} color="#D97706" />
+      <Sparkles count={35} scale={6.5} size={2.2} speed={0.4} color="#FBBF24" />
 
       {/* Floating 3D Tabletop Game Objects */}
       <Center>
@@ -480,16 +505,18 @@ function Scene() {
           {/* Tumbling 3D Dice Pair (Center-Right) */}
           <Float speed={2.5} rotationIntensity={0.7} floatIntensity={0.9} position={[0.9, -0.3, 0.4]}>
             <group>
-              {/* Die 1: Rich Teal Green */}
+              {/* Die 1: Sage Green body with high-contrast Forest Green pips */}
               <Die
-                color="#115E59"
+                color="#A7F3D0"
+                pipColor="#0F766E"
                 position={[-0.4, 0.4, 0]}
                 rotation={[0.5, 0.2, -0.8]}
                 scale={1.1}
               />
-              {/* Die 2: Burnt Orange */}
+              {/* Die 2: Soft Peach body with high-contrast Burnt Orange pips */}
               <Die
-                color="#C2410C"
+                color="#FED7AA"
+                pipColor="#C2410C"
                 position={[0.4, -0.3, -0.2]}
                 rotation={[-0.3, 0.8, 0.5]}
                 scale={0.9}
@@ -502,14 +529,14 @@ function Scene() {
             <group>
               {/* Gold Meeple */}
               <Meeple
-                color="#D97706"
+                color="#FCD34D"
                 position={[-0.5, 0, 0]}
                 rotation={[0.2, 0.4, 0]}
                 scale={1.25}
               />
               {/* Red Meeple */}
               <Meeple
-                color="#9F1239"
+                color="#FCA5A5"
                 position={[0.5, 0.1, 0.1]}
                 rotation={[0.1, -0.4, 0]}
                 scale={1.25}
