@@ -8,9 +8,9 @@ export default function WhyMindovo() {
     { emoji: "🧩", text: "Premium-quality puzzle pieces with precise cutting" },
     { emoji: "🎨", text: "Unique and engaging artwork designed to captivate" },
     { emoji: "🎁", text: "Beautiful gift-ready packaging" },
-    { emoji: "⭐", text: "Trusted by customers shopping on Amazon" },
-    { emoji: "🏆", text: "Backed by the quality standards of Fashion Dux" },
-    { emoji: "👨‍👩‍👧‍👦", text: "Designed for puzzle lovers of all ages" },
+    { emoji: "⭐", text: "Trusted by over 100,000 customers on Amazon" },
+    { emoji: "🏆", text: "Backed by the House of Fashion Dux & OTTAVO" },
+    { emoji: "👨‍👩‍👧‍👦", text: "Designed for screen-free family connection" },
   ];
 
   return (
@@ -46,13 +46,13 @@ export default function WhyMindovo() {
             {/* Paragraph block */}
             <div className="flex flex-col gap-6 text-sm md:text-base text-brand-text/75 leading-relaxed max-w-2xl">
               <p>
-                Mindovo was born from a passion for meaningful play and thoughtful design. As a premium puzzle brand from the House of Fashion Dux, we create experiences that bring together creativity, quality, and lasting memories.
+                <strong>Mindovo</strong> was born from a passion for meaningful play and thoughtful design. We create puzzles and games that bring together creativity, quality, and screen-free bonding, ensuring that every puzzle is precision-cut from premium thick board materials with a non-glare velvet-matte finish.
               </p>
               <p>
-                Every Mindovo puzzle is carefully crafted using premium materials, vibrant artwork, and precision-cut pieces to ensure a satisfying experience from the first piece to the final fit.
+                Our roots go back to our parent company, <strong>Fashion Dux</strong>, founded in 2018. Over the years, Fashion Dux has rapidly established itself as a premier destination for stylish eyewear, trusted by more than 100,000 customers on Amazon for premium sunglasses, spectacles, lenses, and frames across India.
               </p>
               <p>
-                Whether you're enjoying a quiet evening, spending quality time with family, or searching for the perfect gift, Mindovo transforms simple moments into memorable experiences.
+                Alongside eyewear, the House of Fashion Dux also brings you <strong>OTTAVO</strong>—a market-leading seller of premium Guardian bells and keychains on Amazon, celebrated for its craftsmanship and durability. Together, we bring a legacy of trust and quality to every product we create.
               </p>
             </div>
           </div>
