@@ -10,10 +10,11 @@ interface LoadingScreenProps {
 export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const logoTextRef = useRef<HTMLDivElement>(null);
-  const p1Ref = useRef<SVGSVGElement>(null);
-  const p2Ref = useRef<SVGSVGElement>(null);
-  const p3Ref = useRef<SVGSVGElement>(null);
-  const p4Ref = useRef<SVGSVGElement>(null);
+  const svgRef = useRef<SVGSVGElement>(null);
+  const p1Ref = useRef<SVGPathElement>(null);
+  const p2Ref = useRef<SVGPathElement>(null);
+  const p3Ref = useRef<SVGPathElement>(null);
+  const p4Ref = useRef<SVGPathElement>(null);
   const [isDone, setIsDone] = useState(false);
 
   useEffect(() => {
@@ -22,6 +23,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
       !p2Ref.current ||
       !p3Ref.current ||
       !p4Ref.current ||
+      !svgRef.current ||
       !logoTextRef.current ||
       !containerRef.current
     ) {
@@ -41,86 +43,75 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
       scale: 0.5,
     });
     
-    gsap.set(p1Ref.current, { x: -100, y: -100, rotate: -45 });
-    gsap.set(p2Ref.current, { x: 100, y: -100, rotate: 45 });
-    gsap.set(p3Ref.current, { x: -100, y: 100, rotate: -90 });
-    gsap.set(p4Ref.current, { x: 100, y: 100, rotate: 90 });
-    gsap.set(logoTextRef.current, { opacity: 0, scale: 0.9, y: 20 });
+    gsap.set(p1Ref.current, { x: -80, y: -50, rotate: -40 });
+    gsap.set(p2Ref.current, { x: 80, y: -50, rotate: 30 });
+    gsap.set(p3Ref.current, { x: -80, y: 50, rotate: -30 });
+    gsap.set(p4Ref.current, { x: 80, y: 50, rotate: 40 });
+    gsap.set(logoTextRef.current, { opacity: 0, scale: 0.85, y: 10 });
+    gsap.set(svgRef.current, { rotate: 0 });
 
-    // 1. Staggered fade-in and float of puzzle pieces
+    // 1. Staggered fade-in of puzzle pieces
     tl.to(
       [p1Ref.current, p2Ref.current, p3Ref.current, p4Ref.current],
       {
         opacity: 1,
         scale: 1,
-        duration: 1.2,
+        duration: 1.0,
         ease: "power2.out",
-        stagger: 0.15,
+        stagger: 0.1,
       },
       "+=0.2"
     );
 
-    // 2. Convergence: pieces snap together in the center to form a square
+    // 2. Convergence: pieces snap together in the center to form a rectangle
     tl.to(
       [p1Ref.current, p2Ref.current, p3Ref.current, p4Ref.current],
       {
         x: 0,
         y: 0,
         rotate: 0,
-        duration: 1.5,
-        ease: "elastic.out(1, 0.75)",
-      },
-      "-=0.4"
-    );
-
-    // 3. Subtly rotate the assembled square, then scale up
-    tl.to(
-      [p1Ref.current, p2Ref.current, p3Ref.current, p4Ref.current],
-      {
-        rotate: 360,
-        duration: 1.8,
+        duration: 1.2,
         ease: "power3.inOut",
       },
-      "+=0.2"
+      "-=0.2"
     );
 
-    // 4. Shrink the pieces while revealing the brand logo
+    // 3. Subtly rotate the assembled rectangle (the parent SVG)
     tl.to(
-      [p1Ref.current, p2Ref.current, p3Ref.current, p4Ref.current],
+      svgRef.current,
       {
-        opacity: 0.1,
-        scale: 0.8,
-        duration: 0.8,
-        ease: "power2.inOut",
+        rotate: 360,
+        duration: 1.4,
+        ease: "power3.inOut",
       },
-      "-=0.6"
+      "+=0.1"
     );
 
-    // 5. Reveal the cinematic brand logo with a soft glow
+    // 4. Reveal the logo inside the rectangle
     tl.to(
       logoTextRef.current,
       {
         opacity: 1,
         scale: 1,
         y: 0,
-        duration: 1.2,
+        duration: 1.0,
         ease: "power3.out",
       },
-      "-=0.4"
+      "-=0.5"
     );
 
-    // 6. Final glow flash
+    // 5. Final glow aura flash
     tl.to(
       logoTextRef.current,
       {
-        filter: "drop-shadow(0 0 15px rgba(17,17,17,0.1))",
-        duration: 0.5,
+        filter: "drop-shadow(0 0 10px rgba(255,255,255,0.4))",
+        duration: 0.4,
         yoyo: true,
         repeat: 1,
       }
     );
 
-    // 7. Exit animation: Slide up the preloader completely
+    // 6. Exit animation: Slide up the preloader completely
     tl.to(containerRef.current, {
       yPercent: -100,
       duration: 1.2,
@@ -135,58 +126,59 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
   // If loading is done and component is unmounting
   if (isDone) return null;
 
-  // Premium interlocking vector puzzle piece outline (centered at 50,50)
-  const piecePath = "M 25,25 H 40 C 40,30 45,35 50,35 C 55,35 60,30 60,25 H 75 V 40 C 70,40 65,45 65,50 C 65,55 70,60 75,60 V 75 H 60 C 60,70 55,65 50,65 C 45,65 40,70 40,75 H 25 V 60 C 30,60 35,55 35,50 C 35,45 30,40 25,40 Z";
-
   return (
     <div
       ref={containerRef}
       className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-brand-bg"
     >
-      <div className="relative flex items-center justify-center w-64 h-64">
-        {/* Puzzle Assembly Box */}
-        <div className="absolute inset-0 grid grid-cols-2 grid-rows-2 gap-1 w-36 h-36 m-auto">
-          {/* Top Left - Blue */}
-          <svg
+      <div className="relative flex items-center justify-center w-[260px] h-[156px] md:w-[320px] md:h-[192px]">
+        {/* Jigsaw Puzzle Assembly (viewBox matches full 200x120 rectangle space) */}
+        <svg
+          ref={svgRef}
+          viewBox="0 0 200 120"
+          className="w-full h-full drop-shadow-2xl overflow-visible"
+        >
+          {/* Piece 1 (Top Left) - Blue */}
+          <path
             ref={p1Ref}
-            viewBox="0 0 100 100"
-            className="w-full h-full text-puzzle-blue fill-current"
-          >
-            <path d={piecePath} />
-          </svg>
-          {/* Top Right - Green */}
-          <svg
+            d="M 0,0 H 100 V 20 C 100,24 108,22 108,30 C 108,38 100,36 100,40 V 60 H 60 C 56,60 58,52 50,52 C 42,52 44,60 40,60 H 0 V 0 Z"
+            className="text-puzzle-blue fill-current"
+            style={{ transformOrigin: "50px 30px" }}
+          />
+          {/* Piece 2 (Top Right) - Green */}
+          <path
             ref={p2Ref}
-            viewBox="0 0 100 100"
-            className="w-full h-full text-puzzle-green fill-current"
-          >
-            <path d={piecePath} />
-          </svg>
-          {/* Bottom Left - Orange */}
-          <svg
+            d="M 100,0 H 200 V 60 H 160 C 156,60 158,68 150,68 C 142,68 144,60 140,60 H 100 V 40 C 100,36 108,38 108,30 C 108,22 100,24 100,20 V 0 Z"
+            className="text-puzzle-green fill-current"
+            style={{ transformOrigin: "150px 30px" }}
+          />
+          {/* Piece 3 (Bottom Left) - Orange */}
+          <path
             ref={p3Ref}
-            viewBox="0 0 100 100"
-            className="w-full h-full text-puzzle-orange fill-current"
-          >
-            <path d={piecePath} />
-          </svg>
-          {/* Bottom Right - Red */}
-          <svg
+            d="M 0,60 H 40 C 44,60 42,52 50,52 C 58,52 56,60 60,60 H 100 V 80 C 100,84 92,82 92,90 C 92,98 100,96 100,100 V 120 H 0 V 60 Z"
+            className="text-puzzle-orange fill-current"
+            style={{ transformOrigin: "50px 90px" }}
+          />
+          {/* Piece 4 (Bottom Right) - Red */}
+          <path
             ref={p4Ref}
-            viewBox="0 0 100 100"
-            className="w-full h-full text-puzzle-red fill-current"
-          >
-            <path d={piecePath} />
-          </svg>
-        </div>
+            d="M 100,60 H 140 C 144,60 142,68 150,68 C 158,68 156,60 160,60 H 200 V 120 H 100 V 100 C 100,96 92,98 92,90 C 92,82 100,84 100,80 V 60 Z"
+            className="text-puzzle-red fill-current"
+            style={{ transformOrigin: "150px 90px" }}
+          />
+        </svg>
 
-        {/* Cinematic Logo Reveal */}
-        <div className="absolute inset-0 flex items-center justify-center">
+        {/* Cinematic Logo Reveal inside the assembled rectangle */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           <div
             ref={logoTextRef}
             className="select-none flex items-center justify-center"
           >
-            <img src="/mindovo.svg" alt="Mindovo Logo" className="h-10 md:h-12 w-auto" />
+            <img 
+              src="/mindovo.svg" 
+              alt="Mindovo Logo" 
+              className="h-6 md:h-8 w-auto brightness-0 invert" 
+            />
           </div>
         </div>
       </div>
