@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 import SmoothScrollProvider from "@/components/ui/SmoothScrollProvider";
-import { ArrowUpRight, ShieldCheck, Heart, Sparkles, Star, ToyBrick } from "lucide-react";
+import { ArrowUpRight, ShieldCheck, Heart, Sparkles, Star, ToyBrick, Quote } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "About Us | Mindovo & The House of Fashion Dux",
@@ -26,6 +26,15 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
+  const differences = [
+    { emoji: "🧩", title: "Premium Materials", text: "Thick rigid blueboard and velvet-matte coatings" },
+    { emoji: "🎨", title: "Unique Artwork", text: "Custom illustrations designed to captivate" },
+    { emoji: "🎁", title: "Gift-Ready Box", text: "Luxury stamped packaging ideal for sharing" },
+    { emoji: "⭐", title: "Customer Trust", text: "Over 100,000 satisfied shoppers on Amazon" },
+    { emoji: "🏆", title: "Parent Heritage", text: "Backed by the House of Fashion Dux & OTTAVO" },
+    { emoji: "👨‍👩‍👧‍👦", title: "Offline Connection", text: "Designed for screen-free family memories" },
+  ];
+
   // Structured data for SEO combining the brand portfolio
   const jsonLd = {
     "@context": "https://schema.org",
@@ -75,7 +84,7 @@ export default function AboutPage() {
             
             {/* Title Header */}
             <div className="text-center max-w-3xl mx-auto mb-20">
-              <span className="text-[10px] font-display font-black tracking-[0.45em] text-puzzle-orange uppercase">
+              <span className="text-[10px] font-display font-bold tracking-[0.45em] text-puzzle-orange uppercase">
                 Brand Biography
               </span>
               <h1 id="about-us-heading" className="text-5xl md:text-7xl font-display font-black leading-tight text-brand-text tracking-tighter mt-4">
@@ -89,62 +98,74 @@ export default function AboutPage() {
               </p>
             </div>
 
-            {/* SECTION 1: MINDOVO (First, as requested) */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-28">
-              {/* Left Column: Mindovo Details */}
-              <div className="lg:col-span-6 flex flex-col gap-6 text-left order-2 lg:order-1">
-                <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-puzzle-blue" />
-                  <span className="text-[10px] font-display font-black tracking-widest uppercase text-brand-text/40">
-                    Creative Entertainment
-                  </span>
-                </div>
-
-                <h2 className="text-3xl md:text-4xl font-display font-black text-brand-text tracking-tight leading-tight">
-                  Mindovo: Premium Puzzles & Screen-Free Play.
-                </h2>
-
-                <p className="text-sm md:text-base text-brand-text/70 leading-relaxed font-sans">
-                  Mindovo was born out of a desire to help families and friends unplug from screens and reconnect in person. We create high-fidelity jigsaw puzzles and immersive board games that challenge your focus, trigger laughter, and build lasting memories.
-                </p>
-
-                <p className="text-sm md:text-base text-brand-text/70 leading-relaxed font-sans">
-                  Every game in our catalog is engineered to luxury standards. From thick premium blueboard backing and non-glare velvet-matte coatings to beautiful, rich illustrations, we ensure that every box feels like a treasure on your table.
-                </p>
-
-                {/* Features Highlight */}
-                <div className="grid grid-cols-2 gap-4 mt-2">
-                  <div className="flex items-center gap-2 text-xs font-semibold text-brand-text/85">
-                    <span className="text-lg">🧩</span>
-                    <span>Premium Blueboard</span>
+            {/* COMBINED SECTION 1: MINDOVO & WHY MINDOVO DIFFERENTIATORS */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start mb-28">
+              {/* Left Column: Mindovo Details & Image */}
+              <div className="lg:col-span-7 flex flex-col gap-8 text-left">
+                <div className="flex flex-col gap-4">
+                  <div className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-puzzle-blue" />
+                    <span className="text-[10px] font-display font-black tracking-widest uppercase text-brand-text/40">
+                      Creative Entertainment
+                    </span>
                   </div>
-                  <div className="flex items-center gap-2 text-xs font-semibold text-brand-text/85">
-                    <span className="text-lg">✨</span>
-                    <span>Velvet-Matte Finish</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs font-semibold text-brand-text/85">
-                    <span className="text-lg">🎬</span>
-                    <span>Cinematic Board Games</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs font-semibold text-brand-text/85">
-                    <span className="text-lg">👪</span>
-                    <span>100% Screen-Free Fun</span>
+
+                  <h2 className="text-3xl md:text-4xl font-display font-black text-brand-text tracking-tight leading-tight">
+                    Mindovo: Premium Puzzles & Screen-Free Play.
+                  </h2>
+
+                  <div className="flex flex-col gap-5 text-sm md:text-base text-brand-text/70 leading-relaxed font-sans">
+                    <p>
+                      <strong>Mindovo</strong> was born from a passion for meaningful play and thoughtful design. We create puzzles and games that bring together creativity, quality, and screen-free bonding, ensuring that every puzzle is precision-cut from premium thick board materials with a non-glare velvet-matte finish.
+                    </p>
+                    <p>
+                      Every Mindovo puzzle is carefully crafted using premium materials, vibrant artwork, and precision-cut pieces to ensure a satisfying experience from the first piece to the final fit. Whether you're enjoying a quiet evening, spending quality time with family, or searching for the perfect gift, Mindovo transforms simple moments into memorable experiences.
+                    </p>
                   </div>
                 </div>
-              </div>
 
-              {/* Right Column: Mindovo Lifestyle Image */}
-              <div className="lg:col-span-6 order-1 lg:order-2">
-                <div className="relative p-3 bg-white rounded-3xl shadow-xl border border-brand-text/5 overflow-hidden">
-                  <div className="absolute top-4 right-4 z-20 bg-brand-text text-brand-bg px-3.5 py-1.5 rounded-full flex items-center gap-1 shadow-md">
+                {/* Mindovo Lifestyle Image Mockup */}
+                <div className="relative p-3 bg-white rounded-3xl shadow-xl border border-brand-text/5 overflow-hidden w-full">
+                  <div className="absolute top-6 right-6 z-20 bg-brand-text text-brand-bg px-3.5 py-1.5 rounded-full flex items-center gap-1 shadow-md">
                     <ToyBrick className="w-3 h-3 text-puzzle-blue" />
                     <span className="text-[9px] font-display font-black uppercase tracking-wider">Family Bonding</span>
                   </div>
                   <img
                     src="/lifestyle-assembling.png"
                     alt="Family happily assembling a Mindovo Jigsaw Puzzle on a table"
-                    className="w-full h-auto object-cover rounded-2xl aspect-[4/3] lg:aspect-square"
+                    className="w-full h-auto object-cover rounded-2xl aspect-[16/10]"
                   />
+                </div>
+              </div>
+
+              {/* Right Column: Differentiators Card (Why Mindovo) */}
+              <div className="lg:col-span-5 lg:sticky lg:top-28">
+                <div className="bg-white rounded-3xl p-8 border border-brand-text/5 shadow-md flex flex-col justify-between">
+                  <h3 className="text-lg md:text-xl font-display font-black text-brand-text tracking-tight mb-6 pb-3 border-b border-brand-text/5">
+                    What Makes Mindovo Different?
+                  </h3>
+
+                  {/* Differentiators list using pure CSS hover animations */}
+                  <div className="flex flex-col gap-4">
+                    {differences.map((diff, index) => (
+                      <div
+                        key={index}
+                        className="flex items-start gap-4 p-3.5 rounded-xl hover:bg-brand-bg transition-all duration-300 transform hover:translate-x-1.5 cursor-default group"
+                      >
+                        <span className="text-2xl select-none shrink-0" role="img" aria-hidden="true">
+                          {diff.emoji}
+                        </span>
+                        <div className="flex flex-col">
+                          <span className="text-sm font-bold text-brand-text group-hover:text-puzzle-blue transition-colors duration-200">
+                            {diff.title}
+                          </span>
+                          <span className="text-xs text-brand-text/60 mt-0.5 leading-relaxed">
+                            {diff.text}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
@@ -171,7 +192,7 @@ export default function AboutPage() {
                 <div className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-puzzle-orange" />
                   <span className="text-[10px] font-display font-black tracking-widest uppercase text-brand-text/40">
-                    The Heritage Of Quality
+                    The House of Fashion Dux
                   </span>
                 </div>
 
@@ -180,11 +201,11 @@ export default function AboutPage() {
                 </h2>
 
                 <p className="text-sm md:text-base text-brand-text/70 leading-relaxed font-sans">
-                  Mindovo is backed by the standards and logistics of **Fashion Dux**, founded in 2018. Over the years, Fashion Dux has rapidly grown into a household name in stylish eyewear. As a top-rated seller on Amazon, over 100,000 customers across India rely on Fashion Dux for premium spectacles, lenses, sunglasses, and frames at unbeatable prices.
+                  Mindovo is backed by the standards, quality, and shipping infrastructure of <strong>Fashion Dux</strong>, founded in 2018. Over the years, Fashion Dux has rapidly established itself as a premier destination for stylish eyewear, trusted by more than 100,000 customers on Amazon for premium sunglasses, spectacles, lenses, and frames across India.
                 </p>
 
                 <p className="text-sm md:text-base text-brand-text/70 leading-relaxed font-sans">
-                  Alongside eyewear, the House of Fashion Dux is proud to power **OTTAVO**—a highly celebrated sister brand on Amazon. OTTAVO is a market-leading seller of premium Guardian bells and heavy-duty keychains, loved by riders and gifting enthusiasts nationwide for its exceptional craftsmanship, metallic detail, and durability.
+                  Alongside eyewear, the House of Fashion Dux also brings you <strong>OTTAVO</strong>—a market-leading seller of premium Guardian bells and keychains on Amazon, celebrated for its craftsmanship and durability. Together, we bring a legacy of trust and quality to every product we create.
                 </p>
 
                 {/* Metrics Highlight */}
@@ -203,6 +224,14 @@ export default function AboutPage() {
                   </div>
                 </div>
               </div>
+            </div>
+
+            {/* Philosophy quote section (Why Mindovo quote) */}
+            <div className="my-20 py-10 border-t border-b border-brand-text/5 text-center relative max-w-4xl mx-auto">
+              <Quote className="w-10 h-10 text-[#CA8A04] opacity-20 mx-auto mb-4" />
+              <p className="text-lg md:text-2xl font-display font-black italic tracking-wide text-brand-text/80 leading-relaxed">
+                "At Mindovo, we believe a puzzle is more than just pieces. It's a journey of discovery, focus, creativity, and connection."
+              </p>
             </div>
 
             {/* Brand CTA */}
