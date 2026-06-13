@@ -141,12 +141,14 @@ export default function BollywoodBattleSection() {
                 <ShoppingBag className="w-4 h-4" />
                 <span>Buy on Amazon</span>
               </a>
-              <button
-                onClick={() => window.dispatchEvent(new CustomEvent("open-checkout", { detail: { product: "Bollywood Battle" } }))}
-                className="inline-flex items-center justify-center gap-2 border-2 border-puzzle-red/20 hover:border-puzzle-red bg-transparent hover:bg-puzzle-red/5 text-puzzle-red font-display text-xs font-black tracking-widest uppercase px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 cursor-pointer"
+              <a
+                href={game.directStoreUrl || "https://fashiondux.com"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 border-2 border-puzzle-red/20 hover:border-puzzle-red bg-transparent hover:bg-puzzle-red/5 text-puzzle-red font-display text-xs font-black tracking-widest uppercase px-8 py-4.5 rounded-full transition-all duration-300 hover:scale-105 cursor-pointer"
               >
                 <span>Buy on Our Website</span>
-              </button>
+              </a>
             </div>
           </div>
 

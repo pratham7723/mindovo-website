@@ -1,7 +1,6 @@
 "use client";
 
 import LoadingScreen from "@/components/ui/LoadingScreen";
-import CheckoutModal from "@/components/ui/CheckoutModal";
 import SmoothScrollProvider from "@/components/ui/SmoothScrollProvider";
 import Navbar from "@/components/navbar/Navbar";
 import Hero from "@/components/hero/Hero";
@@ -77,9 +76,6 @@ export default function Home() {
 
       {/* 3. Preloader Loading Sequence - Overlays and unmounts itself when finished */}
       <LoadingScreen onComplete={() => {}} />
-
-      {/* Global Checkout Modal for "Buy on Our Website" options */}
-      <CheckoutModal />
     </>
   );
 }

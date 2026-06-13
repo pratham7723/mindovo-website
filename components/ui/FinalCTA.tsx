@@ -62,12 +62,14 @@ export default function FinalCTA() {
                   <ShoppingBag className="w-4 h-4" />
                   <span>Buy on Amazon</span>
                 </a>
-                <button
-                  onClick={() => window.dispatchEvent(new CustomEvent("open-checkout", { detail: { product: "Mindovo Jigsaw Puzzle" } }))}
-                  className="flex-1 inline-flex items-center justify-center gap-1.5 border border-puzzle-blue/20 hover:border-puzzle-blue/60 bg-transparent text-puzzle-blue hover:bg-puzzle-blue/5 font-display text-xs font-black tracking-widest uppercase py-4 rounded-xl transition-all duration-300 cursor-pointer"
+                <a
+                  href={puzzle.directStoreUrl || "https://fashiondux.com"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 inline-flex items-center justify-center gap-1.5 border border-puzzle-blue/20 hover:border-puzzle-blue/60 bg-transparent text-puzzle-blue hover:bg-puzzle-blue/5 font-display text-xs font-black tracking-widest uppercase py-4 rounded-xl transition-all duration-300 cursor-pointer text-center"
                 >
                   <span>Our Website</span>
-                </button>
+                </a>
               </div>
             </div>
           )}
@@ -97,12 +99,14 @@ export default function FinalCTA() {
                   <ShoppingBag className="w-4 h-4" />
                   <span>Buy on Amazon</span>
                 </a>
-                <button
-                  onClick={() => window.dispatchEvent(new CustomEvent("open-checkout", { detail: { product: "Bollywood Battle" } }))}
-                  className="flex-1 inline-flex items-center justify-center gap-1.5 border border-puzzle-red/20 hover:border-puzzle-red/60 bg-transparent text-puzzle-red hover:bg-puzzle-red/5 font-display text-xs font-black tracking-widest uppercase py-4 rounded-xl transition-all duration-300 cursor-pointer"
+                <a
+                  href={game.directStoreUrl || "https://fashiondux.com"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 inline-flex items-center justify-center gap-1.5 border border-puzzle-red/20 hover:border-puzzle-red/60 bg-transparent text-puzzle-red hover:bg-puzzle-red/5 font-display text-xs font-black tracking-widest uppercase py-4 rounded-xl transition-all duration-300 cursor-pointer text-center"
                 >
                   <span>Our Website</span>
-                </button>
+                </a>
               </div>
             </div>
           )}

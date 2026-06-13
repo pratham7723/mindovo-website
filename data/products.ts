@@ -10,6 +10,7 @@ export interface Product {
   hoverAccentColor: string;
   amazonUrl: string;
   websiteUrl: string;
+  directStoreUrl?: string;
   isPublished: boolean;
   category: string;
   image: string;
@@ -54,6 +55,7 @@ export const products: Product[] = [
     hoverAccentColor: "hover:bg-blue-900",
     amazonUrl: "https://www.amazon.in/dp/B0DJSAWPUZ",
     websiteUrl: "#jigsaw-puzzle",
+    directStoreUrl: "https://fashiondux.com",
     isPublished: true,
     category: "Puzzles",
     image: "/images/jigsaw-puzzle-box.png",
@@ -83,6 +85,7 @@ export const products: Product[] = [
     hoverAccentColor: "hover:bg-red-900",
     amazonUrl: "https://www.amazon.in/dp/B0BOLLYBTL",
     websiteUrl: "#bollywood-battle",
+    directStoreUrl: "https://fashiondux.com",
     isPublished: true,
     category: "Party Games",
     image: "/images/bollywood-battle-box.png",

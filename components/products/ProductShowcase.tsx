@@ -149,15 +149,15 @@ function ProductCard({ product }: { product: Product }) {
 
         {/* CTA Actions */}
         <div className="flex gap-2.5 mt-2 z-10" style={{ transform: "translateZ(30px)" }}>
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              window.dispatchEvent(new CustomEvent("open-checkout", { detail: { product: product.name } }));
-            }}
+          <a
+            href={product.directStoreUrl || "https://fashiondux.com"}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
             className="flex-1 text-center font-display text-[9px] md:text-[10px] font-black tracking-widest uppercase border border-brand-text/10 hover:border-brand-text/60 hover:bg-brand-text/5 text-brand-text py-3 rounded-xl transition-all duration-300 cursor-pointer"
           >
             Our Website
-          </button>
+          </a>
           <a
             href={product.amazonUrl}
             target="_blank"
