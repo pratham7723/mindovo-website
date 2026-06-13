@@ -131,12 +131,7 @@ export default function Navbar() {
             </AnimatePresence>
           </div>
 
-          <a
-            href="/#why-mindovo"
-            className="text-sm font-medium tracking-wide text-brand-text/70 hover:text-brand-text transition-colors duration-200 cursor-pointer"
-          >
-            Why Mindovo
-          </a>
+
           <a
             href="/#testimonials"
             className="text-sm font-medium tracking-wide text-brand-text/70 hover:text-brand-text transition-colors duration-200 cursor-pointer"
@@ -217,14 +212,7 @@ export default function Navbar() {
                 ))}
               </div>
 
-              <div className="h-px bg-brand-text/10" />
-              <a
-                href="/#why-mindovo"
-                onClick={toggleMenu}
-                className="text-lg font-semibold text-brand-text hover:text-brand-text/60 transition-colors duration-200"
-              >
-                Why Mindovo
-              </a>
+
               <a
                 href="/#testimonials"
                 onClick={toggleMenu}

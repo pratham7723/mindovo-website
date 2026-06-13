@@ -8,7 +8,6 @@ import SignatureScroll from "@/components/products/SignatureScroll";
 import ProductShowcase from "@/components/products/ProductShowcase";
 import JigsawPuzzleSection from "@/components/jigsaw-puzzle/JigsawPuzzleSection";
 import BollywoodBattleSection from "@/components/bollywood-battle/BollywoodBattleSection";
-import WhyMindovo from "@/components/features/WhyMindovo";
 import FeatureBentoGrid from "@/components/features/FeatureBentoGrid";
 import GiftingSection from "@/components/features/GiftingSection";
 import ProductGallery from "@/components/products/ProductGallery";
@@ -46,9 +45,6 @@ export default function Home() {
 
           {/* Bento grid characteristics */}
           <FeatureBentoGrid />
-
-          {/* Emotional Pitch: Why Mindovo */}
-          <WhyMindovo />
 
           {/* Gifting promotion */}
           <GiftingSection />

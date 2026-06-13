@@ -83,12 +83,7 @@ export default function Footer() {
               >
                 About Us
               </a>
-              <a
-                href="/#why-mindovo"
-                className="text-xs text-white/60 hover:text-white transition-colors duration-200"
-              >
-                Why Mindovo
-              </a>
+
               <a
                 href="/#testimonials"
                 className="text-xs text-white/60 hover:text-white transition-colors duration-200"

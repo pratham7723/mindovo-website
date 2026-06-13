@@ -94,7 +94,7 @@ export default function AboutPage() {
                 </span>
               </h1>
               <p className="text-base md:text-lg text-brand-text/60 mt-6 leading-relaxed">
-                Discover the story of **Mindovo**—our flagship puzzles and games—and the heritage of trust, quality, and community established by our parent company, **Fashion Dux**, and sister brand, **OTTAVO**.
+                Discover the story of <strong className="font-black text-brand-text">Mindovo</strong>—our flagship puzzles and games—and the heritage of trust, quality, and community established by our parent company, <strong className="font-black text-brand-text">Fashion Dux</strong>, and sister brand, <strong className="font-black text-brand-text">OTTAVO</strong>.
               </p>
             </div>
 
