@@ -4,7 +4,10 @@ import LoadingScreen from "@/components/ui/LoadingScreen";
 import SmoothScrollProvider from "@/components/ui/SmoothScrollProvider";
 import Navbar from "@/components/navbar/Navbar";
 import Hero from "@/components/hero/Hero";
+import SignatureScroll from "@/components/products/SignatureScroll";
 import ProductShowcase from "@/components/products/ProductShowcase";
+import Testimonials from "@/components/testimonials/Testimonials";
+import StatsSection from "@/components/features/StatsSection";
 import FinalCTA from "@/components/ui/FinalCTA";
 import Footer from "@/components/footer/Footer";
 
@@ -22,8 +25,17 @@ export default function Home() {
           {/* Hero Banner with 3D Canvas */}
           <Hero />
 
+          {/* Signature GSAP Scroll-Trigger Jigsaw Assembly Experience */}
+          <SignatureScroll />
+
           {/* Main Products catalog */}
           <ProductShowcase />
+
+          {/* Testimonials Review Slider */}
+          <Testimonials />
+
+          {/* Stats counters section */}
+          <StatsSection />
 
           {/* Closing purchase CTA */}
           <FinalCTA />
