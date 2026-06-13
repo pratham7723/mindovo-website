@@ -1,7 +1,7 @@
 "use client";
 
 import { products } from "@/data/products";
-import { Mail, ShieldCheck, Heart, Sparkles } from "lucide-react";
+import { Mail, ShieldCheck, Heart, Sparkles, Phone, MapPin, ExternalLink } from "lucide-react";
 
 export default function Footer() {
   const activeProducts = products.filter((p) => p.isPublished);
@@ -15,8 +15,8 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12 pb-16 border-b border-white/10">
           
-          {/* Column 1: Brand details (col-span-5) */}
-          <div className="md:col-span-5 flex flex-col items-start text-left">
+          {/* Column 1: Brand details (col-span-4) */}
+          <div className="md:col-span-4 flex flex-col items-start text-left">
             <div className="flex items-center select-none mb-4">
               <img src="/mindovo.svg" alt="Mindovo Logo" className="h-6 w-auto brightness-0 invert" />
             </div>
@@ -98,23 +98,44 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 4: Contact/Legal details (col-span-2) */}
-          <div className="md:col-span-2 flex flex-col text-left">
+          {/* Column 4: Contact details (col-span-3) */}
+          <div className="md:col-span-3 flex flex-col text-left">
             <h4 className="text-xs font-display font-black tracking-wider text-[#CA8A04] uppercase mb-4">
               Get In Touch
             </h4>
-            <div className="flex flex-col gap-2.5">
+            <div className="flex flex-col gap-3">
               <a
-                href="mailto:hello@mindovo.com"
-                className="text-xs text-white/60 hover:text-white transition-colors duration-200 flex items-center gap-1.5"
+                href="mailto:support@mindovo.in"
+                className="text-xs text-white/60 hover:text-white transition-colors duration-200 flex items-center gap-2"
               >
-                <Mail className="w-3.5 h-3.5" />
-                <span>Email Support</span>
+                <Mail className="w-3.5 h-3.5 text-[#CA8A04] shrink-0" />
+                <span>support@mindovo.in</span>
               </a>
-              <span className="text-[10px] text-white/30 leading-relaxed mt-2">
-                Mindovo Inc.<br />
-                Mumbai, India
-              </span>
+              <a
+                href="tel:+919925212340"
+                className="text-xs text-white/60 hover:text-white transition-colors duration-200 flex items-center gap-2"
+              >
+                <Phone className="w-3.5 h-3.5 text-[#CA8A04] shrink-0" />
+                <span>+91 99252 12340</span>
+              </a>
+              <div className="flex items-start gap-2 text-xs text-white/60 mt-1">
+                <MapPin className="w-3.5 h-3.5 text-[#CA8A04] shrink-0 mt-0.5" />
+                <div className="flex flex-col">
+                  <span className="text-[10px] text-white/40 uppercase font-display font-black tracking-wider mb-1">Address</span>
+                  <p className="text-[11px] leading-relaxed text-white/50">
+                    Fashion Dux, Office No.324, Universal Trade Centre, old Shree Raj Cinema, Opp. Siromani Complex, Sanganva Chowk, Rajkot-360001
+                  </p>
+                  <a
+                    href="https://share.google/VivvIROG1HW6mNpc0"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-[11px] text-[#CA8A04] hover:text-[#E8D8BA] font-display font-bold mt-1.5 transition-colors duration-200"
+                  >
+                    <span>View on Google Maps</span>
+                    <ExternalLink className="w-2.5 h-2.5" />
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
 

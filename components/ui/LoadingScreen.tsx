@@ -183,7 +183,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
         </div>
       </div>
 
-      <div className="mt-8 text-xs font-display tracking-[0.4em] uppercase text-brand-text/40 animate-pulse-slow">
+      <div className="mt-8 text-xs font-display tracking-[0.4em] uppercase text-brand-text/80 animate-pulse-text-slow">
         Play. Think. Connect.
       </div>
     </div>

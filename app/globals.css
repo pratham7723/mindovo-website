@@ -15,6 +15,7 @@
   
   --animate-float: float 6s ease-in-out infinite;
   --animate-pulse-slow: pulse-slow 3s ease-in-out infinite;
+  --animate-pulse-text-slow: pulse-text-slow 3s ease-in-out infinite;
   --animate-spin-slow: spin-slow 20s linear infinite;
   
   @keyframes float {
@@ -24,6 +25,10 @@
   @keyframes pulse-slow {
     0%, 100% { opacity: 0.2; }
     50% { opacity: 0.4; }
+  }
+  @keyframes pulse-text-slow {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 0.95; }
   }
   @keyframes spin-slow {
     from { transform: rotate(0deg); }

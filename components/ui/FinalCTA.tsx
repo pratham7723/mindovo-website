@@ -116,11 +116,11 @@ export default function FinalCTA() {
         {/* General Contact trigger */}
         <div className="mt-16 flex items-center justify-center">
           <a
-            href="mailto:hello@mindovo.com"
+            href="mailto:support@mindovo.in"
             className="inline-flex items-center gap-2 text-xs font-display font-bold text-brand-text/50 hover:text-brand-text transition-colors duration-200 cursor-pointer"
           >
             <Mail className="w-4 h-4" />
-            <span>Have queries? Contact hello@mindovo.com</span>
+            <span>Have queries? Contact support@mindovo.in</span>
           </a>
         </div>
 
