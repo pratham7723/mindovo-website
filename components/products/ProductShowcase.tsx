@@ -174,12 +174,12 @@ function ProductCard({ product }: { product: Product }) {
   );
 }
 
-export default function ProductShowcase() {
+export default function ProductShowcase({ bgColor = "bg-white" }: { bgColor?: string } = {}) {
   // Only render active/published products
   const activeProducts = products.filter((p) => p.isPublished);
 
   return (
-    <section id="showcase" className="py-24 bg-white relative overflow-hidden">
+    <section id="showcase" className={`py-24 ${bgColor} relative overflow-hidden`}>
       {/* Accent Background Blobs */}
       <div className="absolute top-1/2 left-0 -translate-y-1/2 w-80 h-80 bg-puzzle-blue/5 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute top-1/3 right-0 w-80 h-80 bg-puzzle-red/5 rounded-full blur-[100px] pointer-events-none" />

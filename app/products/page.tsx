@@ -28,8 +28,8 @@ export default function ProductsPage() {
   return (
     <SmoothScrollProvider>
       <Navbar />
-      <main className="flex-1 pt-16">
-        <ProductShowcase />
+      <main className="flex-1 pt-16 bg-brand-bg">
+        <ProductShowcase bgColor="bg-brand-bg" />
         <FinalCTA />
       </main>
       <Footer />

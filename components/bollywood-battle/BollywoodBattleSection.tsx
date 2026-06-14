@@ -67,7 +67,7 @@ export default function BollywoodBattleSection() {
   };
 
   return (
-    <section id="bollywood-battle" className="py-24 bg-white relative overflow-hidden">
+    <section id="bollywood-battle" className="py-24 bg-brand-bg relative overflow-hidden">
       {/* Cinematic Spotlight Backdrop Filter Effects */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[800px] h-[500px] bg-gradient-to-b from-puzzle-red/5 via-transparent to-transparent pointer-events-none" />
       <div className="absolute top-24 left-1/4 w-72 h-72 bg-puzzle-red/5 rounded-full blur-[100px] pointer-events-none" />
@@ -118,7 +118,7 @@ export default function BollywoodBattleSection() {
               ].map((benefit, i) => (
                 <div
                   key={i}
-                  className="flex items-center gap-3 p-4 bg-brand-bg rounded-2xl border border-brand-text/5 relative overflow-hidden"
+                  className="flex items-center gap-3 p-4 bg-white rounded-2xl border border-brand-text/5 relative overflow-hidden shadow-sm"
                 >
                   <div className="w-2 h-4 bg-white rounded-r-full absolute left-0 top-1/2 -translate-y-1/2 border-y border-r border-brand-text/5" />
                   <div className="w-2 h-4 bg-white rounded-l-full absolute right-0 top-1/2 -translate-y-1/2 border-y border-l border-brand-text/5" />

@@ -3,6 +3,7 @@ import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 import SmoothScrollProvider from "@/components/ui/SmoothScrollProvider";
 import JigsawPuzzleSection from "@/components/jigsaw-puzzle/JigsawPuzzleSection";
+import InteractiveGameZone from "@/components/home/InteractiveGameZone";
 import { ChevronLeft } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -40,6 +41,7 @@ export default function JigsawPuzzlePage() {
         </div>
 
         <JigsawPuzzleSection />
+        <InteractiveGameZone hideTabs defaultTab="jigsaw" />
       </main>
       <Footer />
     </SmoothScrollProvider>

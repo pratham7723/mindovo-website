@@ -49,8 +49,13 @@ const PIECE_HELPERS = [
   { zone: "E", num: "5", color: "bg-amber-600" },
 ];
 
-export default function InteractiveGameZone() {
-  const [activeTab, setActiveTab] = useState<"jigsaw" | "quiz">("jigsaw");
+interface InteractiveGameZoneProps {
+  defaultTab?: "jigsaw" | "quiz";
+  hideTabs?: boolean;
+}
+
+export default function InteractiveGameZone({ defaultTab = "jigsaw", hideTabs = false }: InteractiveGameZoneProps = {}) {
+  const [activeTab, setActiveTab] = useState<"jigsaw" | "quiz">(defaultTab);
   
   // Shared Reward State
   const [showRewardModal, setShowRewardModal] = useState(false);
@@ -142,7 +147,7 @@ export default function InteractiveGameZone() {
   };
 
   const handleCopyCode = () => {
-    navigator.clipboard.writeText("MINDOVO15");
+    navigator.clipboard.writeText("SALE15");
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -169,30 +174,32 @@ export default function InteractiveGameZone() {
         </div>
 
         {/* Tab Buttons */}
-        <div className="flex justify-center gap-4 mb-10">
-          <button
-            onClick={() => setActiveTab("jigsaw")}
-            className={`flex items-center gap-2 px-6 py-3 rounded-full font-display text-xs font-black tracking-widest uppercase transition-all duration-300 border cursor-pointer ${
-              activeTab === "jigsaw"
-                ? "bg-brand-text text-brand-bg border-brand-text shadow-lg scale-105"
-                : "bg-white text-brand-text border-brand-text/10 hover:border-brand-text/30"
-            }`}
-          >
-            <Puzzle className="w-4 h-4" />
-            <span>Interactive Jigsaw Puzzle</span>
-          </button>
-          <button
-            onClick={() => setActiveTab("quiz")}
-            className={`flex items-center gap-2 px-6 py-3 rounded-full font-display text-xs font-black tracking-widest uppercase transition-all duration-300 border cursor-pointer ${
-              activeTab === "quiz"
-                ? "bg-brand-text text-brand-bg border-brand-text shadow-lg scale-105"
-                : "bg-white text-brand-text border-brand-text/10 hover:border-brand-text/30"
-            }`}
-          >
-            <Film className="w-4 h-4" />
-            <span>Bollywood Battle Quiz</span>
-          </button>
-        </div>
+        {!hideTabs && (
+          <div className="flex justify-center gap-4 mb-10">
+            <button
+              onClick={() => setActiveTab("jigsaw")}
+              className={`flex items-center gap-2 px-6 py-3 rounded-full font-display text-xs font-black tracking-widest uppercase transition-all duration-300 border cursor-pointer ${
+                activeTab === "jigsaw"
+                  ? "bg-brand-text text-brand-bg border-brand-text shadow-lg scale-105"
+                  : "bg-white text-brand-text border-brand-text/10 hover:border-brand-text/30"
+              }`}
+            >
+              <Puzzle className="w-4 h-4" />
+              <span>Interactive Jigsaw Puzzle</span>
+            </button>
+            <button
+              onClick={() => setActiveTab("quiz")}
+              className={`flex items-center gap-2 px-6 py-3 rounded-full font-display text-xs font-black tracking-widest uppercase transition-all duration-300 border cursor-pointer ${
+                activeTab === "quiz"
+                  ? "bg-brand-text text-brand-bg border-brand-text shadow-lg scale-105"
+                  : "bg-white text-brand-text border-brand-text/10 hover:border-brand-text/30"
+              }`}
+            >
+              <Film className="w-4 h-4" />
+              <span>Bollywood Battle Quiz</span>
+            </button>
+          </div>
+        )}
 
         {/* Game Box */}
         <div className="w-full bg-white rounded-3xl border border-brand-text/5 shadow-xl p-8 min-h-[520px] flex flex-col justify-between items-center relative overflow-hidden">
@@ -514,9 +521,9 @@ export default function InteractiveGameZone() {
                   <span className="text-[9px] font-display font-black text-brand-text/60 uppercase block tracking-wider">
                     Discount Coupon Code
                   </span>
-                  <span className="text-lg font-mono font-black text-brand-text tracking-wider">
-                    MINDOVO15
-                  </span>
+                  <div className="text-2xl font-black tracking-widest text-brand-text mb-1 relative z-10 select-all">
+                    SALE15
+                  </div>
                 </div>
                 <button
                   onClick={handleCopyCode}
