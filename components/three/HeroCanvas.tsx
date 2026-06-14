@@ -494,7 +494,7 @@ function Scene() {
         <group ref={groupRef}>
           
           {/* Main Rubik's Mind Cube (Center-Left) */}
-          <Float speed={2} rotationIntensity={0.6} floatIntensity={0.7} position={[-0.85, 0.35, 0]}>
+          <Float speed={2} rotationIntensity={0.6} floatIntensity={0.7} position={[-1.4, 0.4, 0]}>
             <RubiksCube
               position={[0, 0, 0]}
               rotation={[0.1, -0.4, 0.35]}
@@ -503,7 +503,7 @@ function Scene() {
           </Float>
 
           {/* Tumbling 3D Dice Pair (Center-Right) */}
-          <Float speed={2.5} rotationIntensity={0.7} floatIntensity={0.9} position={[0.9, -0.3, 0.4]}>
+          <Float speed={2.5} rotationIntensity={0.7} floatIntensity={0.9} position={[1.4, -0.4, 0.4]}>
             <group>
               {/* Die 1: Sage Green body with high-contrast Forest Green pips */}
               <Die
@@ -525,7 +525,7 @@ function Scene() {
           </Float>
 
           {/* Extruded Meeples (Pawn Game Pieces) (Bottom-Center) */}
-          <Float speed={1.8} rotationIntensity={0.4} floatIntensity={0.6} position={[-0.05, -0.75, 0.5]}>
+          <Float speed={1.8} rotationIntensity={0.4} floatIntensity={0.6} position={[-0.3, -1.2, 0.5]}>
             <group>
               {/* Gold Meeple */}
               <Meeple
@@ -545,7 +545,7 @@ function Scene() {
           </Float>
 
           {/* Luxury Chess Pawn (Back Center-Right) */}
-          <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.4} position={[0.25, 0.75, -0.6]}>
+          <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.4} position={[-0.1, 1.2, -0.6]}>
             <ChessPawn
               position={[0, 0, 0]}
               rotation={[0.1, 0.2, -0.1]}
@@ -554,7 +554,7 @@ function Scene() {
           </Float>
 
           {/* Hourglass (Back Far-Right) */}
-          <Float speed={1.2} rotationIntensity={0.2} floatIntensity={0.3} position={[0.95, 0.65, -1.1]}>
+          <Float speed={1.2} rotationIntensity={0.2} floatIntensity={0.3} position={[1.1, 1.1, -1.1]}>
             <Hourglass
               position={[0, 0, 0]}
               rotation={[0.2, -0.3, 0.1]}
