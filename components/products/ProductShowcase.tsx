@@ -4,9 +4,11 @@ import { useRef, useState } from "react";
 import { products, Product } from "@/data/products";
 import { ArrowUpRight, ShoppingBag } from "lucide-react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 function ProductCard({ product }: { product: Product }) {
   const cardRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
   
   // Motion values for 3D card tilt
   const x = useMotionValue(0);
@@ -54,6 +56,7 @@ function ProductCard({ product }: { product: Product }) {
   return (
     <motion.div
       ref={cardRef}
+      onClick={() => router.push(product.websiteUrl)}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{

@@ -83,7 +83,7 @@ export const products: Product[] = [
     },
     accentColor: "bg-puzzle-red",
     hoverAccentColor: "hover:bg-red-900",
-    amazonUrl: "https://www.amazon.in/dp/B0BOLLYBTL",
+    amazonUrl: "https://www.amazon.in/mindovo-Bollywood-Parties-Fast-Paced-Guessing/dp/B0H6N4NG74/ref=sr_1_2_sspa?crid=1ALMWC8PKYKZV&dib=eyJ2IjoiMSJ9.1U1G09g2RFSYX5b4hutIeHMh7VplcETgfpdlbkrPai-h0Z51D_4J_mIAXVJhWCyOd9oCXDr8gCZ8guCCMf0kzCK1aBrHhvGBjVjPCLXhOMcb-u-AvrPB2HoqvqmT9vNFaqyZdLjgo_Tt4u5XqNVERvIy4jyv9Gp7Nfc9wOFkblb4C2XFe_oo1kngm1DstjnxyNBGlnxjAeEsibRMsF6ewAtfrYJABWgo1WqF_jnMvqEvEpOuqo1zHO2NmlQ1pfwr6YgMXv7iir3eauHRcRsvgCyOzOhdj1lIDFstT2zZzqk.3V4Xy-cotYBdXPlk_FRuG_rUWtM7ZYhl8ijDZsceFbo&dib_tag=se&keywords=ottavo+bollywood+battle+card+game&nsdOptOutParam=true&qid=1783013859&sprefix=ottavobollywood+battle+card+game%2Caps%2C287&sr=8-2-spons&aref=F8OFgZImzr&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1",
     websiteUrl: "/products/bollywood-battle",
     directStoreUrl: "https://fashiondux.com",
     isPublished: true,
