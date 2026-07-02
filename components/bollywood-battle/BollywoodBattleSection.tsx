@@ -237,118 +237,122 @@ export default function BollywoodBattleSection() {
               ))}
             </div>
 
-            {/* Interactive card player */}
-            <div className="flex flex-col items-center w-full mt-4 lg:mt-0">
-              {/* Play Ticker Info */}
-              <div className="mb-4 text-center w-full max-w-[340px] mx-auto">
-                <span className="text-[10px] font-display font-black tracking-widest text-brand-text/70 uppercase">
-                  Interactive Game Demo: Try Flipping
-                </span>
+          </div>
+        </div>
+
+        {/* Interactive Game Demo - Centered Section */}
+        <div className="mt-24 w-full flex flex-col items-center">
+          {/* Play Ticker Info */}
+          <div className="mb-8 text-center w-full max-w-2xl mx-auto">
+            <span className="text-[10px] font-display font-black tracking-widest text-brand-text/70 uppercase">
+              Interactive Game Demo
+            </span>
+            <h3 className="text-3xl font-display font-black text-brand-text mt-2 tracking-tight">
+              Try Flipping A Card
+            </h3>
+          </div>
+
+          {/* 3D Card Flipper Container */}
+          <div className="w-full max-w-[340px] aspect-[2/3] relative" style={{ perspective: "1000px" }}>
+            <motion.div
+              animate={{ rotateY: isFlipped ? 180 : 0 }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
+              style={{ transformStyle: "preserve-3d" }}
+              className="w-full h-full relative"
+            >
+              
+              {/* CARD FRONT SIDE */}
+              <div
+                className="absolute inset-0 w-full h-full rounded-3xl bg-white border border-brand-text/15 shadow-2xl p-6 flex flex-col justify-between"
+                style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden", transform: "translateZ(1px)" }}
+              >
+                {/* Card Header */}
+                <div className="flex items-center justify-between">
+                  <span className="text-[9px] font-display font-black tracking-widest text-puzzle-red bg-puzzle-red/5 px-2.5 py-1 rounded">
+                    {currentTrivia.category}
+                  </span>
+                  <span className="text-[9px] font-display font-bold text-brand-text/75">
+                    DIFF: {currentTrivia.difficulty}
+                  </span>
+                </div>
+
+                {/* Trivia Question */}
+                <div className="my-auto">
+                  <h4 className="text-lg font-display font-bold text-brand-text leading-relaxed tracking-tight">
+                    {currentTrivia.question}
+                  </h4>
+
+                  {/* Interactive Multiple Choice */}
+                  <div className="flex flex-col gap-2 mt-6">
+                    {currentTrivia.options.map((option) => (
+                      <button
+                        key={option}
+                        disabled={selectedOption !== null}
+                        onClick={() => handleOptionClick(option)}
+                        className={`w-full text-left text-xs p-3.5 rounded-xl border font-sans font-medium transition-all duration-200 cursor-pointer ${
+                          selectedOption === option
+                            ? "border-puzzle-red bg-puzzle-red/5 text-puzzle-red font-bold"
+                            : "border-brand-text/15 hover:border-brand-text/35 text-brand-text hover:bg-brand-text/5"
+                        }`}
+                      >
+                        {option}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Card Footer */}
+                <div className="flex items-center justify-between text-[8px] font-display font-black text-brand-text/60 tracking-widest uppercase mt-4">
+                  <span>Mindovo Games</span>
+                  <span className="flex items-center gap-1">
+                    <Sparkles className="w-3.5 h-3.5 text-puzzle-red" />
+                    <span>Bollywood Battle</span>
+                  </span>
+                </div>
               </div>
 
-              {/* 3D Card Flipper Container */}
-              <div className="w-full max-w-[340px] aspect-[2/3] relative" style={{ perspective: "1000px" }}>
-                <motion.div
-                  animate={{ rotateY: isFlipped ? 180 : 0 }}
-                  transition={{ duration: 0.6, ease: "easeInOut" }}
-                  style={{ transformStyle: "preserve-3d" }}
-                  className="w-full h-full relative"
+              {/* CARD BACK SIDE */}
+              <div
+                className="absolute inset-0 w-full h-full rounded-3xl bg-white border border-[#854D0E]/60 shadow-2xl p-6 flex flex-col justify-between"
+                style={{
+                  backfaceVisibility: "hidden",
+                  WebkitBackfaceVisibility: "hidden",
+                  transform: "rotateY(180deg) translateZ(1px)",
+                }}
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-[9px] font-display font-black tracking-widest text-[#854D0E] bg-[#854D0E]/10 px-2.5 py-1 rounded">
+                    Correct Answer
+                  </span>
+                  <span className="text-[9px] font-display font-bold text-brand-text/75">
+                    CARD NO: 0{currentTrivia.id}
+                  </span>
+                </div>
+
+                {/* Answer reveal section */}
+                <div className="text-center my-auto">
+                  <div className="w-14 h-14 bg-[#854D0E]/10 border border-[#854D0E]/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Play className="w-6 h-6 text-[#854D0E] rotate-90" />
+                  </div>
+                  <h4 className="text-2xl font-display font-black text-brand-text tracking-tight">
+                    {currentTrivia.answer}
+                  </h4>
+                  <p className="text-xs text-brand-text/85 mt-3 max-w-[220px] mx-auto leading-relaxed">
+                    {selectedOption === currentTrivia.answer
+                      ? "Brilliant! You are a true movie guru. Settle the score in the real game."
+                      : `Nice try! Settle the showdown with friends and family.`}
+                  </p>
+                </div>
+
+                <button
+                  onClick={handleNextCard}
+                  className="w-full text-center bg-brand-text hover:bg-brand-text/80 text-brand-bg font-display text-[9px] font-black tracking-widest uppercase py-3.5 rounded-xl transition-all duration-300 cursor-pointer"
                 >
-                  
-                  {/* CARD FRONT SIDE */}
-                  <div
-                    className="absolute inset-0 w-full h-full rounded-3xl bg-white border border-brand-text/15 shadow-2xl p-6 flex flex-col justify-between"
-                    style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden", transform: "translateZ(1px)" }}
-                  >
-                    {/* Card Header */}
-                    <div className="flex items-center justify-between">
-                      <span className="text-[9px] font-display font-black tracking-widest text-puzzle-red bg-puzzle-red/5 px-2.5 py-1 rounded">
-                        {currentTrivia.category}
-                      </span>
-                      <span className="text-[9px] font-display font-bold text-brand-text/75">
-                        DIFF: {currentTrivia.difficulty}
-                      </span>
-                    </div>
-
-                    {/* Trivia Question */}
-                    <div className="my-auto">
-                      <h4 className="text-lg font-display font-bold text-brand-text leading-relaxed tracking-tight">
-                        {currentTrivia.question}
-                      </h4>
-
-                      {/* Interactive Multiple Choice */}
-                      <div className="flex flex-col gap-2 mt-6">
-                        {currentTrivia.options.map((option) => (
-                          <button
-                            key={option}
-                            disabled={selectedOption !== null}
-                            onClick={() => handleOptionClick(option)}
-                            className={`w-full text-left text-xs p-3.5 rounded-xl border font-sans font-medium transition-all duration-200 cursor-pointer ${
-                              selectedOption === option
-                                ? "border-puzzle-red bg-puzzle-red/5 text-puzzle-red font-bold"
-                                : "border-brand-text/15 hover:border-brand-text/35 text-brand-text hover:bg-brand-text/5"
-                            }`}
-                          >
-                            {option}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Card Footer */}
-                    <div className="flex items-center justify-between text-[8px] font-display font-black text-brand-text/60 tracking-widest uppercase mt-4">
-                      <span>Mindovo Games</span>
-                      <span className="flex items-center gap-1">
-                        <Sparkles className="w-3.5 h-3.5 text-puzzle-red" />
-                        <span>Bollywood Battle</span>
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* CARD BACK SIDE */}
-                  <div
-                    className="absolute inset-0 w-full h-full rounded-3xl bg-white border border-[#854D0E]/60 shadow-2xl p-6 flex flex-col justify-between"
-                    style={{
-                      backfaceVisibility: "hidden",
-                      WebkitBackfaceVisibility: "hidden",
-                      transform: "rotateY(180deg) translateZ(1px)",
-                    }}
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className="text-[9px] font-display font-black tracking-widest text-[#854D0E] bg-[#854D0E]/10 px-2.5 py-1 rounded">
-                        Correct Answer
-                      </span>
-                      <span className="text-[9px] font-display font-bold text-brand-text/75">
-                        CARD NO: 0{currentTrivia.id}
-                      </span>
-                    </div>
-
-                    {/* Answer reveal section */}
-                    <div className="text-center my-auto">
-                      <div className="w-14 h-14 bg-[#854D0E]/10 border border-[#854D0E]/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <Play className="w-6 h-6 text-[#854D0E] rotate-90" />
-                      </div>
-                      <h4 className="text-2xl font-display font-black text-brand-text tracking-tight">
-                        {currentTrivia.answer}
-                      </h4>
-                      <p className="text-xs text-brand-text/85 mt-3 max-w-[220px] mx-auto leading-relaxed">
-                        {selectedOption === currentTrivia.answer
-                          ? "Brilliant! You are a true movie guru. Settle the score in the real game."
-                          : `Nice try! Settle the showdown with friends and family.`}
-                      </p>
-                    </div>
-
-                    <button
-                      onClick={handleNextCard}
-                      className="w-full text-center bg-brand-text hover:bg-brand-text/80 text-brand-bg font-display text-[9px] font-black tracking-widest uppercase py-3.5 rounded-xl transition-all duration-300 cursor-pointer"
-                    >
-                      Next Question
-                    </button>
-                  </div>
-
-                </motion.div>
+                  Next Question
+                </button>
               </div>
-            </div>
+
+            </motion.div>
           </div>
         </div>
 

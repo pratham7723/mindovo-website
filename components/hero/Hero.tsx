@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { products } from "@/data/products";
 import { ArrowDown, ShoppingBag } from "lucide-react";
@@ -22,6 +23,15 @@ const HeroCanvas = dynamic(() => import("../three/HeroCanvas"), {
 
 export default function Hero() {
   const activeProducts = products.filter((p) => p.isPublished);
+  const [shouldAnimate, setShouldAnimate] = useState(true);
+
+  useEffect(() => {
+    if (sessionStorage.getItem("heroAnimated")) {
+      setShouldAnimate(false);
+    } else {
+      sessionStorage.setItem("heroAnimated", "true");
+    }
+  }, []);
 
   // Stagger animation container
   const containerVariants = {
@@ -61,8 +71,9 @@ export default function Hero() {
         
         {/* Left Column: Premium Cinematic Branding */}
         <motion.div
+          key={shouldAnimate ? "anim" : "static"}
           variants={containerVariants}
-          initial="hidden"
+          initial={shouldAnimate ? "hidden" : "visible"}
           animate="visible"
           className="lg:col-span-7 flex flex-col justify-center text-left"
         >
@@ -130,7 +141,8 @@ export default function Hero() {
         {/* Right Column: Dynamic 3D Canvas */}
         <div className="lg:col-span-5 w-full h-[450px] md:h-[600px] relative pointer-events-none">
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+            key={shouldAnimate ? "anim-canvas" : "static-canvas"}
+            initial={shouldAnimate ? { opacity: 0, scale: 0.95 } : { opacity: 1, scale: 1 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
             className="absolute -inset-x-16 -inset-y-12 md:-inset-x-28 md:-inset-y-20 lg:-inset-x-36 lg:-inset-y-24"
