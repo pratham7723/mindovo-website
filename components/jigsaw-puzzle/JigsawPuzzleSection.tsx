@@ -62,9 +62,9 @@ export default function JigsawPuzzleSection() {
           <span className="text-[10px] font-display font-black tracking-[0.4em] text-puzzle-blue uppercase">
             Signature Puzzle
           </span>
-          <h2 className="text-4xl md:text-5xl font-display font-black text-brand-text mt-3 tracking-tight">
+          <h1 className="text-4xl md:text-5xl font-display font-black text-brand-text mt-3 tracking-tight">
             Mindovo Jigsaw Puzzle
-          </h2>
+          </h1>
           <p className="text-base text-brand-text/85 mt-4 leading-relaxed">
             Discover a meditative puzzle experience designed to stimulate cognitive focus, promote mindfulness, and create bonding spaces.
           </p>

@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     "Family Board Games Feedback",
     "Spectacles Eyewear Trust"
   ],
+  alternates: { canonical: "/reviews" },
   openGraph: {
     title: "Reviews & Feedback | What Families Say About Mindovo",
     description: "Read verified customer reviews about Mindovo puzzles and party games.",
@@ -29,6 +30,7 @@ export default function ReviewsPage() {
     <SmoothScrollProvider>
       <Navbar />
       <main className="flex-1 pt-24 bg-brand-bg">
+        <h1 className="sr-only">Mindovo Reviews and Customer Feedback</h1>
         {/* Reviews Section */}
         <Testimonials />
 

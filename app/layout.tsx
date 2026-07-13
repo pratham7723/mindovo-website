@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+import { jsonLd, organizationJsonLd, siteConfig } from "@/lib/seo";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -15,29 +16,44 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Mindovo | Premium Games, Puzzles & Family Experiences",
-  description: "Discover premium, screen-free entertainment designed to bring friends and family together. Explore Jigsaw Puzzles, Bollywood Battle, and more.",
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: "Mindovo | Party Games & Premium Jigsaw Puzzles",
+    template: "%s | Mindovo",
+  },
+  description: siteConfig.description,
+  applicationName: "Mindovo",
+  category: "Games & puzzles",
   keywords: [
     "Mindovo",
-    "Jigsaw Puzzle India",
+    "party games India",
+    "jigsaw puzzles India",
+    "family games",
     "Bollywood Battle",
-    "Board Games India",
-    "Family Games India",
-    "Educational Games India",
-    "Party Games India"
+    "Bollywood trivia game",
+    "card games",
   ],
+  alternates: { canonical: "/" },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
+  },
   openGraph: {
-    title: "Mindovo | Premium Games, Puzzles & Family Experiences",
-    description: "Discover premium, screen-free entertainment designed to bring friends and family together.",
+    title: "Mindovo | Party Games & Premium Jigsaw Puzzles",
+    description: siteConfig.description,
+    url: "/",
     type: "website",
-    locale: "en_US",
+    locale: "en_IN",
     siteName: "Mindovo",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Mindovo party games and premium jigsaw puzzles" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mindovo | Premium Games, Puzzles & Family Experiences",
-    description: "Discover premium, screen-free entertainment designed to bring friends and family together.",
-  }
+    title: "Mindovo | Party Games & Premium Jigsaw Puzzles",
+    description: siteConfig.description,
+    images: ["/opengraph-image"],
+  },
 };
 
 export default function RootLayout({
@@ -45,20 +61,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Structured data for SEO
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Mindovo",
-    "url": "https://mindovo.com",
-    "logo": "https://mindovo.com/logo.png",
-    "sameAs": [
-      "https://facebook.com/mindovo",
-      "https://instagram.com/mindovo"
-    ],
-    "description": "Mindovo is a premium entertainment brand creating experiences that bring people together through games, puzzles, learning, fun, and competition."
-  };
-
   return (
     <html
       lang="en"
@@ -66,8 +68,8 @@ export default function RootLayout({
     >
       <head>
         <script
-          type="application/ld-json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLd(organizationJsonLd) }}
         />
       </head>
       <body className="min-h-full flex flex-col font-sans bg-brand-bg text-brand-text antialiased">

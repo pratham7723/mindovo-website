@@ -5,9 +5,10 @@ import SmoothScrollProvider from "@/components/ui/SmoothScrollProvider";
 import JigsawPuzzleSection from "@/components/jigsaw-puzzle/JigsawPuzzleSection";
 import InteractiveGameZone from "@/components/home/InteractiveGameZone";
 import { ChevronLeft } from "lucide-react";
+import { breadcrumbJsonLd, jsonLd, productJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Mindovo Jigsaw Puzzle | Premium 300-Piece Tabletop Puzzle",
+  title: "300-Piece Jigsaw Puzzle",
   description: "Explore the premium Mindovo 300-piece Jigsaw Puzzle. Velvet-matte anti-glare coatings, rigid packaging, and robust eco-friendly blueboard pieces.",
   keywords: [
     "Mindovo Jigsaw Puzzle",
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     "Eco Friendly Jigsaw Puzzle",
     "Anti Glare Board Games"
   ],
+  alternates: { canonical: "/products/jigsaw-puzzle" },
   openGraph: {
     title: "Mindovo Jigsaw Puzzle | Premium 300-Piece Tabletop Puzzle",
     description: "Explore the premium Mindovo 300-piece Jigsaw Puzzle. Velvet-matte anti-glare coatings, rigid packaging.",
@@ -25,8 +27,17 @@ export const metadata: Metadata = {
 };
 
 export default function JigsawPuzzlePage() {
+  const product = productJsonLd("jigsaw-puzzle");
+  const breadcrumbs = breadcrumbJsonLd([
+    { name: "Home", path: "/" },
+    { name: "Games & Puzzles", path: "/products" },
+    { name: "Mindovo Jigsaw Puzzle", path: "/products/jigsaw-puzzle" },
+  ]);
+
   return (
-    <SmoothScrollProvider>
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd([product, breadcrumbs]) }} />
+      <SmoothScrollProvider>
       <Navbar />
       <main className="flex-1 pt-24 bg-brand-bg">
         {/* Back Link Breadcrumb */}
@@ -44,6 +55,7 @@ export default function JigsawPuzzlePage() {
         <InteractiveGameZone hideTabs defaultTab="jigsaw" />
       </main>
       <Footer />
-    </SmoothScrollProvider>
+      </SmoothScrollProvider>
+    </>
   );
 }

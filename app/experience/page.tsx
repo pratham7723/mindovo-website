@@ -17,6 +17,7 @@ export const metadata: Metadata = {
     "Premium Puzzle Materials",
     "Velvet Touch Puzzles"
   ],
+  alternates: { canonical: "/experience" },
   openGraph: {
     title: "The Mindovo Experience | Premium Materials & Gifting Curation",
     description: "Learn how the magic comes together. Discover our premium velvet-touch matte finishes, rigid gift boxes, sustainable blueboard.",
@@ -31,6 +32,7 @@ export default function ExperiencePage() {
     <SmoothScrollProvider>
       <Navbar />
       <main className="flex-1 pt-16">
+        <h1 className="sr-only">The Mindovo Experience: Premium Games and Puzzles</h1>
         {/* Pinned Scroll Assembly experience */}
         <SignatureScroll />
 

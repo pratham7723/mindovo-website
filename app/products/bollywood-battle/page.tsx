@@ -4,9 +4,10 @@ import Footer from "@/components/footer/Footer";
 import SmoothScrollProvider from "@/components/ui/SmoothScrollProvider";
 import BollywoodBattleSection from "@/components/bollywood-battle/BollywoodBattleSection";
 import { ChevronLeft } from "lucide-react";
+import { breadcrumbJsonLd, jsonLd, productJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Bollywood Battle Game | Cinematic Party Trivia Card Game",
+  title: "Bollywood Battle Party Trivia Card Game",
   description: "Experience Bollywood Battle, the premium party card game featuring over 200 dialogue, singing, and action trivia cards. Designed for 3-10 players.",
   keywords: [
     "Bollywood Battle Game",
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     "Bollywood Card Game India",
     "Party Board Games India"
   ],
+  alternates: { canonical: "/products/bollywood-battle" },
   openGraph: {
     title: "Bollywood Battle Game | Cinematic Party Trivia Card Game",
     description: "Experience Bollywood Battle, the premium party card game featuring over 200 dialogue, singing, and action trivia cards.",
@@ -24,8 +26,17 @@ export const metadata: Metadata = {
 };
 
 export default function BollywoodBattlePage() {
+  const product = productJsonLd("bollywood-battle");
+  const breadcrumbs = breadcrumbJsonLd([
+    { name: "Home", path: "/" },
+    { name: "Games & Puzzles", path: "/products" },
+    { name: "Bollywood Battle", path: "/products/bollywood-battle" },
+  ]);
+
   return (
-    <SmoothScrollProvider>
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd([product, breadcrumbs]) }} />
+      <SmoothScrollProvider>
       <Navbar />
       <main className="flex-1 pt-24 bg-brand-bg">
         {/* Back Link Breadcrumb */}
@@ -42,6 +53,7 @@ export default function BollywoodBattlePage() {
         <BollywoodBattleSection />
       </main>
       <Footer />
-    </SmoothScrollProvider>
+      </SmoothScrollProvider>
+    </>
   );
 }

@@ -103,9 +103,9 @@ export default function BollywoodBattleSection() {
             <Film className="w-3 h-3 animate-spin-slow" />
             <span>Cinematic Party Game</span>
           </span>
-          <h2 className="text-4xl md:text-5xl font-display font-black text-brand-text mt-3 tracking-tight leading-tight">
+          <h1 className="text-4xl md:text-5xl font-display font-black text-brand-text mt-3 tracking-tight leading-tight">
             Bollywood Trivia Card Game for Parties
-          </h2>
+          </h1>
           <p className="text-lg text-brand-text/85 mt-4 leading-relaxed">
             Fast-Paced Guessing Game for Parties, Game Nights & Family Time | Gift for Bollywood Fans | 3-12 Players | Ages 14 & Up
           </p>

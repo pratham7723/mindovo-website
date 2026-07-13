@@ -94,6 +94,7 @@ export default function Hero() {
               variants={wordVariants}
               className="text-6xl sm:text-7xl xl:text-8xl font-display font-black leading-[0.9] text-brand-text tracking-tighter"
             >
+              <span className="sr-only">Mindovo party games and premium jigsaw puzzles. </span>
               PLAY.
               <br />
               THINK.

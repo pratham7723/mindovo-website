@@ -1,8 +1,9 @@
 import { MetadataRoute } from "next";
 import { products } from "@/data/products";
+import { absoluteUrl } from "@/lib/seo";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://mindovo.com";
+  const baseUrl = absoluteUrl().replace(/\/$/, "");
 
   const routes = [
     {
@@ -10,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "weekly" as const,
       priority: 1.0,
+      images: [absoluteUrl("/lifestyle-assembling.png")],
     },
     {
       url: `${baseUrl}/products`,
@@ -40,6 +42,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.7,
+      images: [absoluteUrl("/fashion-dux-eyewear.png"), absoluteUrl("/lifestyle-assembling.png")],
     },
   ];
 

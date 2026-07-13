@@ -7,5 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
     },
     sitemap: "https://mindovo.com/sitemap.xml",
+    host: "https://mindovo.com",
   };
 }

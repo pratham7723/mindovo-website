@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     "Spectacles India",
     "Amazon Best Sellers"
   ],
+  alternates: { canonical: "/about" },
   openGraph: {
     title: "About Us | Mindovo & The House of Fashion Dux",
     description: "Learn about Mindovo's premium puzzles and games, our parent company Fashion Dux, and sister brand OTTAVO.",
@@ -64,8 +65,8 @@ export default function AboutPage() {
   return (
     <>
       <script
-        type="application/ld-json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
       />
 
       <SmoothScrollProvider>
