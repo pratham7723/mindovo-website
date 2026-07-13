@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
-import { jsonLd, organizationJsonLd, siteConfig } from "@/lib/seo";
+import { jsonLd, organizationJsonLd, websiteJsonLd, siteConfig } from "@/lib/seo";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -69,7 +69,7 @@ export default function RootLayout({
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: jsonLd(organizationJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: jsonLd([organizationJsonLd, websiteJsonLd]) }}
         />
       </head>
       <body className="min-h-full flex flex-col font-sans bg-brand-bg text-brand-text antialiased">

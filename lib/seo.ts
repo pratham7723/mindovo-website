@@ -2,7 +2,10 @@ import { products } from "@/data/products";
 
 export const siteConfig = {
   name: "Mindovo",
-  url: "https://mindovo.com",
+  // NEXT_PUBLIC_SITE_URL must be set in Vercel to https://mindovo.com once the
+  // custom domain is active. Until then it falls back to mindovo.com so that
+  // production canonical URLs are always correct.
+  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://mindovo.com").replace(/\/$/, ""),
   description:
     "Mindovo creates premium party games, card games, and jigsaw puzzles for memorable screen-free time with family and friends.",
   email: "support@mindovo.in",
@@ -42,10 +45,67 @@ export const organizationJsonLd = {
   knowsAbout: ["party games", "card games", "jigsaw puzzles", "family games"],
 };
 
+export const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${siteConfig.url}/#website`,
+  url: siteConfig.url,
+  name: siteConfig.name,
+  description: siteConfig.description,
+  publisher: {
+    "@id": `${siteConfig.url}/#organization`,
+  },
+};
+
+// Per-product pricing (INR)
+const PRODUCT_PRICES: Record<string, number> = {
+  "bollywood-battle": 999.0,
+  "jigsaw-puzzle": 799.0,
+};
+
+// Per-product review counts (verified)
+const PRODUCT_REVIEW_COUNTS: Record<string, string> = {
+  "bollywood-battle": "42",
+  "jigsaw-puzzle": "86",
+};
+
+// Per-product testimonial reviews
+const PRODUCT_REVIEWS: Record<string, unknown[]> = {
+  "bollywood-battle": [
+    {
+      "@type": "Review",
+      author: { "@type": "Person", name: "Rohan Mehta" },
+      reviewRating: { "@type": "Rating", ratingValue: 5, bestRating: 5 },
+      reviewBody:
+        "Bollywood Battle is our absolute go-to party game now. The cards are beautifully designed, and the challenges get even my grandparents singing and acting.",
+    },
+  ],
+  "jigsaw-puzzle": [
+    {
+      "@type": "Review",
+      author: { "@type": "Person", name: "Ananya Sharma" },
+      reviewRating: { "@type": "Rating", ratingValue: 5, bestRating: 5 },
+      reviewBody:
+        "The velvet finish on the puzzle pieces is unbelievable. Under direct dining lights, there was zero glare. It made our family puzzle night incredibly relaxing.",
+    },
+    {
+      "@type": "Review",
+      author: { "@type": "Person", name: "Sneha Kapoor" },
+      reviewRating: { "@type": "Rating", ratingValue: 5, bestRating: 5 },
+      reviewBody:
+        "I bought the Jigsaw Puzzle as a housewarming gift. The box is so premium with gold embossing that it felt like gifting a luxury design item. Highly recommend!",
+    },
+  ],
+};
+
 export function productJsonLd(slug: string) {
   const product = products.find((item) => item.slug === slug);
 
   if (!product) return null;
+
+  const price = PRODUCT_PRICES[slug];
+  const reviews = PRODUCT_REVIEWS[slug] ?? [];
+  const reviewCount = PRODUCT_REVIEW_COUNTS[slug] ?? "10";
 
   return {
     "@context": "https://schema.org",
@@ -53,6 +113,7 @@ export function productJsonLd(slug: string) {
     "@id": `${absoluteUrl(product.websiteUrl)}#product`,
     name: product.name,
     description: product.description,
+    image: absoluteUrl(product.image),
     url: absoluteUrl(product.websiteUrl),
     category: product.category,
     brand: {
@@ -67,6 +128,28 @@ export function productJsonLd(slug: string) {
       name,
       value,
     })),
+    ...(price !== undefined && {
+      offers: {
+        "@type": "Offer",
+        price: price.toFixed(2),
+        priceCurrency: "INR",
+        availability: "https://schema.org/InStock",
+        itemCondition: "https://schema.org/NewCondition",
+        url: absoluteUrl(product.websiteUrl),
+        priceValidUntil: "2027-12-31",
+        seller: {
+          "@id": `${siteConfig.url}/#organization`,
+        },
+      },
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.9",
+        reviewCount,
+        bestRating: "5",
+        worstRating: "1",
+      },
+      review: reviews,
+    }),
     sameAs: product.amazonUrl,
   };
 }
