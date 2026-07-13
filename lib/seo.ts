@@ -2,10 +2,10 @@ import { products } from "@/data/products";
 
 export const siteConfig = {
   name: "Mindovo",
-  // NEXT_PUBLIC_SITE_URL must be set in Vercel to https://mindovo.com once the
-  // custom domain is active. Until then it falls back to mindovo.com so that
+  // NEXT_PUBLIC_SITE_URL must be set in Vercel to https://mindovo.in once the
+  // custom domain is active. Until then it falls back to mindovo.in so that
   // production canonical URLs are always correct.
-  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://mindovo.com").replace(/\/$/, ""),
+  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://mindovo.in").replace(/\/$/, ""),
   description:
     "Mindovo creates premium party games, card games, and jigsaw puzzles for memorable screen-free time with family and friends.",
   email: "support@mindovo.in",
